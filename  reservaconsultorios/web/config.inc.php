@@ -31,7 +31,7 @@ require('database.php');
 //
 // A list of valid timezones can be found at http://php.net/manual/timezones.php
 // The following line must be uncommented by removing the '//' at the beginning
-//$timezone = "Europe/London";
+$timezone = "America/Argentina/Buenos_Aires";
 
 
 /*******************
@@ -55,6 +55,8 @@ $db_tbl_prefix = "mrbs_";
 // Uncomment this to NOT use PHP persistent (pooled) database connections:
 // $db_nopersist = 1;
 
+$auth["session"] = "php";
+$auth["type"] = "db";
 
 /* Add lines from systemdefaults.inc.php and areadefaults.inc.php below here
    to change the default configuration. Do _NOT_ modify systemdefaults.inc.php
