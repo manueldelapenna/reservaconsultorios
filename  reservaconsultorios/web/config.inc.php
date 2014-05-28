@@ -1,5 +1,7 @@
 <?php
 
+require('database.php');
+
 // $Id: config.inc.php 2632 2013-01-03 21:41:38Z cimorrison $
 
 /**************************************************************************
@@ -40,13 +42,13 @@
 $dbsys = "mysqli";
 // Hostname of database server. For pgsql, can use "" instead of localhost
 // to use Unix Domain Sockets instead of TCP/IP.
-$db_host = "localhost";
+$db_host = $host;
 // Database name:
-$db_database = "mrbs";
+$db_database = $databasename;
 // Database login user name:
-$db_login = "mrbs";
+$db_login = $username;
 // Database login password:
-$db_password = 'mrbs-password';
+$db_password = $password;
 // Prefix for table names.  This will allow multiple installations where only
 // one database is available
 $db_tbl_prefix = "mrbs_";
