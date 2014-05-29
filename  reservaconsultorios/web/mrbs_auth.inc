@@ -14,20 +14,20 @@ if (isset($auth['session']))
 // These pages are open to the public by default as they only contain
 // read features.   However if $auth['deny_public_access'] is TRUE then
 // access to the public is denied
-$page_level['check_slot_ajax.php']       = ($auth['deny_public_access']) ? 1 : 0;
-$page_level['day.php']                   = ($auth['deny_public_access']) ? 1 : 0;
-$page_level['help.php']                  = ($auth['deny_public_access']) ? 1 : 0;
-$page_level['month.php']                 = ($auth['deny_public_access']) ? 1 : 0;
-$page_level['report.php']                = ($auth['deny_public_access']) ? 1 : 0;
-$page_level['search.php']                = ($auth['deny_public_access']) ? 1 : 0;
-$page_level['view_entry.php']            = ($auth['deny_public_access']) ? 1 : 0;
-$page_level['week.php']                  = ($auth['deny_public_access']) ? 1 : 0;
+$page_level['check_slot_ajax.php']       = ($auth['deny_public_access']) ? 2 : 1;
+$page_level['day.php']                   = ($auth['deny_public_access']) ? 2 : 1;
+$page_level['help.php']                  = ($auth['deny_public_access']) ? 2 : 1;
+$page_level['month.php']                 = ($auth['deny_public_access']) ? 2 : 1;
+$page_level['report.php']                = 2;
+$page_level['search.php']                = 2;
+$page_level['view_entry.php']            = ($auth['deny_public_access']) ? 2 : 1;
+$page_level['week.php']                  = ($auth['deny_public_access']) ? 2 : 1;
 
 // These pages are set to have a minimum access level of 1 as ordinary users
 // should be able to access them because they will have read access and in some
 // cases write access for their own entries.   Where necessary further checks are
 // made within the page to prevent ordinary users gaining access to admin features.
-$page_level['admin.php']                 = 1;  // Ordinary users can view room details 
+$page_level['admin.php']                 = ($auth['only_admin_can_book']) ? 2 : 1;  // Ordinary users can view room details 
 $page_level['approve_entry_handler.php'] = 1;  // Ordinary users are allowed to remind admins
 $page_level['del_entry.php']             = ($auth['only_admin_can_book']) ? 2 : 1;
 $page_level['edit_area_room.php']        = 1;  // Ordinary users can view room details
