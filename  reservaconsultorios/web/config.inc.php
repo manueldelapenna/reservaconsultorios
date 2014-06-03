@@ -421,7 +421,7 @@ $private_override = "none";  // DEFAULT VALUE FOR NEW AREAS
 // approved by an admin.   The settings here are the default settings for new
 // areas.  The settings for individual areas can be changed from within MRBS.
 
-$approval_enabled = TRUE;  // Set to TRUE to enable booking approval
+$approval_enabled = FALSE;  // Set to TRUE to enable booking approval
 
 // Set to FALSE if you don't want users to be able to send reminders
 // to admins when bookings are still awaiting approval.
@@ -433,12 +433,12 @@ $reminders_enabled = TRUE;
 // Allows bookings to be marked as "tentative", ie not yet 100% certain,
 // and confirmed later.   Useful if you want to reserve a slot but at the same
 // time let other people know that there's a possibility it may not be needed.
-$confirmation_enabled = TRUE;
+$confirmation_enabled = FALSE;
 
 // The default confirmation status for new bookings.  (TRUE: confirmed, FALSE: tentative)
 // Only used if $confirmation_enabled is TRUE.   If $confirmation_enabled is 
 // FALSE, then all new bookings are confirmed automatically.
-$confirmed_default = FALSE;
+$confirmed_default = TRUE;
 
 //$typel["A"] = "Cursos";
 
