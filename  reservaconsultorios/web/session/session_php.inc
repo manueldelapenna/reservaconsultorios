@@ -239,19 +239,19 @@ function PrintLogonBox()
       "from_year=$year&amp;to_day=1&amp;to_month=12&amp;to_year=2030&amp;areamatch=&amp;".
       "roommatch=&amp;namematch=&amp;descrmatch=&amp;summarize=1&amp;sortby=r&amp;display=d&amp;".
       "sumby=d&amp;creatormatch=".urlencode($user); ?>
-
-                <a href="<?php echo "$search_string\" title=\""
-         . get_vocab('show_my_entries') . "\">" . get_vocab('you_are')." "
-         . htmlspecialchars($user) ?></a>
+			
+				<p>¡Bienvenido <?php echo htmlspecialchars($user)?>!</p>
+				<a href="edit_users.php"/>Editar datos personales</a>
                 <form method="post" action="admin.php">
                   <div>
-                    <input type="hidden" name="TargetURL" value="<?php echo htmlspecialchars($TargetURL) ?>">
+                    <input type="hidden" name="TargetURL" value="week.php">
                     <input type="hidden" name="Action" value="SetName">
                     <input type="hidden" name="NewUserName" value="">
                     <input type="hidden" name="NewUserPassword" value="">
                     <input type="submit" value=" <?php echo get_vocab('logoff') ?> ">
                   </div>
                 </form>
+			
 <?php
   }
   else
@@ -267,7 +267,7 @@ function PrintLogonBox()
                 </form>
 <?php
   } 
-  if (isset($user_list_link))
+  if (isset($user_list_link) && (authGetUserLevel($user) == 2))
   {
     print "<a id=\"user_list_link\" href=\"$user_list_link\">" . get_vocab('user_list') . "</a>\n";
   }

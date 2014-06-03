@@ -88,7 +88,7 @@ function print_theme_header($day, $month, $year, $area, $room)
   }
 ?>
 
-  <table id="banner">
+  <table class="banner">
     <tr>
       <td id="company">
         <div>
@@ -124,7 +124,79 @@ function print_theme_header($day, $month, $year, $area, $room)
           </div>
         </div>
       </td>
-      <td>
+      
+		
+      <?php
+      $query_str = "day=$day&amp;month=$month&amp;year=$year";
+      if (!empty($area))
+      {
+        $query_str .= "&amp;area=$area";
+      }
+      if (!empty($room))
+      {
+        $query_str .= "&amp;room=$room";
+      }
+          
+      ?>
+	  
+	  <?php
+      // For session protocols that define their own logon box...
+	  
+      if (function_exists('PrintLogonBox') && (authGetUserLevel($user) != 0))
+      {
+        echo "<td>\n";
+        echo "<div id=\"logon_box\">\n";
+        PrintLogonBox(); 
+        echo "</div>\n";
+        echo "</td>\n";
+      }
+	  
+      ?>
+    </tr>
+  </table>
+    
+  <table class="banner">
+    <tr>
+	  <?php
+	
+	if(isset($user) == TRUE && (authGetUserLevel($user) == 2)){  
+      echo "<td>\n";
+      echo "<a href=\"admin.php?$query_str\">" . get_vocab("rooms") . "</a>\n";
+      echo "</td>\n";
+      
+      echo "<td>\n";
+      echo "<a href=\"report.php?$query_str\">" . get_vocab("report") . "</a>\n";
+      echo "</td>\n"; 
+      }
+      ?>
+      
+     <!-- <td>
+		
+        <form id="header_search" method="get" action="search.php">
+          <div>
+            <a href="search.php?advanced=1"><?php echo get_vocab("search") ?>:</a>
+            <input type="search" name="search_str" value="<?php echo htmlspecialchars($search_str) ?>" required>
+            <input type="hidden" name="day"        value="<?php echo $day        ?>">
+            <input type="hidden" name="month"      value="<?php echo $month      ?>">
+            <input type="hidden" name="year"       value="<?php echo $year       ?>">
+            <?php
+            if (!empty($area))
+            {
+              echo "<input type=\"hidden\" name=\"area\" value=\"$area\">\n";
+            }
+            if (!empty($room))
+            {
+              echo "<input type=\"hidden\" name=\"room\" value=\"$room\">\n";
+            }
+            ?>
+          </div>
+        </form>
+      </td> -->
+      
+	  <?php 
+		if (authGetUserLevel($user) >= 1){
+		?>
+		<td>
         <form action="day.php" method="get" id="Form1">
           <div>
             <?php
@@ -147,6 +219,7 @@ function print_theme_header($day, $month, $year, $area, $room)
             ?>
            </div>
         </form>
+		
         <?php
         // Provide a link to the list of bookings awaiting approval
         // (if there are any enabled areas where we require bookings to be approved)
@@ -185,65 +258,14 @@ function print_theme_header($day, $month, $year, $area, $room)
           echo "</div>\n";
         }
         ?>
+		
       </td>
-      <?php
-      $query_str = "day=$day&amp;month=$month&amp;year=$year";
-      if (!empty($area))
-      {
-        $query_str .= "&amp;area=$area";
-      }
-      if (!empty($room))
-      {
-        $query_str .= "&amp;room=$room";
-      }
-      
-      echo "<td>\n";
-      echo "<a href=\"help.php?$query_str\">" . get_vocab("help") . "</a>\n";
-      echo "</td>\n";
-      
-      echo "<td>\n";
-      echo "<a href=\"admin.php?$query_str\">" . get_vocab("rooms") . "</a>\n";
-      echo "</td>\n";
-      
-      echo "<td>\n";
-      echo "<a href=\"report.php?$query_str\">" . get_vocab("report") . "</a>\n";
-      echo "</td>\n";
-      ?>
-      
-      <td>
-        <form id="header_search" method="get" action="search.php">
-          <div>
-            <a href="search.php?advanced=1"><?php echo get_vocab("search") ?>:</a>
-            <input type="search" name="search_str" value="<?php echo htmlspecialchars($search_str) ?>" required>
-            <input type="hidden" name="day"        value="<?php echo $day        ?>">
-            <input type="hidden" name="month"      value="<?php echo $month      ?>">
-            <input type="hidden" name="year"       value="<?php echo $year       ?>">
-            <?php
-            if (!empty($area))
-            {
-              echo "<input type=\"hidden\" name=\"area\" value=\"$area\">\n";
-            }
-            if (!empty($room))
-            {
-              echo "<input type=\"hidden\" name=\"room\" value=\"$room\">\n";
-            }
-            ?>
-          </div>
-        </form>
-      </td>
-      <?php
-      // For session protocols that define their own logon box...
-      if (function_exists('PrintLogonBox'))
-      {
-        echo "<td>\n";
-        echo "<div id=\"logon_box\">\n";
-        PrintLogonBox(); 
-        echo "</div>\n";
-        echo "</td>\n";
-      }
-      ?>
+	  <?php 
+		}
+		?>
     </tr>
   </table>
+  
 </div>
 
 <div id="contents">
