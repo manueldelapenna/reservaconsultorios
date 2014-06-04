@@ -120,7 +120,11 @@ $default_language_tokens = "es";
 // if you want to override the automatic locale determination MRBS
 // performs.   Remember to include the codeset if appropriate.   For example,
 // on a UNIX system you would use "en_GB.utf-8" for English/GB.
-$override_locale = "enu";
+if (PHP_OS == 'WINNT'){
+	$override_locale = "enu";
+}else{
+	$override_locale = "es_AR.UTF_8";
+}
 
 // faq file language selection. IF not set, use the default english file.
 // IF your language faq file is available, set $faqfilelang to match the
