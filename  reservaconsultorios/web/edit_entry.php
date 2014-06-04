@@ -535,6 +535,54 @@ function create_field_entry_privacy_status($disabled=FALSE)
   }
 }
 
+function create_field_entry_user_id($disabled=FALSE)
+{
+  echo "<div id=\"div_user_id\">\n";
+  
+  $sql = "SELECT u.id, u.name, u.real_name, u.real_lastname
+            FROM mrbs_users u
+        ORDER BY u.real_lastname, u.real_name";
+  $res = sql_query($sql);
+  echo "<label>Usuario solicitante:</label>";
+  echo"<select name='f_user_id'>";
+  
+  for ($i = 0; ($row = sql_row_keyed($res, $i)); $i++)
+  {
+   $id=$row['id'];
+   $name=$row['real_lastname'].', '.$row['real_name'];
+   echo "<option value=$id>$name</option>";
+   
+   }
+   echo "</select>";
+  
+  echo "</div>\n";
+}
+
+function create_field_entry_psychologist_id($disabled=FALSE)
+{
+  echo "<div id=\"div_psychogist_id\">\n";
+  
+  $sql = "SELECT u.id, u.name, u.real_name, u.real_lastname
+            FROM mrbs_users u
+			where u.level = 1
+        ORDER BY u.real_lastname, u.real_name";
+  $res = sql_query($sql);
+  echo "<label>Psicólogo:</label>";
+  echo"<select name='f_psychologist_id'>";
+  
+  for ($i = 0; ($row = sql_row_keyed($res, $i)); $i++)
+  {
+   $id=$row['id'];
+   $name=$row['real_lastname'].', '.$row['real_name'];
+   echo "<option value=$id>$name</option>";
+   
+   }
+   echo "</select>";
+  
+
+  echo "</div>\n";
+}
+
 
 function create_field_entry_custom_field($field, $key, $disabled=FALSE)
 {
@@ -1169,7 +1217,15 @@ foreach ($edit_entry_field_order as $key)
   case 'privacy_status':
     create_field_entry_privacy_status();
     break;
-
+	
+  case 'user_id':
+    create_field_entry_user_id();
+    break;
+	
+  case 'psychologist_id':
+    create_field_entry_psychologist_id();
+    break;
+  
   default:
     create_field_entry_custom_field($custom_fields_map[$key], $key);
     break;
