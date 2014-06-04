@@ -391,8 +391,8 @@ $vocab["for_any_questions"]  = "para cualquier duda.";
 $vocab["failed_connect_db"]  = "Error: No se pudo conectar a la Base de Datos";
 
 // Entry types
-$vocab["type.I"]             = "Interna";
-$vocab["type.E"]             = "Externa";
+$vocab["type.I"]             = "Administrador";
+$vocab["type.E"]             = "Psicologo";
 
 // General
 $vocab["fatal_db_error"]     = "Error: la base de datos no está disponible en este momento.";
