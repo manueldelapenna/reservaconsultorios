@@ -491,9 +491,13 @@ if (isset($Action) && ( ($Action == "Edit") or ($Action == "Add") ))
         echo "<div>\n";
         echo "<input type=\"hidden\" name=\"Action\" value=\"Delete\">\n";
         echo "<input type=\"hidden\" name=\"Id\" value=\"$Id\">\n";
-        echo "<input class=\"submit\" type=\"submit\" " . 
+		$my_id = sql_query1("SELECT id FROM $tbl_users WHERE name='".sql_escape($user)."' LIMIT 1");
+        
+		if ($Id != $my_id){
+			echo "<input class=\"submit\" type=\"submit\" " . 
               (($editing_last_admin) ? "disabled=\"disabled\"" : "") .
               "value=\"" . get_vocab("delete_user") . "\">\n";
+		}
         echo "</div>\n";
         echo "</form>\n";
       }
@@ -501,9 +505,9 @@ if (isset($Action) && ( ($Action == "Edit") or ($Action == "Add") ))
       // which takes them back to the user list and does nothing
       else
       {
-        echo "<form id=\"form_delete_users\" method=\"post\" action=\"" . htmlspecialchars(basename($PHP_SELF)) . "\">\n";
+		echo "<form id=\"form_delete_users\" method=\"post\" action=\"" . htmlspecialchars(basename($PHP_SELF)) . "\">\n";
         echo "<div>\n";
-        echo "<input class=\"submit\" type=\"submit\" value=\"" . get_vocab("back") . "\">\n";
+        //echo "<input class=\"submit\" type=\"submit\" value=\"" . get_vocab("back") . "\">\n";
         echo "</div>\n";
         echo "</form>\n";
       }
@@ -767,7 +771,11 @@ if (isset($Action) && ($Action == "Update"))
     }
   
     /* Success. Redirect to the user list, to remove the form args */
-    Header("Location: edit_users.php");
+	if (authGetUserLevelById($Id) == 2){
+		Header("Location: edit_users.php");
+	}else{
+		Header("Location: index.php");
+	}
   }
 }
 
@@ -802,7 +810,7 @@ if (isset($Action) && ($Action == "Delete"))
     print "  <legend></legend>\n";
     print "    <p class=\"error\">Error deleting entry $Id from the $tbl_users table.</p>\n";
     print "    <p class=\"error\">" . sql_error() . "</p>\n";
-    print "    <input type=\"submit\" value=\" " . get_vocab("ok") . " \">\n";
+    //print "    <input type=\"submit\" value=\" " . get_vocab("ok") . " \">\n";
     print "  </fieldset>\n";
     print "</form>\n";
 

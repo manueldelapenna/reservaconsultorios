@@ -240,11 +240,14 @@ function PrintLogonBox()
       "roommatch=&amp;namematch=&amp;descrmatch=&amp;summarize=1&amp;sortby=r&amp;display=d&amp;".
       "sumby=d&amp;creatormatch=".urlencode($user); ?>
 			
-				<p>¡Bienvenido <?php echo htmlspecialchars($user)?>!</p>
-				<a href="edit_users.php"/>Editar datos personales</a>
+				<label>¡Bienvenido <?php echo htmlspecialchars($user);?>!</label>
+				<?php 
+				$userId = authGetUserId($user);
+				echo "<a href='edit_users.php?Action=Edit&Id=$userId'/>Editar datos personales</a>"
+				?>
                 <form method="post" action="admin.php">
                   <div>
-                    <input type="hidden" name="TargetURL" value="week.php">
+                    <input type="hidden" name="TargetURL" value="index.php">
                     <input type="hidden" name="Action" value="SetName">
                     <input type="hidden" name="NewUserName" value="">
                     <input type="hidden" name="NewUserPassword" value="">
@@ -267,9 +270,6 @@ function PrintLogonBox()
                 </form>
 <?php
   } 
-  if (isset($user_list_link) && (authGetUserLevel($user) == 2))
-  {
-    print "<a id=\"user_list_link\" href=\"$user_list_link\">" . get_vocab('user_list') . "</a>\n";
-  }
+  
 }
 ?>

@@ -167,6 +167,15 @@ function print_theme_header($day, $month, $year, $area, $room)
       echo "<td>\n";
       echo "<a href=\"report.php?$query_str\">" . get_vocab("report") . "</a>\n";
       echo "</td>\n"; 
+	  
+	  echo "<td>\n";
+      echo "<a href=\"pagos.php\">" . Pagos . "</a>\n";
+      echo "</td>\n"; 
+	  
+	  echo "<td>\n";
+      echo "<a href=\"edit_users.php\">" . Usuarios . "</a>\n";
+      echo "</td>\n"; 
+	  
       }
       ?>
       

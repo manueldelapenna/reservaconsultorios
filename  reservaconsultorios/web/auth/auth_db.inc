@@ -94,4 +94,55 @@ function authGetUserLevel($user)
   return $result;
 }
 
+function authGetUserLevelById($userId)
+{
+  global $tbl_users;
+  // User not logged in, user level '0'
+  if(!isset($userId))
+  {
+    return 0;
+  }
+  
+  $result = sql_query1("SELECT level FROM $tbl_users WHERE id='" . strtolower(sql_escape($userId)) . "' LIMIT 1");
+  if ($result == -1)
+  {
+    $sql_error = sql_error();
+    if (!empty($sql_error))
+    {
+      // It's possible that sql_query1 returned -1 because there were no matching rows,
+      // so we only trigger an error if there was a genuine SQL error.
+      trigger_error($sql_error, E_USER_WARNING);
+    }
+    return 0;
+  }
+
+  return $result;
+}
+
+function authGetUserId($user)
+{
+  global $tbl_users;
+  // User not logged in, user level '0'
+  if(!isset($user))
+  {
+    return 0;
+  }
+  
+  $result = sql_query1("SELECT id FROM $tbl_users WHERE name='" . strtolower(sql_escape($user)) . "' LIMIT 1");
+  if ($result == -1)
+  {
+    $sql_error = sql_error();
+    if (!empty($sql_error))
+    {
+      // It's possible that sql_query1 returned -1 because there were no matching rows,
+      // so we only trigger an error if there was a genuine SQL error.
+      trigger_error($sql_error, E_USER_WARNING);
+    }
+    return 0;
+  }
+
+  return $result;
+}
+
+
 ?>
