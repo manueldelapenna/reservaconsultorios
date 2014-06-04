@@ -460,11 +460,17 @@ function create_field_entry_type($disabled=FALSE)
 {
   global $booking_types, $type;
   
+  if (authGetUserLevel(getUserName()) == 2){
+	$type='I';
+  }else{
+	$type='E';
+  }
+  
   echo "<div id=\"div_type\">\n";
   
   $params = array('label'       => get_vocab("type") . ":",
                   'name'        => 'type',
-                  'disabled'    => $disabled,
+                  'disabled'    => 'disabled',
                   'options'     => array(),
                   'force_assoc' => TRUE,  // in case the type keys happen to be digits
                   'value'       => $type);
