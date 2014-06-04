@@ -468,6 +468,6 @@ $confirmed_default = TRUE;
  // $typel["H"] = "H";
  //$typel["I"] = get_vocab("internal");
  // $typel["J"] = "J";
- 
+
 
 ?>

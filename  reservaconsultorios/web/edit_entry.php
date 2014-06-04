@@ -1324,6 +1324,7 @@ if (($edit_type == "series") && $repeats_allowed)
     echo "</div>\n";
     
     // Checkbox for skipping past conflicts
+	/*
     if (!$disabled)
     {
       echo "<div>\n";
@@ -1333,6 +1334,7 @@ if (($edit_type == "series") && $repeats_allowed)
       generate_checkbox($params);
       echo "</div>\n";
     }
+	*/
   }
 
   echo "</fieldset>\n";

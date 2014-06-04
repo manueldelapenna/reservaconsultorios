@@ -771,7 +771,8 @@ if (isset($Action) && ($Action == "Update"))
     }
   
     /* Success. Redirect to the user list, to remove the form args */
-	if (authGetUserLevelById($Id) == 2){
+	$my_id = sql_query1("SELECT id FROM $tbl_users WHERE name='".sql_escape($user)."' LIMIT 1");
+	if (authGetUserLevelById($my_id) == 2){
 		Header("Location: edit_users.php");
 	}else{
 		Header("Location: index.php");
