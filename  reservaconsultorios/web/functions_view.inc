@@ -151,9 +151,13 @@ function create_details_body($data, $as_html=FALSE, $keep_private=FALSE, $room_d
   $tbody .= create_details_row(get_vocab("lastupdate"), time_date_string($data['last_updated']), $as_html);
   // The custom fields
   $fields = sql_field_info($tbl_entry);
+  
+  $id = $_GET['id'];
+    
   foreach ($fields as $field)
   {
     $key = $field['name'];
+	
     if (!in_array($key, $standard_fields['entry']))
     {
       $label = get_loc_field_name($tbl_entry, $key);
@@ -165,6 +169,7 @@ function create_details_body($data, $as_html=FALSE, $keep_private=FALSE, $room_d
         if ($keep_private && isset($is_private_field["entry.$key"]) && $is_private_field["entry.$key"])
         {
           $value = $data[$key];  // Will have been set previously
+		  
         }
         else
         {
@@ -183,6 +188,7 @@ function create_details_body($data, $as_html=FALSE, $keep_private=FALSE, $room_d
               array_key_exists($data[$key], $select_options["entry.$key"]))
           {
             $value = $select_options["entry.$key"][$data[$key]];
+			
           }
           else
           {
@@ -194,6 +200,29 @@ function create_details_body($data, $as_html=FALSE, $keep_private=FALSE, $room_d
           $value = "";
         }
       }
+	  
+	  if ($label == 'user_id'){
+		$label = 'Usuario solicitante';
+		$sql = "SELECT concat(u.real_lastname, ', ', u.real_name) as name
+            FROM mrbs_entry e, mrbs_users u
+            WHERE e.id = $id and e.user_id = u.id";
+
+		$res = sql_query($sql);
+		$book = sql_row_keyed($res, 0);  
+		$value = $book['name'];
+	  }
+	  if ($label == 'psychologist_id'){
+		$label = 'Psicólogo';
+		$sql = "SELECT concat(u.real_lastname, ', ', u.real_name) as name
+            FROM mrbs_entry e, mrbs_users u
+            WHERE e.id = $id and e.psychologist_id = u.id";
+
+		$res = sql_query($sql);
+		$book = sql_row_keyed($res, 0);  
+		$value = $book['name'];
+	  }
+	  
+	  
       $class = ($keep_private && isset($is_private_field["entry.$key"]) && $is_private_field["entry.$key"]) ? "private" : "";
       $tbody .= create_details_row($label, $value, $as_html, $class);
     }

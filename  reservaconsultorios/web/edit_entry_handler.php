@@ -13,6 +13,7 @@ function invalid_booking($message)
   print_header($day, $month, $year, $area, isset($room) ? $room : "");
   echo "<h1>" . get_vocab('invalid_booking') . "</h1>\n";
   echo "<p>$message</p>\n";
+  echo "<a href=javascript:window.history.back()>Volver a reserva</a>\n";
   // Print footer and exit
   print_footer(TRUE);
 }
@@ -25,8 +26,6 @@ checkAuthorised();
 // Also need to know whether they have admin rights
 $user = getUserName();
 $is_admin = (authGetUserLevel($user) >= 2);
-
-
 
 // (2) Get the form variables
 // --------------------------
@@ -138,8 +137,6 @@ foreach($fields as $field)
   }
 }
 
-
-
 // (3) Clean up the form variables
 // -------------------------------
 
@@ -147,7 +144,12 @@ foreach($fields as $field)
 // Don't bother with them if this is an Ajax request.
 if (!$ajax)
 {
-    if (empty($rooms))
+  if ($_POST['f_psychologist_id'] == -1){
+	invalid_booking('Debe seleccionar un Psicólogo');
+	echo"<h1>lallala</h1>";
+  }
+
+  if (empty($rooms))
   {
     invalid_booking(get_vocab('no_rooms_selected'));
   }

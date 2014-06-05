@@ -523,7 +523,7 @@ function create_field_entry_user_id($disabled=FALSE)
    if (authGetUserId(getUserName()) == $id){
 		echo "<option selected value=$id>$name</option>";
 	}else{
-		echo "<option value=$id>$name</option>";
+		echo "<option hidden='hidden' value=$id>$name</option>";
 	}
    
    }
@@ -545,13 +545,12 @@ function create_field_entry_psychologist_id($disabled=FALSE)
   $res = sql_query($sql);
   
   echo "<label>Psicólogo:</label>";
-  echo"<select name='f_psychologist_id'";
-  if ($deactivate_select)
-  {
-	echo "readonly";
-  }; 
-  echo" >";
-    
+  echo"<select name='f_psychologist_id'>";
+  
+  if(!$deactivate_select){
+	echo "<option selected value='-1'></option>";
+  }
+  
   for ($i = 0; ($row = sql_row_keyed($res, $i)); $i++)
   {
    $id=$row['id'];
@@ -559,7 +558,11 @@ function create_field_entry_psychologist_id($disabled=FALSE)
    if (authGetUserId(getUserName()) == $id){
 		echo "<option selected value=$id>$name</option>";
 	}else{
-		echo "<option value=$id>$name</option>";
+		if ($deactivate_select){
+			echo "<option hidden='hidden'value=$id>$name</option>";
+		}else{
+			echo "<option value=$id>$name</option>";
+		}
 	}
    
    }
