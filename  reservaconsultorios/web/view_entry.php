@@ -286,198 +286,215 @@ else
   $series = 1;
 }
 
-
-// Now that we know all the data we start drawing it
-
-echo "<h3" . (($keep_private && $is_private_field['entry.name']) ? " class=\"private\"" : "") . ">\n";
-echo ($keep_private && $is_private_field['entry.name']) ? "[" . get_vocab("private") . "]" : htmlspecialchars($row['name']);
-if (is_private_event($private) && $writeable) 
-{
-  echo ' ('.get_vocab("private").')';
-}
-echo "</h3>\n";
+if (authGetUserLevel($user) == 2 || authGetUserId($user) == $row['psychologist_id']){
 
 
-echo "<table id=\"entry\">\n";
+	// Now that we know all the data we start drawing it
 
-// Output any error messages
-if (!empty($error))
-{
-  echo "<tr><td>&nbsp;</td><td class=\"error\">" . get_vocab($error) . "</td></tr>\n";
-}
+	echo "<h3" . (($keep_private && $is_private_field['entry.name']) ? " class=\"private\"" : "") . ">\n";
+	echo ($keep_private && $is_private_field['entry.name']) ? "[" . get_vocab("private") . "]" : htmlspecialchars($row['name']);
+	if (is_private_event($private) && $writeable) 
+	{
+	  echo ' ('.get_vocab("private").')';
+	}
+	echo "</h3>\n";
 
-// If bookings require approval, and the room is enabled, put the buttons
-// to do with managing the bookings in the footer
-if ($approval_enabled && !$room_disabled && ($status & STATUS_AWAITING_APPROVAL))
-{
-  echo "<tfoot id=\"approve_buttons\">\n";
-  // PHASE 2 - REJECT
-  if (isset($action) && ($action == "reject"))
-  {
-    // del_entry expects the id of a member of a series
-    // when deleting a series and not the repeat_id
-    generateTextArea("del_entry.php", $id, $series,
-                     "reject", $returl,
-                     get_vocab("reject"),
-                     get_vocab("reject_reason"));
-  }
-  // PHASE 2 - MORE INFO
-  elseif (isset($action) && ($action == "more_info"))
-  {
-    // but approve_entry_handler expects the id to be a repeat_id
-    // if $series is true (ie behaves like the rest of MRBS).
-    // Sometime this difference in behaviour should be rationalised
-    // because it is very confusing!
-    $target_id = ($series) ? $repeat_id : $id;
-    $info_time = ($series) ? $repeat_info_time : $entry_info_time;
-    $info_user = ($series) ? $repeat_info_user : $entry_info_user;
-    $info_text = ($series) ? $repeat_info_text : $entry_info_text;
-    
-    if (empty($info_time))
-    {
-      $value = '';
-    }
-    else
-    {
-      $value = get_vocab("sent_at") . time_date_string($info_time);
-      if (!empty($info_user))
-      {
-        $value .= "\n" . get_vocab("by") . " $info_user";
-      }
-      $value .= "\n----\n";
-      $value .= $info_text;
-    }
-    generateTextArea("approve_entry_handler.php", $target_id, $series,
-                     "more_info", $returl,
-                     get_vocab("send"),
-                     get_vocab("request_more_info"),
-                     $value);
-  }
-  // PHASE 1 - first time through this page
-  else
-  {
-    // Buttons for those who are allowed to approve this booking
-    if (auth_book_admin($user, $row['room_id']))
-    {
-      if (!$series)
-      {
-        generateApproveButtons($id, FALSE);
-      }
-      if (!empty($repeat_id) || $series)
-      {
-        generateApproveButtons($repeat_id, TRUE);
-      }    
-    }
-    // Buttons for the owner of this booking
-    elseif ($user == $create_by)
-    {
-      generateOwnerButtons($id, $series);
-    }
-    // Others don't get any buttons
-    else
-    {
-      // But valid HTML requires that there's something inside the <tfoot></tfoot>
-      echo "<tr><td></td><td></td></tr>\n";
-    }
-  }
-  echo "</tfoot>\n";
-}
 
-echo create_details_body($row, TRUE, $keep_private, $room_disabled);
+	echo "<table id=\"entry\">\n";
 
-?>
-</table>
+	// Output any error messages
+	if (!empty($error))
+	{
+	  echo "<tr><td>&nbsp;</td><td class=\"error\">" . get_vocab($error) . "</td></tr>\n";
+	}
 
-<div id="view_entry_nav">
-  <?php
-  // Only show the links for Edit and Delete if the room is enabled.    We're
-  // allowed to view and copy existing bookings in disabled rooms, but not to
-  // modify or delete them.
-  if (!$room_disabled)
-  {
-    // Edit and Edit Series
-    echo "<div>\n";
-    if (!$series)
-    {
-      echo "<a href=\"edit_entry.php?id=$id&amp;returl=$link_returl\">". get_vocab("editentry") ."</a>";
-    } 
-    if (!empty($repeat_id)  && !$series && $repeats_allowed)
-    {
-      echo " - ";
-    }  
-    if ((!empty($repeat_id) || $series) && $repeats_allowed)
-    {
-      echo "<a href=\"edit_entry.php?id=$id&amp;edit_type=series&amp;day=$day&amp;month=$month&amp;year=$year&amp;returl=$link_returl\">".get_vocab("editseries")."</a>";
-    }
-    echo "</div>\n";
-    
-    // Delete and Delete Series
-    echo "<div>\n";
-    if (!$series)
-    {
-      echo "<a href=\"del_entry.php?id=$id&amp;series=0&amp;returl=$link_returl\" onclick=\"return confirm('".get_vocab("confirmdel")."');\">".get_vocab("deleteentry")."</a>";
-    }
-    if (!empty($repeat_id) && !$series && $repeats_allowed)
-    {
-      echo " - ";
-    }
-    if ((!empty($repeat_id) || $series) && $repeats_allowed)
-    {
-      echo "<a href=\"del_entry.php?id=$id&amp;series=1&amp;day=$day&amp;month=$month&amp;year=$year&amp;returl=$link_returl\" onClick=\"return confirm('".get_vocab("confirmdel")."');\">".get_vocab("deleteseries")."</a>";
-    }
-    echo "</div>\n";
-  }
-  
-  // Copy and Copy Series
-  echo "<div>\n";
-  if (!$series)
-  {
-    echo "<a href=\"edit_entry.php?id=$id&amp;copy=1&amp;returl=$link_returl\">". get_vocab("copyentry") ."</a>";
-  }      
-  if (!empty($repeat_id) && !$series && $repeats_allowed)
-  {
-    echo " - ";
-  }     
-  if ((!empty($repeat_id) || $series) && $repeats_allowed) 
-  {
-    echo "<a href=\"edit_entry.php?id=$id&amp;edit_type=series&amp;day=$day&amp;month=$month&amp;year=$year&amp;copy=1&amp;returl=$link_returl\">".get_vocab("copyseries")."</a>";
-  }
-  echo "</div>\n";
-  
-  // Export and Export Series
-  if (!$keep_private && !$enable_periods)
-  {
-    // The iCalendar information has the full booking details in it, so we will not allow
-    // it to be exported if it is private and the user is not authorised to see it.
-    // iCalendar information doesn't work with periods at the moment (no periods to times mapping)
-    echo "<div>\n";
-    if (!$series)
-    {
-      echo "<a href=\"view_entry.php?action=export&amp;id=$id&amp;returl=$link_returl\">". get_vocab("exportentry") ."</a>";
-    } 
-    if (!empty($repeat_id)  && !$series)
-    {
-      echo " - ";
-    }  
-    if (!empty($repeat_id) || $series)
-    {
-      echo "<a href=\"view_entry.php?action=export&amp;id=$repeat_id&amp;series=1&amp;day=$day&amp;month=$month&amp;year=$year&amp;returl=$link_returl\">".get_vocab("exportseries")."</a>";
-    }
-    echo "</div>\n";
-  }
-  ?>
-  <div id="returl">
-    <?php
-    if (isset($HTTP_REFERER)) //remove the link if displayed from an email
-    {
-    ?>
-    <a href="<?php echo htmlspecialchars($HTTP_REFERER) ?>"><?php echo get_vocab("returnprev") ?></a>
-    <?php
-    }
-    ?>
-  </div>
-</div>
+	// If bookings require approval, and the room is enabled, put the buttons
+	// to do with managing the bookings in the footer
+	if ($approval_enabled && !$room_disabled && ($status & STATUS_AWAITING_APPROVAL))
+	{
+	  echo "<tfoot id=\"approve_buttons\">\n";
+	  // PHASE 2 - REJECT
+	  if (isset($action) && ($action == "reject"))
+	  {
+		// del_entry expects the id of a member of a series
+		// when deleting a series and not the repeat_id
+		generateTextArea("del_entry.php", $id, $series,
+						 "reject", $returl,
+						 get_vocab("reject"),
+						 get_vocab("reject_reason"));
+	  }
+	  // PHASE 2 - MORE INFO
+	  elseif (isset($action) && ($action == "more_info"))
+	  {
+		// but approve_entry_handler expects the id to be a repeat_id
+		// if $series is true (ie behaves like the rest of MRBS).
+		// Sometime this difference in behaviour should be rationalised
+		// because it is very confusing!
+		$target_id = ($series) ? $repeat_id : $id;
+		$info_time = ($series) ? $repeat_info_time : $entry_info_time;
+		$info_user = ($series) ? $repeat_info_user : $entry_info_user;
+		$info_text = ($series) ? $repeat_info_text : $entry_info_text;
+		
+		if (empty($info_time))
+		{
+		  $value = '';
+		}
+		else
+		{
+		  $value = get_vocab("sent_at") . time_date_string($info_time);
+		  if (!empty($info_user))
+		  {
+			$value .= "\n" . get_vocab("by") . " $info_user";
+		  }
+		  $value .= "\n----\n";
+		  $value .= $info_text;
+		}
+		generateTextArea("approve_entry_handler.php", $target_id, $series,
+						 "more_info", $returl,
+						 get_vocab("send"),
+						 get_vocab("request_more_info"),
+						 $value);
+	  }
+	  // PHASE 1 - first time through this page
+	  else
+	  {
+		// Buttons for those who are allowed to approve this booking
+		if (auth_book_admin($user, $row['room_id']))
+		{
+		  if (!$series)
+		  {
+			generateApproveButtons($id, FALSE);
+		  }
+		  if (!empty($repeat_id) || $series)
+		  {
+			generateApproveButtons($repeat_id, TRUE);
+		  }    
+		}
+		// Buttons for the owner of this booking
+		elseif ($user == $create_by)
+		{
+		  generateOwnerButtons($id, $series);
+		}
+		// Others don't get any buttons
+		else
+		{
+		  // But valid HTML requires that there's something inside the <tfoot></tfoot>
+		  echo "<tr><td></td><td></td></tr>\n";
+		}
+	  }
+	  echo "</tfoot>\n";
+	}
 
+	echo create_details_body($row, TRUE, $keep_private, $room_disabled);
+
+	?>
+	</table>
+
+	<div id="view_entry_nav">
+	  <?php
+	  // Only show the links for Edit and Delete if the room is enabled.    We're
+	  // allowed to view and copy existing bookings in disabled rooms, but not to
+	  // modify or delete them.
+	  if (!$room_disabled)
+	  {
+		// Edit and Edit Series
+		echo "<div>\n";
+		if (!$series)
+		{
+		  echo "<a href=\"edit_entry.php?id=$id&amp;returl=$link_returl\">". get_vocab("editentry") ."</a>";
+		} 
+		if (!empty($repeat_id)  && !$series && $repeats_allowed)
+		{
+		  echo " - ";
+		}  
+		if ((!empty($repeat_id) || $series) && $repeats_allowed)
+		{
+		  echo "<a href=\"edit_entry.php?id=$id&amp;edit_type=series&amp;day=$day&amp;month=$month&amp;year=$year&amp;returl=$link_returl\">".get_vocab("editseries")."</a>";
+		}
+		echo "</div>\n";
+		
+		// Delete and Delete Series
+		echo "<div>\n";
+		if (!$series)
+		{
+		  echo "<a href=\"del_entry.php?id=$id&amp;series=0&amp;returl=$link_returl\" onclick=\"return confirm('".get_vocab("confirmdel")."');\">".get_vocab("deleteentry")."</a>";
+		}
+		if (!empty($repeat_id) && !$series && $repeats_allowed)
+		{
+		  echo " - ";
+		}
+		if ((!empty($repeat_id) || $series) && $repeats_allowed)
+		{
+		  echo "<a href=\"del_entry.php?id=$id&amp;series=1&amp;day=$day&amp;month=$month&amp;year=$year&amp;returl=$link_returl\" onClick=\"return confirm('".get_vocab("confirmdel")."');\">".get_vocab("deleteseries")."</a>";
+		}
+		echo "</div>\n";
+	  }
+	  
+	  // Copy and Copy Series
+	  echo "<div>\n";
+	  if (!$series)
+	  {
+		echo "<a href=\"edit_entry.php?id=$id&amp;copy=1&amp;returl=$link_returl\">". get_vocab("copyentry") ."</a>";
+	  }      
+	  if (!empty($repeat_id) && !$series && $repeats_allowed)
+	  {
+		echo " - ";
+	  }     
+	  if ((!empty($repeat_id) || $series) && $repeats_allowed) 
+	  {
+		echo "<a href=\"edit_entry.php?id=$id&amp;edit_type=series&amp;day=$day&amp;month=$month&amp;year=$year&amp;copy=1&amp;returl=$link_returl\">".get_vocab("copyseries")."</a>";
+	  }
+	  echo "</div>\n";
+	  
+	  // Export and Export Series
+	  if (!$keep_private && !$enable_periods)
+	  {
+		// The iCalendar information has the full booking details in it, so we will not allow
+		// it to be exported if it is private and the user is not authorised to see it.
+		// iCalendar information doesn't work with periods at the moment (no periods to times mapping)
+		echo "<div>\n";
+		if (!$series)
+		{
+		  echo "<a href=\"view_entry.php?action=export&amp;id=$id&amp;returl=$link_returl\">". get_vocab("exportentry") ."</a>";
+		} 
+		if (!empty($repeat_id)  && !$series)
+		{
+		  echo " - ";
+		}  
+		if (!empty($repeat_id) || $series)
+		{
+		  echo "<a href=\"view_entry.php?action=export&amp;id=$repeat_id&amp;series=1&amp;day=$day&amp;month=$month&amp;year=$year&amp;returl=$link_returl\">".get_vocab("exportseries")."</a>";
+		}
+		echo "</div>\n";
+	  }
+	  ?>
+	  <div id="returl">
+		<?php
+		if (isset($HTTP_REFERER)) //remove the link if displayed from an email
+		{
+		?>
+		<a href="<?php echo htmlspecialchars($HTTP_REFERER) ?>"><?php echo get_vocab("returnprev") ?></a>
+		<?php
+		}
+		?>
+	  </div>
+	</div>
 <?php
+}else{
+?>
+	<h1>Permiso denegado</h1>
+	<div id="returl">
+		<?php
+		if (isset($HTTP_REFERER)) //remove the link if displayed from an email
+		{
+		?>
+		<a href="<?php echo htmlspecialchars($HTTP_REFERER) ?>"><?php echo get_vocab("returnprev") ?></a>
+		<?php
+		}
+		?>
+	  </div>
+<?php
+}
+
 output_trailer();
 ?>

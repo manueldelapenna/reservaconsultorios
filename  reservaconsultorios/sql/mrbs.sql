@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 04-06-2014 a las 18:34:42
+-- Tiempo de generación: 05-06-2014 a las 13:31:50
 -- Versión del servidor: 5.1.41
 -- Versión de PHP: 5.3.1
 
@@ -88,11 +88,9 @@ CREATE TABLE IF NOT EXISTS `mrbs_entry` (
   `room_id` int(11) NOT NULL DEFAULT '1',
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `create_by` varchar(80) NOT NULL DEFAULT '',
-  `name` varchar(80) NOT NULL DEFAULT '',
   `user_id` int(11) NOT NULL,
   `psychologist_id` int(11) NOT NULL,
   `type` char(1) NOT NULL DEFAULT 'E',
-  `description` text,
   `status` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `reminded` int(11) DEFAULT NULL,
   `info_time` int(11) DEFAULT NULL,
@@ -106,12 +104,15 @@ CREATE TABLE IF NOT EXISTS `mrbs_entry` (
   KEY `idxEndTime` (`end_time`),
   KEY `user_id` (`user_id`),
   KEY `psychologist_id` (`psychologist_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- Volcar la base de datos para la tabla `mrbs_entry`
 --
 
+INSERT INTO `mrbs_entry` (`id`, `start_time`, `end_time`, `entry_type`, `repeat_id`, `room_id`, `timestamp`, `create_by`, `user_id`, `psychologist_id`, `type`, `status`, `reminded`, `info_time`, `info_user`, `info_text`, `ical_uid`, `ical_sequence`, `ical_recur_id`) VALUES
+(2, 1401897600, 1401901200, 0, 0, 4, '2014-06-05 12:14:12', 'pepe', 3, 3, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-5390895c89c34-e88f243b@localhost', 0, ''),
+(7, 1401800400, 1401804000, 0, 0, 4, '2014-06-05 12:44:17', 'pepa', 5, 5, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-5390906990133-ee16fa83@localhost', 0, '');
 
 -- --------------------------------------------------------
 
@@ -129,11 +130,9 @@ CREATE TABLE IF NOT EXISTS `mrbs_repeat` (
   `room_id` int(11) NOT NULL DEFAULT '1',
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `create_by` varchar(80) NOT NULL DEFAULT '',
-  `name` varchar(80) NOT NULL DEFAULT '',
   `user_id` int(11) NOT NULL,
   `psychologist_id` int(11) NOT NULL,
   `type` char(1) NOT NULL DEFAULT 'E',
-  `description` text,
   `rep_num_weeks` smallint(6) DEFAULT NULL,
   `month_absolute` smallint(6) DEFAULT NULL,
   `month_relative` varchar(4) DEFAULT NULL,
@@ -147,7 +146,7 @@ CREATE TABLE IF NOT EXISTS `mrbs_repeat` (
   PRIMARY KEY (`id`),
   KEY `psychologist_id` (`psychologist_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Volcar la base de datos para la tabla `mrbs_repeat`
@@ -172,14 +171,15 @@ CREATE TABLE IF NOT EXISTS `mrbs_room` (
   `custom_html` text,
   PRIMARY KEY (`id`),
   KEY `idxSortKey` (`sort_key`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Volcar la base de datos para la tabla `mrbs_room`
 --
 
 INSERT INTO `mrbs_room` (`id`, `disabled`, `area_id`, `room_name`, `sort_key`, `description`, `capacity`, `room_admin_email`, `custom_html`) VALUES
-(4, 0, 6, 'Consultorio 1', 'Consultorio 1', '', 0, NULL, NULL);
+(4, 0, 6, 'Consultorio 1', 'Consultorio 1', '', 0, NULL, NULL),
+(5, 0, 6, 'Consultorio 2', 'Consultorio 2', '', 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -207,7 +207,8 @@ CREATE TABLE IF NOT EXISTS `mrbs_users` (
 INSERT INTO `mrbs_users` (`id`, `level`, `real_name`, `real_lastname`, `name`, `password`, `email`) VALUES
 (2, 2, 'Martin', 'Ciafardini', 'martin', '925d7518fc597af0e43f5606f9a51512', 'martinciafardini@gmail.com'),
 (3, 1, 'Pepe', 'Gonzalez', 'pepe', '926e27eecdbc7a18858b3798ba99bddd', 'pepe@pepe.com'),
-(4, 2, 'Manuel', 'De la Penna', 'manuel', '96917805fd060e3766a9a1b834639d35', 'manueldelapenna@gmail.com');
+(4, 2, 'Manuel', 'De la Penna', 'manuel', '96917805fd060e3766a9a1b834639d35', 'manueldelapenna@gmail.com'),
+(5, 1, 'Pepa', 'Lopez', 'pepa', '281ffbf5eb2a3916b9c1eb8f28637836', 'pepa@pepa.com');
 
 -- --------------------------------------------------------
 
@@ -250,7 +251,7 @@ CREATE TABLE IF NOT EXISTS `mrbs_zoneinfo` (
 --
 
 INSERT INTO `mrbs_zoneinfo` (`id`, `timezone`, `outlook_compatible`, `vtimezone`, `last_updated`) VALUES
-(1, 'America/Argentina/Buenos_Aires', 1, 'BEGIN:VTIMEZONE\r\nTZID:America/Argentina/Buenos_Aires\r\nTZURL:http://tzurl.org/zoneinfo-outlook/America/Argentina/Buenos_Aires\r\nX-LIC-LOCATION:America/Argentina/Buenos_Aires\r\nBEGIN:STANDARD\r\nTZOFFSETFROM:-0300\r\nTZOFFSETTO:-0300\r\nTZNAME:ART\r\nDTSTART:19700101T000000\r\nEND:STANDARD\r\nEND:VTIMEZONE', 1399500827);
+(1, 'America/Argentina/Buenos_Aires', 1, 'BEGIN:VTIMEZONE\r\nTZID:America/Argentina/Buenos_Aires\r\nTZURL:http://tzurl.org/zoneinfo-outlook/America/Argentina/Buenos_Aires\r\nX-LIC-LOCATION:America/Argentina/Buenos_Aires\r\nBEGIN:STANDARD\r\nTZOFFSETFROM:-0300\r\nTZOFFSETTO:-0300\r\nTZNAME:ART\r\nDTSTART:19700101T000000\r\nEND:STANDARD\r\nEND:VTIMEZONE', 1401920034);
 
 --
 -- Filtros para las tablas descargadas (dump)
@@ -260,15 +261,15 @@ INSERT INTO `mrbs_zoneinfo` (`id`, `timezone`, `outlook_compatible`, `vtimezone`
 -- Filtros para la tabla `mrbs_entry`
 --
 ALTER TABLE `mrbs_entry`
-  ADD CONSTRAINT `mrbs_entry_ibfk_4` FOREIGN KEY (`psychologist_id`) REFERENCES `mrbs_users` (`id`),
-  ADD CONSTRAINT `mrbs_entry_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `mrbs_users` (`id`);
+  ADD CONSTRAINT `mrbs_entry_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `mrbs_users` (`id`),
+  ADD CONSTRAINT `mrbs_entry_ibfk_4` FOREIGN KEY (`psychologist_id`) REFERENCES `mrbs_users` (`id`);
 
 --
 -- Filtros para la tabla `mrbs_repeat`
 --
 ALTER TABLE `mrbs_repeat`
-  ADD CONSTRAINT `mrbs_repeat_ibfk_4` FOREIGN KEY (`psychologist_id`) REFERENCES `mrbs_users` (`id`),
-  ADD CONSTRAINT `mrbs_repeat_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `mrbs_users` (`id`);
+  ADD CONSTRAINT `mrbs_repeat_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `mrbs_users` (`id`),
+  ADD CONSTRAINT `mrbs_repeat_ibfk_4` FOREIGN KEY (`psychologist_id`) REFERENCES `mrbs_users` (`id`);
 SET FOREIGN_KEY_CHECKS=1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

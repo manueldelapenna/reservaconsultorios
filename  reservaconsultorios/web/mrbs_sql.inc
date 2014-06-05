@@ -27,7 +27,7 @@ function mrbsCheckFree(&$booking, $ignore, $repignore)
   get_area_settings(get_area($room_id));
 
   // Select any meetings which overlap for this room:
-  $sql = "SELECT id, name, start_time, create_by, status
+  $sql = "SELECT id, start_time, create_by, status
             FROM $tbl_entry
            WHERE start_time < ${booking['end_time']}
              AND end_time > ${booking['start_time']}

@@ -241,7 +241,12 @@ function map_add_booking ($row, &$column, $am7, $pm7)
   // slot for the booking (provided it's not a multiple booking slot)
   if (!isset($column[$first_slot][1]["id"]))
   {
-    $column[$first_slot][0]["data"]       = $row['name'];
+  
+    if (authGetUserLevel($user) == 2 || authGetUserId($user) == $row['psychologist_id']){
+		$column[$first_slot][0]["data"]       = $row['name'];
+	}else{
+		$column[$first_slot][0]["data"]       = 'Ocupado';
+	}
     $column[$first_slot][0]["long_descr"] = $row['entry_description'];
     $column[$first_slot][0]["create_by"]  = $row['entry_create_by']; 
     $column[$first_slot][0]["room_id"]    = $row['room_id']; 
@@ -750,7 +755,7 @@ function day_table_innerhtml($day, $month, $year, $room, $area, $timetohighlight
   $sql = "SELECT R.id AS room_id, start_time, end_time, name, repeat_id,
                  E.id AS entry_id, type,
                  E.description AS entry_description, status,
-                 E.create_by AS entry_create_by
+                 E.create_by AS entry_create_by, $tbl_entry.user_id, $tbl_entry.psychologist_id
             FROM $tbl_entry E, $tbl_room R
            WHERE E.room_id = R.id
              AND R.area_id = $area
@@ -1069,11 +1074,12 @@ function week_table_innerhtml($day, $month, $year, $room, $area, $timetohighligh
 
   for ($j = 0; $j<=($num_of_days-1) ; $j++)
   {
-    $sql = "SELECT room_id, start_time, end_time, type, name, status, repeat_id,
-                   id AS entry_id, description AS entry_description,
-                   create_by AS entry_create_by
-              FROM $tbl_entry
+    $sql = "SELECT room_id, start_time, end_time, type, (concat(u.real_lastname, ', ',u.real_name)) as name, status, repeat_id,
+                   $tbl_entry.id AS entry_id, 
+                   create_by AS entry_create_by, $tbl_entry.user_id, $tbl_entry.psychologist_id
+              FROM $tbl_entry, mrbs_users u
              WHERE room_id = $room
+			   AND u.id = psychologist_id
                AND start_time <= $pm7[$j] AND end_time > $am7[$j]
           ORDER BY start_time";   // necessary so that multiple bookings appear in the right order
 

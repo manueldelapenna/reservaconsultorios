@@ -147,12 +147,7 @@ foreach($fields as $field)
 // Don't bother with them if this is an Ajax request.
 if (!$ajax)
 {
-  if ($name == '')
-  {
-    invalid_booking(get_vocab('must_set_description'));
-  }       
-
-  if (empty($rooms))
+    if (empty($rooms))
   {
     invalid_booking(get_vocab('no_rooms_selected'));
   }

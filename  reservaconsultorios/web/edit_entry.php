@@ -55,7 +55,7 @@ $fields = sql_field_info($tbl_entry);
 $custom_fields = array();
 
 // Fill $edit_entry_field_order with not yet specified entries.
-$entry_fields = array('name', 'description', 'start_date', 'end_date', 'areas',
+$entry_fields = array('start_date', 'end_date', 'areas',
                       'rooms', 'type', 'confirmation_status', 'privacy_status');
                       
 foreach ($entry_fields as $field)
@@ -252,33 +252,6 @@ function create_field_entry_name($disabled=FALSE)
 }
 
 
-function create_field_entry_description($disabled=FALSE)
-{
-  global $description, $select_options, $datalist_options, $is_mandatory_field;
-  
-  echo "<div id=\"div_description\">\n";
-  
-  $params = array('label'       => get_vocab("fulldescription"),
-                  'name'        => 'description',
-                  'value'       => $description,
-                  'disabled'    => $disabled,
-                  'mandatory'   => isset($is_mandatory_field['entry.description']) && $is_mandatory_field['entry.description']);
-  
-  if (isset($select_options['entry.description']) ||
-      isset($datalist_options['entry.description']) )
-  {
-    $params['field'] = 'entry.description';
-    generate_input($params);
-  }
-  else
-  {
-    $params['attributes'] = array('rows="8"', 'cols="40"');
-    generate_textarea($params);
-  }
-  echo "</div>\n";
-}
-
-
 function create_field_entry_start_date($disabled=FALSE)
 {
   global $start_time, $areas, $area_id, $periods, $id, $drag;
@@ -403,7 +376,7 @@ function create_field_entry_rooms($disabled=FALSE)
   }
 
   echo "<div id=\"div_rooms\">\n";
-  echo "<label for=\"rooms\">" . get_vocab("rooms") . ":</label>\n";
+  echo "<label for=\"rooms\">Consultorio:</label>\n";
   echo "<div class=\"group\">\n";
   
   // First of all generate the rooms for this area
@@ -412,7 +385,7 @@ function create_field_entry_rooms($disabled=FALSE)
                   'options'     => $all_rooms[$area_id],
                   'force_assoc' => TRUE,
                   'value'       => $selected_rooms,
-                  'multiple'    => $multiroom_allowed,
+                  'multiple'    => FALSE,
                   'mandatory'   => TRUE,
                   'disabled'    => $disabled,
                   'attributes'  => array('size="5"'));
@@ -446,10 +419,7 @@ function create_field_entry_rooms($disabled=FALSE)
 
   // No point telling them how to select multiple rooms if the input
   // is disabled
-  if ($multiroom_allowed && !$disabled)
-  {
-    echo "<span>" . get_vocab("ctrl_click") . "</span>\n";
-  }
+  
   echo "</div>\n";
 
   echo "</div>\n";
@@ -538,7 +508,7 @@ function create_field_entry_privacy_status($disabled=FALSE)
 function create_field_entry_user_id($disabled=FALSE)
 {
   echo "<div id=\"div_user_id\">\n";
-  
+      
   $sql = "SELECT u.id, u.name, u.real_name, u.real_lastname
             FROM mrbs_users u
         ORDER BY u.real_lastname, u.real_name";
@@ -550,7 +520,11 @@ function create_field_entry_user_id($disabled=FALSE)
   {
    $id=$row['id'];
    $name=$row['real_lastname'].', '.$row['real_name'];
-   echo "<option value=$id>$name</option>";
+   if (authGetUserId(getUserName()) == $id){
+		echo "<option selected value=$id>$name</option>";
+	}else{
+		echo "<option value=$id>$name</option>";
+	}
    
    }
    echo "</select>";
@@ -561,20 +535,32 @@ function create_field_entry_user_id($disabled=FALSE)
 function create_field_entry_psychologist_id($disabled=FALSE)
 {
   echo "<div id=\"div_psychogist_id\">\n";
+  //desactiva el select si no es usuario administrador
+  $deactivate_select = authGetUserLevel(getUserName()) == 1;
   
   $sql = "SELECT u.id, u.name, u.real_name, u.real_lastname
             FROM mrbs_users u
 			where u.level = 1
         ORDER BY u.real_lastname, u.real_name";
   $res = sql_query($sql);
-  echo "<label>Psicólogo:</label>";
-  echo"<select name='f_psychologist_id'>";
   
+  echo "<label>Psicólogo:</label>";
+  echo"<select name='f_psychologist_id'";
+  if ($deactivate_select)
+  {
+	echo "readonly";
+  }; 
+  echo" >";
+    
   for ($i = 0; ($row = sql_row_keyed($res, $i)); $i++)
   {
    $id=$row['id'];
    $name=$row['real_lastname'].', '.$row['real_name'];
-   echo "<option value=$id>$name</option>";
+   if (authGetUserId(getUserName()) == $id){
+		echo "<option selected value=$id>$name</option>";
+	}else{
+		echo "<option value=$id>$name</option>";
+	}
    
    }
    echo "</select>";
@@ -1182,13 +1168,6 @@ foreach ($edit_entry_field_order as $key)
 {
   switch( $key )
   {
-  case 'name':
-    create_field_entry_name();
-    break;
-
-  case 'description':
-    create_field_entry_description();
-    break;
 
   case 'start_date':
     create_field_entry_start_date();
