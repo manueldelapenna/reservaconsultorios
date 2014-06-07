@@ -545,7 +545,7 @@ $sendmail_settings['args'] = '';
  */
 
 // These settings are only used with the "smtp" backend
-$smtp_settings['host'] = 'ssl://smpt.gmail.com';  // SMTP server
+$smtp_settings['host'] = 'ssl://smtp.gmail.com';  // SMTP server
 $smtp_settings['port'] = 465;           // SMTP port number
 $smtp_settings['auth'] = TRUE;        // Whether to use SMTP authentication
 $smtp_settings['username'] = 'psicologosdistrito7@gmail.com';       // Username (if using authentication)
