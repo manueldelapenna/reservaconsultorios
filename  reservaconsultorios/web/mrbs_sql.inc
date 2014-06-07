@@ -1391,7 +1391,7 @@ function mrbsAddRoom($name, $area, &$error, $description='', $capacity='')
 // Makes bookings
 //    $bookings     an array of bookings
 //    $id           the id of the current booking when editing an existing entry
-function mrbsMakeBookings($bookings, $id=NULL, $just_check=FALSE, $skip=FALSE, $original_room_id=NULL, $send_mail=FALSE, $edit_type='')
+function mrbsMakeBookings($bookings, $id=NULL, $just_check=FALSE, $skip=FALSE, $original_room_id=NULL, $send_mail=TRUE, $edit_type='')
 {
   global $max_rep_entrys, $enable_periods, $resolution, $mail_settings;
   global $tbl_entry, $tbl_room, $tbl_area;
