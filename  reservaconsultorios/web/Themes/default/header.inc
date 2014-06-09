@@ -90,8 +90,8 @@ function print_theme_header($day, $month, $year, $area, $room)
 ?>
 <nav class="top-bar" data-topbar>
   <!-- Title -->
-  <ul class="title-area">
-    <li class="name"><h1><a href="#">Sexy Top Bar</a></h1></li>
+  <ul class="title-area"> 
+    <li class="name"><h1><a href="index.php">Psic&oacute;logos Distrito VII</a></h1></li>
 
     <!-- Mobile Menu Toggle -->
     <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
