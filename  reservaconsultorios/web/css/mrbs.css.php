@@ -592,7 +592,7 @@ fieldset.rep_type_details fieldset {padding-top: 0}
 #logon                    input {width: <?php echo $logon_input_width ?>em}
 #db_logon                 input {width: <?php echo $db_logon_input_width ?>em}
 .form_general .group      input {clear: none; width: auto}
-.form_general input.date {width: 6em}
+
 
 /* font family and size needs to be the same for input and textarea as their widths are defined in ems */
 .form_general textarea {

@@ -240,20 +240,22 @@ function PrintLogonBox()
       "roommatch=&amp;namematch=&amp;descrmatch=&amp;summarize=1&amp;sortby=r&amp;display=d&amp;".
       "sumby=d&amp;creatormatch=".urlencode($user); ?>
 			
-				<label>¡Bienvenido <?php echo htmlspecialchars($user);?>!</label>
 				<?php 
 				$userId = authGetUserId($user);
-				echo "<a href='edit_users.php?Action=Edit&Id=$userId'/>Editar datos personales</a>"
+				echo "<li><a href='edit_users.php?Action=Edit&Id=$userId'/>¡Bienvenido " . htmlspecialchars($user) . "!" . "</a></li>";
+				echo "<li class=\"divider\"></li>";
 				?>
+				<li class="has-form">
                 <form method="post" action="admin.php">
                   <div>
                     <input type="hidden" name="TargetURL" value="index.php">
                     <input type="hidden" name="Action" value="SetName">
                     <input type="hidden" name="NewUserName" value="">
                     <input type="hidden" name="NewUserPassword" value="">
-                    <input type="submit" value=" <?php echo get_vocab('logoff') ?> ">
+                    <input class="button" type="submit" value=" <?php echo get_vocab('logoff') ?> ">
                   </div>
                 </form>
+				</li>		
 			
 <?php
   }
