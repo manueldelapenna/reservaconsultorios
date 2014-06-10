@@ -151,11 +151,13 @@ else
     // and also a form for adding a new area
     if ($is_admin)
     {
+	  
       // Can't use <button> because IE6 does not support those properly
       echo "<input type=\"image\" class=\"button\" name=\"edit\" 
              title=\"" . get_vocab("edit") . "\" alt=\"" . get_vocab("edit") . "\">\n";
       echo "<input type=\"image\" class=\"button\" name=\"delete\" 
              title=\"" . get_vocab("delete") . "\" alt=\"" . get_vocab("delete") . "\">\n";
+	  
     }
   
     echo "</fieldset>\n";
@@ -179,7 +181,7 @@ if ($is_admin)
       </div>
           
       <div>
-        <input type="submit" class="submit" value="<?php echo get_vocab("addarea") ?>">
+        <input type="submit" class="button" value="<?php echo get_vocab("addarea") ?>">
       </div>
 
     </fieldset>
@@ -422,7 +424,7 @@ if ($is_admin || ($n_displayable_areas > 0))
         </div>
        
         <div>
-          <input type="submit" class="submit" value="<?php echo get_vocab("addroom") ?>">
+          <input type="submit" class="button" value="<?php echo get_vocab("addroom") ?>">
         </div>
         
       </fieldset>

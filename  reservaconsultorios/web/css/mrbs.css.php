@@ -102,6 +102,11 @@ form.form_admin {float: left; clear: left; margin: 2em 0 0 0}
     display: block; float: left; clear: left; 
     width: <?php echo $admin_form_label_width ?>em; min-height: 2.0em; text-align: right;
 }
+.form_admin .button {
+    margin-left:112px;
+	width:135px;
+}
+
 .form_admin input {
     display: block; float: left; clear: right;
     width: <?php echo $admin_form_input_width ?>em;
@@ -120,7 +125,8 @@ div#custom_html {float: left; padding: 0 0 3em 1em}
 #area_form label#area_label {display: block; float: left; font-weight: bold; margin-right: <?php echo $admin_form_gap ?>em}
 #areaChangeForm select {display: block; float: left; margin: -0.1em 1.5em 0 0}
 #areaChangeForm input {float: left; margin: -0.2em 0.5em 0 0}
-#areaChangeForm input.button {display: block; float: left; margin: 0 0.7em}
+#areaChangeForm input.button {display: block; float: left; margin: 0 0em}
+#areaChangeForm .button {padding-top:0.3em !important;}
 #areaChangeForm .button {padding-top:0.3em !important;}
 
 div.header_columns, div.body_columns {position: relative; float: left; overflow-x: scroll; overflow-y: hidden}
