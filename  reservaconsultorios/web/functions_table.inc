@@ -753,10 +753,11 @@ function day_table_innerhtml($day, $month, $year, $room, $area, $timetohighlight
   // form of the original which had 3 BETWEEN parts. It selects all entries which
   // occur on or cross the current day.
   $sql = "SELECT R.id AS room_id, start_time, end_time, repeat_id,
-                 E.id AS entry_id, type,
+                 E.id AS entry_id, type, (concat(u.real_lastname, ', ',u.real_name)) as name,
                  E.create_by AS entry_create_by
-            FROM $tbl_entry E, $tbl_room R
+            FROM $tbl_entry E, $tbl_room R, mrbs_users u
            WHERE E.room_id = R.id
+			 AND e.psychologist_id = u.id
              AND R.area_id = $area
              AND R.disabled = 0
              AND start_time <= $pm7 AND end_time > $am7
