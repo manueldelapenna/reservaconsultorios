@@ -757,7 +757,7 @@ function day_table_innerhtml($day, $month, $year, $room, $area, $timetohighlight
                  E.create_by AS entry_create_by
             FROM $tbl_entry E, $tbl_room R, mrbs_users u
            WHERE E.room_id = R.id
-			 AND e.psychologist_id = u.id
+			 AND E.psychologist_id = u.id
              AND R.area_id = $area
              AND R.disabled = 0
              AND start_time <= $pm7 AND end_time > $am7
