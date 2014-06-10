@@ -121,6 +121,7 @@ div#custom_html {float: left; padding: 0 0 3em 1em}
 #areaChangeForm select {display: block; float: left; margin: -0.1em 1.5em 0 0}
 #areaChangeForm input {float: left; margin: -0.2em 0.5em 0 0}
 #areaChangeForm input.button {display: block; float: left; margin: 0 0.7em}
+#areaChangeForm .button {padding-top:0.3em !important;}
 
 div.header_columns, div.body_columns {position: relative; float: left; overflow-x: scroll; overflow-y: hidden}
 div.header_columns {max-width: 20%}
@@ -707,7 +708,7 @@ form#form_edit_users {width: auto; margin-top: 2.0em}
 #form_edit_users input.checkbox {width: auto; margin-left: <?php echo $edit_users_gap ?>em}
 form.edit_users_error {width: 10em; margin-top: 2.0em}
 div#user_list {padding: 2em 0}
-form#add_new_user {margin-left: 1em}
+
 #users_table td {text-align: right}
 #users_table td div.string {text-align: left}
 

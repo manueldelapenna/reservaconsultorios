@@ -840,7 +840,7 @@ if (!$ajax)
     print "  <div>\n";
     print "    <input type=\"hidden\" name=\"Action\" value=\"Add\">\n";
     print "    <input type=\"hidden\" name=\"Id\" value=\"-1\">\n";
-    print "    <input type=\"submit\" value=\"" . get_vocab("add_new_user") . "\">\n";
+    print "    <input class=\"button\" type=\"submit\" value=\"" . get_vocab("add_new_user") . "\">\n";
     print "  </div>\n";
     print "</form>\n";
   }

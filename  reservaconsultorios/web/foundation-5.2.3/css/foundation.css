@@ -1084,10 +1084,11 @@ button, .button {
   -webkit-appearance: none;
   -webkit-border-radius: 0;
   display: inline-block;
-  padding-top: 1rem;
+  padding-top: 0rem;
   padding-right: 2rem;
-  padding-bottom: 1.0625rem;
+  padding-bottom: 0rem;
   padding-left: 2rem;
+  height:30px;
   font-size: 1rem;
   background-color: #008cba;
   border-color: #007095;
@@ -4256,7 +4257,7 @@ ul.off-canvas-list {
     max-width: 800px; }
 
 table {
-  background: white;
+  #background: white;
   margin-bottom: 1.25rem;
   border: solid 1px #dddddd; }
   table caption {

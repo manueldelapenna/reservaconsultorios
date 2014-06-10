@@ -152,9 +152,9 @@ else
     if ($is_admin)
     {
       // Can't use <button> because IE6 does not support those properly
-      echo "<input type=\"image\" class=\"button\" name=\"edit\" src=\"images/edit.png\"
+      echo "<input type=\"image\" class=\"button\" name=\"edit\" 
              title=\"" . get_vocab("edit") . "\" alt=\"" . get_vocab("edit") . "\">\n";
-      echo "<input type=\"image\" class=\"button\" name=\"delete\" src=\"images/delete.png\"
+      echo "<input type=\"image\" class=\"button\" name=\"delete\" 
              title=\"" . get_vocab("delete") . "\" alt=\"" . get_vocab("delete") . "\">\n";
     }
   
