@@ -151,12 +151,14 @@ else
     // and also a form for adding a new area
     if ($is_admin)
     {
-	  
+	  echo "<div style=\"clear:both\"> </div>";
+	  echo "<div id=\"botones\">";
       // Can't use <button> because IE6 does not support those properly
       echo "<input type=\"image\" class=\"button\" name=\"edit\" 
              title=\"" . get_vocab("edit") . "\" alt=\"" . get_vocab("edit") . "\">\n";
       echo "<input type=\"image\" class=\"button\" name=\"delete\" 
              title=\"" . get_vocab("delete") . "\" alt=\"" . get_vocab("delete") . "\">\n";
+	  echo "</div>";
 	  
     }
   

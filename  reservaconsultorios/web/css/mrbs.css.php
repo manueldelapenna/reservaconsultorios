@@ -125,9 +125,11 @@ div#custom_html {float: left; padding: 0 0 3em 1em}
 #area_form label#area_label {display: block; float: left; font-weight: bold; margin-right: <?php echo $admin_form_gap ?>em}
 #areaChangeForm select {display: block; float: left; margin: -0.1em 1.5em 0 0}
 #areaChangeForm input {float: left; margin: -0.2em 0.5em 0 0}
-#areaChangeForm input.button {display: block; float: left; margin: 0 0em}
+#areaChangeForm input.button {display: block; float: left; margin: 0 0.5em}
 #areaChangeForm .button {padding-top:0.3em !important;}
 #areaChangeForm .button {padding-top:0.3em !important;}
+
+#botones{margin-top:5px; margin-left:-5px}
 
 div.header_columns, div.body_columns {position: relative; float: left; overflow-x: scroll; overflow-y: hidden}
 div.header_columns {max-width: 20%}
