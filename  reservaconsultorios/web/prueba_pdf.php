@@ -88,3 +88,4 @@ echo "</table>\n";
 
 ?>
 
+<?php output_trailer() ?>
