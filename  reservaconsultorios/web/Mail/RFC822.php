@@ -218,6 +218,7 @@ class Mail_RFC822 {
 
         return $this->structure;
     }
+	
 
     /**
      * Splits an address into separate addresses.
