@@ -121,7 +121,7 @@ $default_language_tokens = "es";
 // performs.   Remember to include the codeset if appropriate.   For example,
 // on a UNIX system you would use "en_GB.utf-8" for English/GB.
 if (PHP_OS == 'WINNT'){
-	$override_locale = "enu";
+	$override_locale = "esp";
 }else{
 	$override_locale = "es_AR.UTF_8";
 }
