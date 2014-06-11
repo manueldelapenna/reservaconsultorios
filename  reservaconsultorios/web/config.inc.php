@@ -580,7 +580,7 @@ $mail_settings['ics_filename'] = "booking";
 // by telling you (a) whether the mail functions are being called in the first place
 //(b) whether there are addresses to send email to and (c) the result of the mail
 // sending operation.
-$mail_settings['debug'] = TRUE;
+$mail_settings['debug'] = FALSE;
 // Set this to TRUE if you do not want any email sent, whatever the rest of the settings.
 // This is a global setting that will override anything else.   Useful when testing MRBS.
 $mail_settings['disabled'] = FALSE;
