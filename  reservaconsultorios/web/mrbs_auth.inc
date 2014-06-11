@@ -168,7 +168,7 @@ function showAccessDenied($day, $month, $year, $area, $room)
    <?php echo get_vocab("norights")?>
   </p>
   <p>
-    <a href="<?php echo htmlspecialchars($HTTP_REFERER); ?>">
+    <a href="javascript:history.back()">
       <?php echo get_vocab("returnprev"); ?>
     </a>
   </p>

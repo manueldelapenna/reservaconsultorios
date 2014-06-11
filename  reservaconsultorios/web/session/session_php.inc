@@ -78,7 +78,7 @@ if (isset($Action) && ($Action == "SetName"))
     if (!authValidateUser($NewUserName, $NewUserPassword))
     {
       print_header(0, 0, 0, 0, "");
-      echo "<p>".get_vocab('unknown_user')."</p>\n";
+      echo "<p>Usuario o contraseña incorrecta</p>\n";
       printLoginForm($TargetURL);
       exit();
     }
