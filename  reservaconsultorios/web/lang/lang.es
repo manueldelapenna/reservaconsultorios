@@ -193,8 +193,8 @@ $vocab["upgrade_completed"]        = "Completada la actualización de la Base de
 
 // User access levels
 $vocab["level_0"]            = "ninguno";
-$vocab["level_1"]            = "usuario";
-$vocab["level_2"]            = "administración";
+$vocab["level_1"]            = "psicóloga/o";
+$vocab["level_2"]            = "secretaria/o";
 $vocab["level_3"]            = "usuario Administrador";
 
 // Authentication database
@@ -391,8 +391,8 @@ $vocab["for_any_questions"]  = "para cualquier duda.";
 $vocab["failed_connect_db"]  = "Error: No se pudo conectar a la Base de Datos";
 
 // Entry types
-$vocab["type.I"]             = "Administrador";
-$vocab["type.E"]             = "Psicologo";
+$vocab["type.I"]             = "Secretaria/o";
+$vocab["type.E"]             = "Psicóloga/o";
 
 // General
 $vocab["fatal_db_error"]     = "Error: la base de datos no está disponible en este momento.";
