@@ -611,5 +611,4 @@ $mail_settings['disabled'] = FALSE;
  // $typel["J"] = "J";
 
 
-
 ?>

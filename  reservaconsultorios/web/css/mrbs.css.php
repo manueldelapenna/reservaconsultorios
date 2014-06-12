@@ -204,17 +204,7 @@ table.dwm_main {clear: both; width: 100%; border-spacing: 0; border-collapse: se
 // the grid when using resizable bookings.   jQuery.offset() measures to the content.  If you
 // need padding put it on the contained element.
 ?>
-.dwm_main th {font-size: small; font-weight: normal; vertical-align: top; padding: 0;
-    color: <?php echo $header_font_color ?>; 
-    background-color: <?php echo $header_back_color ?>;
-    border-left: <?php echo $main_table_cell_border_width ?>px solid <?php echo $main_table_header_border_color ?>}
-.dwm_main th.first_last, .dwm_main th span {padding: 0 2px}
-.dwm_main th:first-child {border-left: 0}
-.dwm_main a {display: block; min-height: inherit}
-.dwm_main tbody a {padding: 0 2px}
-.dwm_main th a:link    {color: <?php echo $anchor_link_color_header ?>;    text-decoration: none; font-weight: normal}
-.dwm_main th a:visited {color: <?php echo $anchor_visited_color_header ?>; text-decoration: none; font-weight: normal}
-.dwm_main th a:hover   {color: <?php echo $anchor_hover_color_header ?>;   text-decoration:underline; font-weight: normal}
+
 
 .dwm_main#day_main th.first_last {width: <?php echo $column_row_labels_width ?>%}
 .dwm_main#week_main th {width: <?php echo $column_week ?>%}
@@ -291,9 +281,9 @@ td.hidden_day     {background-color: <?php echo $column_hidden_color ?>; /* hidd
     ?>
     }
 tr.row_highlight td.new {background-color: <?php echo $row_highlight_color ?>} /* used for highlighting a row */
-.dwm_main td.row_labels     {background-color: <?php echo $main_table_labels_back_color ?>; white-space: nowrap}    /* used for the row labels column */
-.row_labels a:link    {color: <?php echo $anchor_link_color_header ?>;    text-decoration: none; font-weight: normal}
-.row_labels a:visited {color: <?php echo $anchor_visited_color_header ?>; text-decoration: none; font-weight: normal}
+.dwm_main td.row_labels     {background-color: #F5F5F5; white-space: nowrap}    /* used for the row labels column */
+.row_labels a:link    {color: #0B263B;    text-decoration: none; font-weight: normal}
+.row_labels a:visited {color: #0B263B;; text-decoration: none; font-weight: normal}
 .row_labels a:hover   {color: <?php echo $anchor_hover_color_header ?>;   text-decoration: underline; font-weight: normal}
 
 <?php
@@ -545,7 +535,7 @@ form.form_general#logon       {min-width: <?php echo $logon_form_min_width ?>em}
 form.form_general#db_logon    {min-width: <?php echo $db_logon_form_min_width ?>em}
 form#edit_room {float: left; width: auto; margin: 0 2em 1em 1em}
 
-.form_general div {float: left; clear: left; width: 100%}
+.form_general div {float: left; clear: left; width: 400px;}
 .form_general div div {float: none; clear: none; width: auto}
 .form_general div.group {float: left}
 .form_general div.group_container {float: left}
@@ -594,7 +584,7 @@ fieldset.rep_type_details fieldset {padding-top: 0}
     display: block; float: left; margin-left: <?php echo $general_gap ?>em; 
     font-family: <?php echo $standard_font_family ?>; font-size: small
 }
-.edit_entry     .form_general input {width: <?php echo $edit_entry_textarea_width ?>em; margin-right: 1em}
+.edit_entry     .form_general input { margin-right: 1em}
 .report         .form_general input {width: <?php echo $report_input_width ?>em}
 .search         .form_general input {width: <?php echo $search_input_width ?>em}
 .edit_area_room .form_general input {width: <?php echo $edit_area_room_input_width ?>em}
@@ -621,7 +611,7 @@ fieldset.rep_type_details fieldset {padding-top: 0}
 div#import_submit     {width: <?php echo $general_left_col_width ?>%; max-width: <?php echo $import_left_col_max_width ?>em}
 div#report_submit     {width: <?php echo $general_left_col_width ?>%; max-width: <?php echo $report_left_col_max_width ?>em}
 div#search_submit     {width: <?php echo $general_left_col_width ?>%; max-width: <?php echo $search_left_col_max_width ?>em}
-div#logon_submit      {width: <?php echo $general_left_col_width ?>%; max-width: <?php echo $logon_left_col_max_width ?>em}
+div#logon_submit      {width: 10em;}
 div#db_logon_submit   {width: <?php echo $general_left_col_width ?>%; max-width: <?php echo $db_logon_left_col_max_width ?>em}
 #import_submit input, #report_submit input, #search_submit input, #logon_submit input, #db_logon_submit input
     {position: relative; left: 100%; width: auto}
@@ -761,12 +751,12 @@ div.problem_report {border-bottom: 1px solid <?php echo $site_faq_entry_border_c
 
 /* ------------ MINCALS.PHP ---------------------*/
 div#cals {float: right}
-div#cal_last {float: left}
-div#cal_this {float: left; margin-left: 1.0em}
-div#cal_next {float: left; margin-left: 1.0em}
+div#cal_last {float: left; margin-right: 1.0em }
+div#cal_this {float: left; margin-right: 1.0em }
+div#cal_next {float: left }
 
 table.calendar {border-spacing: 0; border-collapse: collapse}
-.calendar th {min-width: 2.0em; text-align: center; font-weight: normal; background-color: transparent; color: <?php echo $standard_font_color ?>}
+.calendar th {text-align: center; font-weight: normal; background-color: transparent; color: <?php echo $standard_font_color ?>}
 .calendar td {text-align: center; font-size: x-small}
 <?php
 // set the styling for the "hidden" days in the mini-cals

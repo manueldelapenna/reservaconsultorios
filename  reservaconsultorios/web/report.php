@@ -317,7 +317,7 @@ function generate_submit_buttons()
 {
   echo "<div id=\"report_submit\">\n";
   echo "<input type=\"hidden\" name=\"phase\" value=\"2\">\n";
-  echo "<input class=\"submit\" type=\"submit\" value=\"" . get_vocab("submitquery") . "\">\n";
+  echo "<input class=\"button\" type=\"submit\" value=\"" . get_vocab("submitquery") . "\">\n";
   echo "</div>\n";
 }
 

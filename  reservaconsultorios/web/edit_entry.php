@@ -308,7 +308,7 @@ function create_field_entry_end_date($disabled=FALSE)
     genSlotSelector($a, 'end_seconds' . $a['id'], 'end_seconds', $this_current_s, TRUE, TRUE);
   }
   
-  echo "<span id=\"end_time_error\" class=\"error\"></span>\n";
+  //echo "<span id=\"end_time_error\" class=\"error\"></span>\n";
   echo "</div>\n";
 }
 
@@ -1417,22 +1417,23 @@ if (($edit_type == "series") && $repeats_allowed)
     echo "<legend></legend>\n";
     // The Back button
     echo "<div id=\"edit_entry_submit_back\">\n";
-    echo "<input class=\"submit\" type=\"submit\" name=\"back_button\" value=\"" . get_vocab("back") . "\" formnovalidate>\n";
+    echo "<input class=\"button\" type=\"submit\" name=\"back_button\" value=\"" . get_vocab("back") . "\" formnovalidate>\n";
     echo "</div>\n";
     
     // The Submit button
     echo "<div id=\"edit_entry_submit_save\">\n";
-    echo "<input class=\"submit default_action\" type=\"submit\" name=\"save_button\" value=\"" .
+    echo "<input class=\"button default_action\" type=\"submit\" name=\"save_button\" value=\"" .
       get_vocab("save") . "\">\n";
     echo "</div>\n";
     
     // divs to hold the results of the Ajax checking of the booking
-    echo "<div id=\"conflict_check\">\n";
+    /*
+	echo "<div id=\"conflict_check\">\n";
     echo "</div>\n";
     
     echo "<div id=\"policy_check\">\n";
     echo "</div>\n";
-    
+    */
     echo "</fieldset>";
     
     // and a div to hold the dialog box which gives more details.    The dialog

@@ -4286,7 +4286,7 @@ table {
     padding: 0.5625rem 0.625rem;
     font-size: 0.875rem;
     color: #222222;
-    text-align: left; }
+    #text-align: left; }
   table tr.even, table tr.alt, table tr:nth-of-type(even) {
     background: #f9f9f9; }
   table thead tr th,

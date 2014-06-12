@@ -8,6 +8,7 @@ function print_theme_footer()
   <script>
       $(document).foundation();
   </script>
+  
   </body>
 </html>
 <?php

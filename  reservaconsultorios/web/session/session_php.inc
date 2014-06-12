@@ -154,7 +154,7 @@ function printLoginForm($TargetURL)
     <input type="hidden" name="TargetURL" value="<?php echo htmlspecialchars($TargetURL) ?>">
     <input type="hidden" name="Action" value="SetName">
     <div id="logon_submit">
-      <input class="submit" type="submit" value=" <?php echo get_vocab('login') ?> ">
+      <input class="button" type="submit" value=" <?php echo get_vocab('login') ?> ">
     </div>
   </fieldset>
 </form>
@@ -187,7 +187,7 @@ function authGet()
 
   print_header(0, 0, 0, 0, "");
 
-  echo "<p>".get_vocab("norights")."</p>\n";
+  //echo "<p>".get_vocab("norights")."</p>\n";
 
   $TargetURL = basename($PHP_SELF);
   if (isset($QUERY_STRING))

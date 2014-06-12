@@ -478,7 +478,10 @@ if (isset($Action) && ( ($Action == "Edit") or ($Action == "Add") ))
           }
           ?>
           <input type="hidden" name="Action" value="Update">    
-          <input class="submit default_action" type="submit" value="<?php echo(get_vocab("save")); ?>">
+		  <div>
+			<input class="button default_action" type="submit" value="<?php echo(get_vocab("save")); ?>">
+			<input class="button default_action" type="button" value="Cancelar" onclick="javascript:history.back()">
+		  </div>
           
         </div>
         </fieldset>

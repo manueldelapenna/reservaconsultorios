@@ -77,7 +77,7 @@ echo "<h3>Aca va a ir el sistema de pagos pdf...</h3>"; ?>
         // The Submit button
         echo "<br>";
         echo "<div id=\"edit_entry_submit_save\">\n";
-        echo "<input class=\"submit default_action\" type=\"submit\" name=\"save_button\" value=\"" .
+        echo "<input class=\"button default_action\" type=\"submit\" name=\"save_button\" value=\"" .
           "Generar Pago" . "\">\n";
         echo "</div>\n";
     ?>
