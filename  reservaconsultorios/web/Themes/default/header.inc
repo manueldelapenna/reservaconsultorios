@@ -43,8 +43,8 @@ function print_theme_header($day, $month, $year, $area, $room)
     $search_str = "";
   }
   
-  http_headers();
-  echo DOCTYPE;
+  //http_headers();
+  //echo DOCTYPE;
 ?>
 
 <html>
@@ -110,7 +110,7 @@ function print_theme_header($day, $month, $year, $area, $room)
 			<?php 
 			if (authGetUserLevel($user) >= 1){
 			?>
-			<td>
+			
 			<form action="day.php" method="get" id="Form1">
 			  <div>
 				<?php
@@ -132,7 +132,9 @@ function print_theme_header($day, $month, $year, $area, $room)
 				?>
 			   </div>
 			</form>
-            
+            <?php
+			}
+			?>
           </div>
           
         </div>
@@ -194,14 +196,12 @@ function print_theme_header($day, $month, $year, $area, $room)
   </section>
 </nav>
 
-<?php 
-}
-?>
   
 </div>
 
 <div id="contents">
-<?php
 
-} // end of print_theme_header()
+<?php 
+}
 ?>
+
