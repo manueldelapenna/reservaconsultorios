@@ -364,7 +364,7 @@ if (isset($Action) && ( ($Action == "Edit") or ($Action == "Add") ))
                     // If you're not some kind of admin then the select will also be disabled.
                     // (Note - disabling individual options doesn't work in older browsers, eg IE6)
                     $params['options'] = array();     
-                    for ($i=0; $i<=$level; $i++)
+                    for ($i=1; $i<=$level; $i++)
                     {
                       $params['options'][$i] = get_vocab("level_$i");
                       // Work out which option should be selected by default:
