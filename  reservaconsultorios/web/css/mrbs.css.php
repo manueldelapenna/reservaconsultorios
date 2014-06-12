@@ -255,14 +255,17 @@ div.booking_list {position: relative; z-index: 20;                      /* conta
 
 
 <?php
+
 // Generate the classes to give the colour coding by booking type in the day/week/month views
 foreach ($color_types as $type => $col)
 {
+  
   echo "td.$type {background-color: $col}\n";         // used in the day and week views
+  
   if( $clipped_month )
-    echo ".month div.$type {float: left; max-height: 1.3em; height: 1.3em; min-height: 1.3em; overflow: hidden; background-color: $col}\n";   // used in the month viewa
+    echo ".month div.$type {float: left; max-height: 1.8em; height: 1.8em; min-height: 1.8em; overflow: hidden; background-color: $col}\n";   // used in the month viewa
   else
-    echo ".month div.$type {float: left; min-height: 1.3em; overflow: hidden; background-color: $col}\n";   // used in the month view
+    echo ".month div.$type {float: left; min-height: 1.8em; overflow: hidden; background-color: $col}\n";   // used in the month view
 }
 
 ?>

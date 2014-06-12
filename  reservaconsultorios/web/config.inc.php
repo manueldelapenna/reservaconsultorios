@@ -610,5 +610,4 @@ $mail_settings['disabled'] = FALSE;
  //$typel["I"] = get_vocab("internal");
  // $typel["J"] = "J";
 
-
 ?>

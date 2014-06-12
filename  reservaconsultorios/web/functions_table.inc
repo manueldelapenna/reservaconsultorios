@@ -518,16 +518,18 @@ function cell_html($cell, $query_strings, $is_invalid = FALSE)
         // Don't provide a link if the slot doesn't really exist
         if (!$is_invalid)
         {
-          $html .= "<div class=\"celldiv slots1\">\n";  // a bookable slot is only one unit high
-          $html .= "<a href=\"edit_entry.php?" . 
+		  $html .= "<a href=\"edit_entry.php?" . 
                    (($enable_periods) ? $query_strings['new_periods'] : $query_strings['new_times']) . 
                    "\">\n";
+          $html .= "<div class=\"celldiv slots1\">\n";  // a bookable slot is only one unit high
+          
           if ($show_plus_link)
           {
             $html .= "<img src=\"images/new.gif\" alt=\"New\" width=\"10\" height=\"10\">\n";
           }
-          $html .= "</a>\n";
+          
           $html .= "</div>\n";
+		  $html .= "</a>\n";
         }
       }
       else                 // if it is booked then show the booking
