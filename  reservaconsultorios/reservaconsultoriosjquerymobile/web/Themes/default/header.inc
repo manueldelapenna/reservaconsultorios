@@ -89,7 +89,7 @@ function print_theme_header($day, $month, $year, $area, $room)
  
  <script>
 	 $(function(){
-	  $("body a").attr("rel","external");
+	  $("body a").attr("data-ajax","false");
 	  $("body form").attr("data-ajax","false");
 	});
  </script>
