@@ -173,7 +173,7 @@ $vocab["none_outstanding"]   = "Usted no tiene reservas en espera de ser aprobad
 // Authentication stuff
 $vocab["accessdenied"]       = "Acceso Denegado";
 $vocab["norights"]           = "No tiene autorización para modificar este dato.";
-$vocab["please_login"]       = "Introduzca su Nombre de Usuario";
+$vocab["please_login"]       = "Introduzca su nombre de usuario y contraseña";
 $vocab["users.name"]          = "Nombre";
 $vocab["users.password"]      = "Contraseña";
 $vocab["users.level"]         = "Privilegios";
@@ -396,4 +396,5 @@ $vocab["type.E"]             = "Psicóloga/o";
 
 // General
 $vocab["fatal_db_error"]     = "Error: la base de datos no está disponible en este momento.";
+$vocab["back"]          	 = "Volver";
 ?>
