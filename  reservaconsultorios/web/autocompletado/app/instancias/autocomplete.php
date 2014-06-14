@@ -6,7 +6,7 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) AND strtolower($_SERVER['HTTP_X_REQ
 {
 	
 	require_once("../autocompletar.class.php");
-	$search = $_POST["autocomplete"];
+	$search = $_POST["f_psychologist_input_id"];
 
 	$autocompletar = new Autocompletar($host,$databasename,$username,$password);
 	$autocompletar->findData($search);
