@@ -123,7 +123,8 @@ function generar_tabla_reservas($disable=FALSE)
    //echo "<div id=\"user_list\" class=\"datatable_container\">/n";
    echo "<table class=\"admin_table display\" id=\"users_table\">";
    echo "<thead>";
-   echo "<tr><th>Reserva para</th>";
+   echo "<tr><th>ID</th>";
+   echo "<th>Reserva para</th>";
    echo "<th>Creada por</th>";
    echo "<th>Fecha Inicio</th>";
    echo "<th>Fecha Fin</th></tr>";
@@ -131,7 +132,8 @@ function generar_tabla_reservas($disable=FALSE)
    echo "<tbody>";
    for ($i = 0; ($row = sql_row_keyed($res, $i)); $i++)
    {
-     echo "<tr><td>".$row['real_lastname'].", ".$row['real_name']."</td>";
+     echo "<tr><td>".$row['psychologist_id']."</td>";
+     echo "<td>".$row['real_lastname'].", ".$row['real_name']."</td>";
      echo "<td>".$row['create_by']."</td>";
      echo "<td>".time_date_string($row['start_time'])."</td>";
      echo "<td>".time_date_string($row['end_time'])."</td></tr>";
