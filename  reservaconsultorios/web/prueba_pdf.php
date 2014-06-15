@@ -127,7 +127,8 @@ function generar_tabla_reservas($disable=FALSE)
    echo "<th>Reserva para</th>";
    echo "<th>Creada por</th>";
    echo "<th>Fecha Inicio</th>";
-   echo "<th>Fecha Fin</th></tr>";
+   echo "<th>Fecha Fin</th>";
+   echo "<th>Pagar</th></tr>";
    echo "</thead>";
    echo "<tbody>";
    for ($i = 0; ($row = sql_row_keyed($res, $i)); $i++)
@@ -136,7 +137,8 @@ function generar_tabla_reservas($disable=FALSE)
      echo "<td>".$row['real_lastname'].", ".$row['real_name']."</td>";
      echo "<td>".$row['create_by']."</td>";
      echo "<td>".time_date_string($row['start_time'])."</td>";
-     echo "<td>".time_date_string($row['end_time'])."</td></tr>";
+     echo "<td>".time_date_string($row['end_time'])."</td>";
+     echo "<td><input type=\"checkbox\" name=\"pagar\" value=\"\"></td></tr>";
    }
    echo "</tbody>";
    echo "</table>";
