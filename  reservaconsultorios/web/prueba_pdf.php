@@ -66,7 +66,7 @@ function create_field_entry_psychologist_id($disabled=FALSE)
   echo "</div>\n";
 }
 
-
+//genera el input para buscar con ajax
 function create_input_field_entry_psychologist_id($disabled=FALSE)
 {
   echo "<div id=\"div_psychogist_id\">\n";
@@ -109,6 +109,40 @@ function create_input_field_entry_psychologist_id($disabled=FALSE)
   echo "</div>\n";
 }
 
+function generar_tabla_reservas($disable=FALSE)
+{
+    
+    $sql = "SELECT u.real_lastname, u.real_name, e.psychologist_id, e.create_by, e.start_time, e.end_time
+            FROM mrbs_entry e, mrbs_users u
+            where e.psychologist_id = u.id
+		
+        ORDER BY e.timestamp";
+    $res = sql_query($sql);
+    
+    
+   //echo "<div id=\"user_list\" class=\"datatable_container\">/n";
+   echo "<table class=\"admin_table display\" id=\"users_table\">";
+   echo "<thead>";
+   echo "<tr><th>Reserva para</th>";
+   echo "<th>Creada por</th>";
+   echo "<th>Fecha Inicio</th>";
+   echo "<th>Fecha Fin</th></tr>";
+   echo "</thead>";
+   echo "<tbody>";
+   for ($i = 0; ($row = sql_row_keyed($res, $i)); $i++)
+   {
+     echo "<tr><td>".$row['real_lastname'].", ".$row['real_name']."</td>";
+     echo "<td>".$row['create_by']."</td>";
+     echo "<td>".time_date_string($row['start_time'])."</td>";
+     echo "<td>".time_date_string($row['end_time'])."</td></tr>";
+   }
+   echo "</tbody>";
+   echo "</table>";
+   //echo "</div>";
+
+    
+}
+
 
 echo "<table class=\"dwm_main\" id=\"week_main\" data-resolution=\"$resolution\">";
 //echo $inner_html;
@@ -132,5 +166,6 @@ echo "<h3>Aca va a ir el sistema de pagos pdf...</h3>"; ?>
 echo "</table>\n";
 
 ?>
+<?php generar_tabla_reservas(); ?>
 
 <?php output_trailer() ?>
