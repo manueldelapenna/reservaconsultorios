@@ -128,12 +128,12 @@ function generar_tabla_reservas($disable=FALSE)
    echo "<th>Creada por</th>";
    echo "<th>Fecha Inicio</th>";
    echo "<th>Fecha Fin</th>";
-   echo "<th>Pagar</th></tr>";
+   echo "<th>Pagar <input type=\"checkbox\" text-align=\"right\" name=\"select-all\" value=\"\" onclick=\"for(c in document.getElementsByName('pagar')) document.getElementsByName('pagar').item(c).checked = this.checked\"></th></tr>";
    echo "</thead>";
    echo "<tbody>";
    for ($i = 0; ($row = sql_row_keyed($res, $i)); $i++)
    {
-     echo "<tr><td>".$row['psychologist_id']."</td>";
+     echo "<tr name=\"".$row['psychologist_id']."\"><td>".$row['psychologist_id']."</td>";
      echo "<td>".$row['real_lastname'].", ".$row['real_name']."</td>";
      echo "<td>".$row['create_by']."</td>";
      echo "<td>".time_date_string($row['start_time'])."</td>";
