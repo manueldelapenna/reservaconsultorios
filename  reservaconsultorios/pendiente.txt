@@ -1,10 +1,10 @@
 *corregir campos del mostrar reserva, faltan psicologo y usuario creador
-*corregir vista de edición de reserva
+*corregir vista de ediciï¿½n de reserva
 *alta y edicion de reserva con ajax en usuarios psicologos cuando crea el administrador
 *corregir vista de mails, se ve mal el tilde en el asunto y en el cuerpo falta el psicologo y el nombre completo del creador
 *corregir mails: el usuario que recibe es siempre el psicologo.
 *mandar mails cuando se crea un usuario
-*recuperar contraseña
+*recuperar contraseï¿½a
 *pagina de pagos
 *simplificar pantalla de informes y agregarle ajax en los campos de usuarios
 *agregar tabla de pagos:
@@ -21,3 +21,16 @@
 *cambiar estilo de boton de borrar usuario
 
 algo mas? agregalo si te acordas
+
+14 de junio:
+
+* Cada usuario NO puede tener mas de 12 reservas SEMANALES, salvo casos excepcionales
+para esto implementar una var global para setear un  MAX_RESERVAS
+
+* Se debe poder anular un dÃ­a entero o uno o mas horarios para que ningun
+psicologo pueda reservar
+
+*Los sÃ¡bados la grilla debe solo permitir horarios hasta las 13.00 hs. Eliminar 
+domingos
+
+* Hacer que la cancelaciÃ³n de reservas sea solo antes de las 24.00 hs.
