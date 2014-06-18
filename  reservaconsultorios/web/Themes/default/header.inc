@@ -165,7 +165,7 @@ function print_theme_header($day, $month, $year, $area, $room)
 		  </li>
 		  <li>
 		  <?php
-				echo "<a href=\"prueba_pdf.php\">" . Pagos . "</a>\n";
+				echo "<a href=\"pagos.php\">" . Pagos . "</a>\n";
 		  ?>
 		  </li>
 		  <li>
