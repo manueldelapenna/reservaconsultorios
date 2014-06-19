@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 19-06-2014 a las 11:51:27
+-- Tiempo de generación: 19-06-2014 a las 14:10:48
 -- Versión del servidor: 5.5.8
 -- Versión de PHP: 5.3.5
 
@@ -83,12 +83,14 @@ CREATE TABLE IF NOT EXISTS `mrbs_cantidad_max_reservas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cantidad` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Volcar la base de datos para la tabla `mrbs_cantidad_max_reservas`
 --
 
+INSERT INTO `mrbs_cantidad_max_reservas` (`id`, `cantidad`) VALUES
+(1, 12);
 
 -- --------------------------------------------------------
 
@@ -122,16 +124,12 @@ CREATE TABLE IF NOT EXISTS `mrbs_entry` (
   KEY `idxEndTime` (`end_time`),
   KEY `user_id` (`user_id`),
   KEY `psychologist_id` (`psychologist_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Volcar la base de datos para la tabla `mrbs_entry`
 --
 
-INSERT INTO `mrbs_entry` (`id`, `start_time`, `end_time`, `entry_type`, `repeat_id`, `room_id`, `timestamp`, `create_by`, `user_id`, `psychologist_id`, `pago_id`, `type`, `status`, `reminded`, `info_time`, `info_user`, `info_text`, `ical_uid`, `ical_sequence`, `ical_recur_id`) VALUES
-(2, 1401897600, 1401901200, 0, 0, 4, '2014-06-05 12:14:12', 'pepe', 3, 3, 0, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-5390895c89c34-e88f243b@localhost', 0, ''),
-(7, 1401800400, 1401804000, 0, 0, 4, '2014-06-05 12:44:17', 'pepa', 5, 5, 0, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-5390906990133-ee16fa83@localhost', 0, ''),
-(9, 1401818400, 1401822000, 0, 0, 4, '2014-06-05 16:30:55', 'manuel', 4, 3, 0, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-5390c5872146b-96b9bff0@localhost', 0, '');
 
 -- --------------------------------------------------------
 
@@ -262,12 +260,14 @@ CREATE TABLE IF NOT EXISTS `mrbs_valor_consultorio` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `precio` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Volcar la base de datos para la tabla `mrbs_valor_consultorio`
 --
 
+INSERT INTO `mrbs_valor_consultorio` (`id`, `precio`) VALUES
+(1, 15);
 
 -- --------------------------------------------------------
 
