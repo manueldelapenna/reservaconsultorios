@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.2.4
+-- version 3.3.9
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 05-06-2014 a las 16:37:19
--- Versión del servidor: 5.1.41
--- Versión de PHP: 5.3.1
+-- Tiempo de generación: 19-06-2014 a las 11:51:27
+-- Versión del servidor: 5.5.8
+-- Versión de PHP: 5.3.5
 
 SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
@@ -76,6 +76,23 @@ INSERT INTO `mrbs_area` (`id`, `disabled`, `area_name`, `timezone`, `area_admin_
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `mrbs_cantidad_max_reservas`
+--
+
+CREATE TABLE IF NOT EXISTS `mrbs_cantidad_max_reservas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `cantidad` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Volcar la base de datos para la tabla `mrbs_cantidad_max_reservas`
+--
+
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `mrbs_entry`
 --
 
@@ -90,6 +107,7 @@ CREATE TABLE IF NOT EXISTS `mrbs_entry` (
   `create_by` varchar(80) NOT NULL DEFAULT '',
   `user_id` int(11) NOT NULL,
   `psychologist_id` int(11) NOT NULL,
+  `pago_id` int(11) DEFAULT NULL,
   `type` char(1) NOT NULL DEFAULT 'E',
   `status` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `reminded` int(11) DEFAULT NULL,
@@ -110,10 +128,32 @@ CREATE TABLE IF NOT EXISTS `mrbs_entry` (
 -- Volcar la base de datos para la tabla `mrbs_entry`
 --
 
-INSERT INTO `mrbs_entry` (`id`, `start_time`, `end_time`, `entry_type`, `repeat_id`, `room_id`, `timestamp`, `create_by`, `user_id`, `psychologist_id`, `type`, `status`, `reminded`, `info_time`, `info_user`, `info_text`, `ical_uid`, `ical_sequence`, `ical_recur_id`) VALUES
-(2, 1401897600, 1401901200, 0, 0, 4, '2014-06-05 12:14:12', 'pepe', 3, 3, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-5390895c89c34-e88f243b@localhost', 0, ''),
-(7, 1401800400, 1401804000, 0, 0, 4, '2014-06-05 12:44:17', 'pepa', 5, 5, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-5390906990133-ee16fa83@localhost', 0, ''),
-(9, 1401818400, 1401822000, 0, 0, 4, '2014-06-05 16:30:55', 'manuel', 4, 3, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-5390c5872146b-96b9bff0@localhost', 0, '');
+INSERT INTO `mrbs_entry` (`id`, `start_time`, `end_time`, `entry_type`, `repeat_id`, `room_id`, `timestamp`, `create_by`, `user_id`, `psychologist_id`, `pago_id`, `type`, `status`, `reminded`, `info_time`, `info_user`, `info_text`, `ical_uid`, `ical_sequence`, `ical_recur_id`) VALUES
+(2, 1401897600, 1401901200, 0, 0, 4, '2014-06-05 12:14:12', 'pepe', 3, 3, 0, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-5390895c89c34-e88f243b@localhost', 0, ''),
+(7, 1401800400, 1401804000, 0, 0, 4, '2014-06-05 12:44:17', 'pepa', 5, 5, 0, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-5390906990133-ee16fa83@localhost', 0, ''),
+(9, 1401818400, 1401822000, 0, 0, 4, '2014-06-05 16:30:55', 'manuel', 4, 3, 0, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-5390c5872146b-96b9bff0@localhost', 0, '');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `mrbs_pago`
+--
+
+CREATE TABLE IF NOT EXISTS `mrbs_pago` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha` datetime NOT NULL,
+  `cobrador_id` int(11) NOT NULL,
+  `monto_reservas` float NOT NULL,
+  `descuento` float NOT NULL,
+  `total` float NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `cobrador_id` (`cobrador_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Volcar la base de datos para la tabla `mrbs_pago`
+--
+
 
 -- --------------------------------------------------------
 
@@ -133,6 +173,7 @@ CREATE TABLE IF NOT EXISTS `mrbs_repeat` (
   `create_by` varchar(80) NOT NULL DEFAULT '',
   `user_id` int(11) NOT NULL,
   `psychologist_id` int(11) NOT NULL,
+  `pago_id` int(11) DEFAULT NULL,
   `type` char(1) NOT NULL DEFAULT 'E',
   `rep_num_weeks` smallint(6) DEFAULT NULL,
   `month_absolute` smallint(6) DEFAULT NULL,
@@ -147,7 +188,7 @@ CREATE TABLE IF NOT EXISTS `mrbs_repeat` (
   PRIMARY KEY (`id`),
   KEY `psychologist_id` (`psychologist_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Volcar la base de datos para la tabla `mrbs_repeat`
@@ -214,6 +255,23 @@ INSERT INTO `mrbs_users` (`id`, `level`, `real_name`, `real_lastname`, `name`, `
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `mrbs_valor_consultorio`
+--
+
+CREATE TABLE IF NOT EXISTS `mrbs_valor_consultorio` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `precio` float NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Volcar la base de datos para la tabla `mrbs_valor_consultorio`
+--
+
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `mrbs_variables`
 --
 
@@ -266,13 +324,15 @@ ALTER TABLE `mrbs_entry`
   ADD CONSTRAINT `mrbs_entry_ibfk_4` FOREIGN KEY (`psychologist_id`) REFERENCES `mrbs_users` (`id`);
 
 --
+-- Filtros para la tabla `mrbs_pago`
+--
+ALTER TABLE `mrbs_pago`
+  ADD CONSTRAINT `mrbs_pago_ibfk_1` FOREIGN KEY (`cobrador_id`) REFERENCES `mrbs_users` (`id`);
+
+--
 -- Filtros para la tabla `mrbs_repeat`
 --
 ALTER TABLE `mrbs_repeat`
   ADD CONSTRAINT `mrbs_repeat_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `mrbs_users` (`id`),
   ADD CONSTRAINT `mrbs_repeat_ibfk_4` FOREIGN KEY (`psychologist_id`) REFERENCES `mrbs_users` (`id`);
 SET FOREIGN_KEY_CHECKS=1;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

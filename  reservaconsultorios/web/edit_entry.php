@@ -438,7 +438,7 @@ function create_field_entry_type($disabled=FALSE)
   
   echo "<div id=\"div_type\">\n";
   
-  $params = array('label'       => get_vocab("type") . ":",
+  $params = array('label'       => "Tipo de reserva:",
                   'name'        => 'type',
                   'disabled'    => 'disabled',
                   'options'     => array(),
@@ -570,6 +570,11 @@ function create_field_entry_psychologist_id($disabled=FALSE)
   
 
   echo "</div>\n";
+}
+
+function create_field_entry_pago_id($disabled=FALSE)
+{
+
 }
 
 
@@ -1206,6 +1211,10 @@ foreach ($edit_entry_field_order as $key)
 	
   case 'psychologist_id':
     create_field_entry_psychologist_id();
+    break;
+	
+  case 'pago_id':
+    create_field_entry_pago_id();
     break;
   
   default:

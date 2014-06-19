@@ -155,6 +155,26 @@ function print_theme_header($day, $month, $year, $area, $room)
         <ul class="dropdown">
           <li>
 		  <?php
+				echo "<a href=\"reservas_impagas.php\">Reservas impagas</a>\n";
+		  ?>
+		  </li>
+		  <li>
+		  <?php
+				echo "<a href=\"pagos_realizados.php\">Pagos realizados</a>\n";
+		  ?>
+		  </li>
+		  <li>
+		  <?php
+				echo "<a href=\"configuracion.php\">Configuración</a>\n";
+		  ?>
+		  </li>
+		  <li>
+		  <?php
+				echo "<a href=\"edit_users.php\">" . Usuarios . "</a>\n";
+		  ?>
+		  </li>		  
+		  <li>
+		  <?php
 				echo "<a href=\"admin.php\">" . get_vocab("rooms") . "</a>\n";
 		  ?>
 		  </li>
@@ -163,16 +183,6 @@ function print_theme_header($day, $month, $year, $area, $room)
 				echo "<a href=\"report.php\">" . get_vocab("report") . "</a>\n";
 		  ?>
 		  </li>
-		  <li>
-		  <?php
-				echo "<a href=\"pagos.php\">" . Pagos . "</a>\n";
-		  ?>
-		  </li>
-		  <li>
-		  <?php
-				echo "<a href=\"edit_users.php\">" . Usuarios . "</a>\n";
-		  ?>
-		  </li>		  
         </ul>
       </li>
 	  <?php

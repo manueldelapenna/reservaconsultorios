@@ -291,13 +291,7 @@ if (authGetUserLevel($user) == 2 || authGetUserId($user) == $row['psychologist_i
 
 	// Now that we know all the data we start drawing it
 
-	echo "<h3" . (($keep_private && $is_private_field['entry.name']) ? " class=\"private\"" : "") . ">\n";
-	echo ($keep_private && $is_private_field['entry.name']) ? "[" . get_vocab("private") . "]" : htmlspecialchars($row['name']);
-	if (is_private_event($private) && $writeable) 
-	{
-	  echo ' ('.get_vocab("private").')';
-	}
-	echo "</h3>\n";
+	echo "<h3>Detalle de Reserva</h3>\n";
 
 
 	echo "<table id=\"entry\">\n";
@@ -430,43 +424,9 @@ if (authGetUserLevel($user) == 2 || authGetUserId($user) == $row['psychologist_i
 		echo "</div>\n";
 	  }
 	  
-	  // Copy and Copy Series
-	  echo "<div>\n";
-	  if (!$series)
-	  {
-		echo "<a href=\"edit_entry.php?id=$id&amp;copy=1&amp;returl=$link_returl\">". get_vocab("copyentry") ."</a>";
-	  }      
-	  if (!empty($repeat_id) && !$series && $repeats_allowed)
-	  {
-		echo " - ";
-	  }     
-	  if ((!empty($repeat_id) || $series) && $repeats_allowed) 
-	  {
-		echo "<a href=\"edit_entry.php?id=$id&amp;edit_type=series&amp;day=$day&amp;month=$month&amp;year=$year&amp;copy=1&amp;returl=$link_returl\">".get_vocab("copyseries")."</a>";
-	  }
-	  echo "</div>\n";
 	  
-	  // Export and Export Series
-	  if (!$keep_private && !$enable_periods)
-	  {
-		// The iCalendar information has the full booking details in it, so we will not allow
-		// it to be exported if it is private and the user is not authorised to see it.
-		// iCalendar information doesn't work with periods at the moment (no periods to times mapping)
-		echo "<div>\n";
-		if (!$series)
-		{
-		  echo "<a href=\"view_entry.php?action=export&amp;id=$id&amp;returl=$link_returl\">". get_vocab("exportentry") ."</a>";
-		} 
-		if (!empty($repeat_id)  && !$series)
-		{
-		  echo " - ";
-		}  
-		if (!empty($repeat_id) || $series)
-		{
-		  echo "<a href=\"view_entry.php?action=export&amp;id=$repeat_id&amp;series=1&amp;day=$day&amp;month=$month&amp;year=$year&amp;returl=$link_returl\">".get_vocab("exportseries")."</a>";
-		}
-		echo "</div>\n";
-	  }
+	  
+	  
 	  ?>
 	  <div id="returl">
 		<?php

@@ -96,9 +96,7 @@ function create_details_body($data, $as_html=FALSE, $keep_private=FALSE, $room_d
   
   $tbody = '';
   $tbody .= ($as_html) ? "<tbody>\n" : "";
-  // Description
-  $class = ($keep_private & $is_private_field['entry.description']) ? "private" : "";
-  $tbody .= create_details_row(get_vocab("description"), $data['description'], $as_html, $class);
+  
   // Confirmation status
   if ($confirmation_enabled)
   {
@@ -128,8 +126,7 @@ function create_details_body($data, $as_html=FALSE, $keep_private=FALSE, $room_d
     $start_date = time_date_string($data['start_time']);
   }
   $tbody .= create_details_row(get_vocab("start_date"), $start_date, $as_html);
-  // Duration
-  $tbody .= create_details_row(get_vocab("duration"), $data['duration'] . " " . get_vocab($data['dur_units']), $as_html);
+  
   // End date
   if ($enable_periods)
   {
@@ -140,13 +137,15 @@ function create_details_body($data, $as_html=FALSE, $keep_private=FALSE, $room_d
     $end_date = time_date_string($data['end_time']);
   }
   $tbody .= create_details_row(get_vocab("end_date"), $end_date, $as_html);
+  
+  // Duration
+  $tbody .= create_details_row(get_vocab("duration"), $data['duration'] . " " . get_vocab($data['dur_units']), $as_html);
+  
   // Type
   $type = get_type_vocab($data['type']);
   $value = (empty($type)) ? "?${data['type']}?" : $type;
-  $tbody .= create_details_row(get_vocab("type"), $value, $as_html);
-  // Created by
-  $class = ($keep_private && $is_private_field['entry.create_by']) ? "private" : "";
-  $tbody .= create_details_row(get_vocab("createdby"), $data['create_by'], $as_html, $class);
+  $tbody .= create_details_row("Tipo de reserva", $value, $as_html);
+  
   // Last updated
   $tbody .= create_details_row(get_vocab("lastupdate"), time_date_string($data['last_updated']), $as_html);
   // The custom fields
@@ -222,9 +221,10 @@ function create_details_body($data, $as_html=FALSE, $keep_private=FALSE, $room_d
 		$value = $book['name'];
 	  }
 	  
-	  
-      $class = ($keep_private && isset($is_private_field["entry.$key"]) && $is_private_field["entry.$key"]) ? "private" : "";
-      $tbody .= create_details_row($label, $value, $as_html, $class);
+	  if ($label != "pago_id"){
+		$class = ($keep_private && isset($is_private_field["entry.$key"]) && $is_private_field["entry.$key"]) ? "private" : "";
+		$tbody .= create_details_row($label, $value, $as_html, $class);
+	  }
     }
   }
   // Repeat type
