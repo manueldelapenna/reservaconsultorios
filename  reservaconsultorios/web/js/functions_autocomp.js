@@ -82,7 +82,9 @@ function ocultarFilas(name) {
     var elementos = document.getElementsByTagName('tr');
     for (k = 0; k< elementos.length; k++) {
 		if (elementos[k].getAttribute('name') != name && elementos[k].getAttribute('name') != null){
+                        //$('#pagar[k]').attr('disabled',true);
 			elementos[k].style.display = "none";
+                       
 		}
     }
 }
@@ -95,4 +97,9 @@ function info(id,nombre)
 	html="";
 	$("#busqueda").html("").append(html);
 	ocultarFilas(id);
+        $('#save_button').attr('disabled',false);
+        //$('.checks').prop("checked", false);
+        $(".checks:checkbox:checked").removeAttr("checked");
+        $("#psicologo").val(nombre);
 }
+

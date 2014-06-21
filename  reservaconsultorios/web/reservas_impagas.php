@@ -53,9 +53,9 @@ function create_input_field_entry_psychologist_id($disabled=FALSE)
 function generar_tabla_reservas($disable=FALSE)
 {
     
-    $sql = "SELECT u.real_lastname, u.real_name, e.psychologist_id, e.create_by, e.start_time, e.end_time
+    $sql = "SELECT e.id, e.pago_id, u.real_lastname, u.real_name, e.psychologist_id, e.create_by, e.start_time, e.end_time
             FROM mrbs_entry e, mrbs_users u
-            where e.psychologist_id = u.id
+            where (e.psychologist_id = u.id) AND (e.pago_id is null)
 		
         ORDER BY e.timestamp";
     $res = sql_query($sql);
@@ -69,7 +69,7 @@ function generar_tabla_reservas($disable=FALSE)
    echo "<th>Creada por</th>";
    echo "<th>Fecha Inicio</th>";
    echo "<th>Fecha Fin</th>";
-   echo "<th>Pagar <input type=\"checkbox\" text-align=\"right\" name=\"select-all\" value=\"\" onclick=\"for(c in document.getElementsByName('pagar')) document.getElementsByName('pagar').item(c).checked = this.checked\"></th></tr>";
+   echo "<th>Pagar</th>"; //<input type=\"checkbox\" class=\"checks\" text-align=\"right\" name=\"select-all\" value=\"\" onclick=\"for(c in document.getElementsByName('pagar[]')) document.getElementsByName('pagar[]').item(c).checked = this.checked\"></th></tr>";
    echo "</thead>";
    echo "<tbody>";
    for ($i = 0; ($row = sql_row_keyed($res, $i)); $i++)
@@ -79,10 +79,11 @@ function generar_tabla_reservas($disable=FALSE)
      echo "<td>".$row['create_by']."</td>";
      echo "<td>".time_date_string($row['start_time'])."</td>";
      echo "<td>".time_date_string($row['end_time'])."</td>";
-     echo "<td><input type=\"checkbox\" name=\"pagar\" value=\"\"></td></tr>";
+         echo "<td><input type=\"checkbox\" class=\"checks\" id=\"pagar\" name=\"pagar[]\" value=\"".$row['id']."\"></td></tr>";
    }
    echo "</tbody>";
    echo "</table>";
+   echo "<input type=\"hidden\" id=\"psicologo\" name=\"psicologo\" value=\" \"> ";
    //echo "</div>";
 
     
@@ -108,9 +109,12 @@ echo "<h3>Pagos</h3>"; ?>
         
         echo "<div id=\"edit_entry_submit_save\">\n";
 		echo "<br/>";
-        echo "<input class=\"button default_action\" type=\"submit\" name=\"save_button\" value=\"" .
+        echo "<input class=\"button default_action\" type=\"submit\" name=\"save_button\" id=\"save_button\" disabled value=\"" .
           "Generar Pago" . "\">\n";
         echo "</div>\n";
+        //envío por post el nombre del psicologo que tiene que pagar
+        
+        
     ?>
     </fieldset>
   </form>
