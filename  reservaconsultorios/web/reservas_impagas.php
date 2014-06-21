@@ -79,7 +79,7 @@ function generar_tabla_reservas($disable=FALSE)
      echo "<td>".$row['create_by']."</td>";
      echo "<td>".time_date_string($row['start_time'])."</td>";
      echo "<td>".time_date_string($row['end_time'])."</td>";
-         echo "<td><input type=\"checkbox\" class=\"checks\" id=\"pagar\" name=\"pagar[]\" value=\"".$row['id']."\"></td></tr>";
+         echo "<td><input type=\"checkbox\" class=\"checks\" id=\"pagar\" name=\"pagar[]\" disabled value=\"".$row['id']."\"></td></tr>";
    }
    echo "</tbody>";
    echo "</table>";

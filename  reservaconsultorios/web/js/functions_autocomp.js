@@ -99,7 +99,8 @@ function info(id,nombre)
 	ocultarFilas(id);
         $('#save_button').attr('disabled',false);
         //$('.checks').prop("checked", false);
-        $(".checks:checkbox:checked").removeAttr("checked");
+        //$(".checks:checkbox:checked").removeAttr("checked");
+        $(".checks:checkbox:disabled").removeAttr("disabled");
         $("#psicologo").val(nombre);
 }
 
