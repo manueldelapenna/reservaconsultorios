@@ -2,8 +2,8 @@
 *corregir vista de edici�n de reserva
 *alta y edicion de reserva con ajax en usuarios psicologos cuando crea el administrador
 *corregir vista de mails, se ve mal el tilde en el asunto y en el cuerpo falta el psicologo y el nombre completo del creador
-*corregir mails: el usuario que recibe es siempre el psicologo.
-*mandar mails cuando se crea un usuario
+*(casi listo)corregir mails: el usuario que recibe es siempre el psicologo.
+(listo)*mandar mails cuando se crea un usuario
 *recuperar contraseña
 *pagina de pagos realizados
 *pagina de reservas impagas

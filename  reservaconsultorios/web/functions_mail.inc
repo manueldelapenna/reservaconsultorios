@@ -992,6 +992,39 @@ function notifyAdminOnBooking($data, $mail_previous, $new_entry, $series, $start
   return $result;
 }
 
+//Notificar a un usuario recien creado/editado de tal accion y proporcionarle su login
+function notificarAusuario($usuario,$pass){
+    global $mail_settings;    
+    $from = $mail_settings['from'];
+    $to = get_email_address($usuario);
+    $addresses = array();
+    $addresses['from'] = $from;
+    $addresses['to']   = $to;
+    //$addresses['cc'] = get_address_list($cc);
+    $subject = "Ha sido dado/a de alta al Sistema de Reservas";
+    $text_body = array();
+    //$text_body['content'] = "Estimado/a, Ha sido dado/a de alta en el sistema de reservas sus datos son: usuario: $usuario"." , password: $pass";
+    $html_body = array();
+    $html_body['content'] = "<p>Estimado/a, Ha sido dado/a de alta en el sistema de reservas sus datos son:</p>  <p>usuario: $usuario</p>"."<p>password: $pass</p>";
+    $html_body['cid'] = generate_global_uid("html");
+    $attachment = array();
+    
+    //aca tiene que ir un if (existe dirección de correo $to) mando, si no, no.
+    $result = sendMail($addresses,
+                     $subject,
+                     $text_body,
+                     $html_body,
+                     $attachment,
+                     get_mail_charset());
+    return $result;
+    
+//    echo "Aca debería estar mandando el mail al usuario: $usuario".", ".$pass;
+//    echo "<br>";
+//    echo "enviado desde: $from hacia: ".$to;
+//    
+//    die;
+}
+
 // }}}
 // {{{ notifyAdminOnDelete()
 

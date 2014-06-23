@@ -39,6 +39,7 @@
 // $Id: edit_users.php 2733 2013-06-10 16:47:16Z cimorrison $
 
 require "defaultincludes.inc";
+require "functions_mail.inc";
 
 // Get non-standard form variables
 $Action = get_form_var('Action', 'string');
@@ -615,6 +616,8 @@ if (isset($Action) && ($Action == "Update"))
       switch ($fieldname)
       {
         case 'name':
+           //me quedo con el username para enviarlo x mail
+           $usuario = $value;
           // check that the name is not empty
           if (empty($value))
           {
@@ -774,7 +777,10 @@ if (isset($Action) && ($Action == "Update"))
     }
   
     /* Success. Redirect to the user list, to remove the form args */
+    /*Aca tambien enviaría un mail al usuario recien creado/editado*/
 	$my_id = sql_query1("SELECT id FROM $tbl_users WHERE name='".sql_escape($user)."' LIMIT 1");
+        
+        notificarAusuario($usuario,$password0);
 	if (authGetUserLevelById($my_id) == 2){
 		Header("Location: edit_users.php");
 	}else{
