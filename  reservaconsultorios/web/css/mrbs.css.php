@@ -538,7 +538,7 @@ form.form_general#logon       {min-width: <?php echo $logon_form_min_width ?>em}
 form.form_general#db_logon    {min-width: <?php echo $db_logon_form_min_width ?>em}
 form#edit_room {float: left; width: auto; margin: 0 2em 1em 1em}
 
-.form_general div {float: left; clear: left; width: 400px;}
+.form_general div {float: left; clear: left; width: 550px;}
 .form_general div div {float: none; clear: none; width: auto}
 .form_general div.group {float: left}
 .form_general div.group_container {float: left}
@@ -897,3 +897,7 @@ span.ColVis_title {
 div#check_tabs {background-image: none}
 .edit_entry #ui-tab-dialog-close {position:absolute; right:0; top:23px}
 .edit_entry #ui-tab-dialog-close a {float:none; padding:0}
+
+#start_datepicker, #end_datepicker, #rep_end_datepicker{
+	max-width:80px;
+}

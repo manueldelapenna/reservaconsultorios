@@ -1,5 +1,5 @@
 (listo)*corregir campos del mostrar reserva, faltan psicologo y usuario creador
-*corregir vista de edici�n de reserva
+(listo)*corregir vista de edici�n de reserva
 *alta y edicion de reserva con ajax en usuarios psicologos cuando crea el administrador
 *corregir vista de mails, se ve mal el tilde en el asunto y en el cuerpo falta el psicologo y el nombre completo del creador
 *(casi listo)corregir mails: el usuario que recibe es siempre el psicologo.

@@ -146,7 +146,6 @@ if (!$ajax)
 {
   if ($_POST['f_psychologist_id'] == -1){
 	invalid_booking('Debe seleccionar un Psicólogo');
-	echo"<h1>lallala</h1>";
   }
 
   if (empty($rooms))
