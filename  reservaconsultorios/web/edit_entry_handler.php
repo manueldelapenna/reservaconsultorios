@@ -15,7 +15,28 @@ function invalid_booking($message)
   echo "<p>$message</p>\n";
   echo "<a href=javascript:window.history.back()>Volver a reserva</a>\n";
   // Print footer and exit
+  output_trailer();
   print_footer(TRUE);
+}
+
+function cantidad_maxima_superada($message)
+{
+  global $day, $month, $year, $area, $room;
+  
+  print_header($day, $month, $year, $area, isset($room) ? $room : "");
+  echo "<h2>" . get_vocab("sched_conflict") . "</h2>\n";
+  echo "<p>\n";
+    echo get_vocab("rules_broken") . ":\n";
+    echo "</p>\n";
+  echo "<ul>\n";
+  echo "<li>$message</li>\n";
+  echo "</ul>\n";
+  echo "<a href=javascript:window.location.href='index.php'>Volver</a>\n";
+  
+  // Print footer and exit
+  output_trailer();
+  print_footer(TRUE);
+  
 }
 
 
@@ -144,6 +165,41 @@ foreach($fields as $field)
 // Don't bother with them if this is an Ajax request.
 if (!$ajax)
 {
+  $fechaInicio = date_create($_POST["start_year"]."-".$_POST["start_month"]."-".$_POST["start_day"]);
+  $fechaFin = date_create($_POST["end_year"]."-".$_POST["end_month"]."-".$_POST["end_day"]);
+      
+  if (!$is_admin && $_POST['rep_type'] == '0' && $max_per_interval_global_enabled['week']){
+	  $userId = authGetUserId(getUserName());
+	  
+	  $time = date_format($fechaInicio, 'U');
+	  
+	  $primer_dia = $time;
+	  $ultimo_dia = $time;
+	  while(date("w",$primer_dia)!=1){
+		$primer_dia -= 3600*24;
+	  }
+	  while(date("w",$ultimo_dia)!=0){
+		$ultimo_dia += 3600;
+	  }
+	  
+	  $inicioSemana = date("Y-m-d",$primer_dia);
+	  $finSemana = date("Y-m-d",$ultimo_dia);
+	  
+	  $total = sql_query1("SELECT count(id) 
+				     FROM $tbl_entry
+					 WHERE psychologist_id = $userId and
+						   start_time >= $primer_dia and
+						   end_time <= $ultimo_dia
+					 group by psychologist_id 
+					 LIMIT 1");
+	  
+	  $cantidadReservas = ($_POST['end_seconds'] - $_POST['start_seconds'])/60/60;
+  
+	  if (($total + cantidadReservas) >= $max_per_interval_global['week']){
+		cantidad_maxima_superada("Cantidad de reservas semanales superadas ($max_per_interval_global[week])");
+	  }
+  }
+  
   if ($_POST['f_psychologist_id'] == -1){
 	invalid_booking('Debe seleccionar un Psicólogo');
   }
@@ -687,7 +743,7 @@ else
     echo "<ul>\n";
     foreach ($result['rules_broken'] as $rule)
     {
-      echo "<li>$rule</li>\n";
+      echo "<li>Cantidad de reservas semanales superadas ($max_per_interval_global[week])</li>\n";
     }
     echo "</ul>\n";
   }
@@ -708,11 +764,7 @@ else
 echo "<div id=\"submit_buttons\">\n";
 
 // Back button
-echo "<form method=\"post\" action=\"" . htmlspecialchars($returl) . "\">\n";
-echo "<fieldset><legend></legend>\n";
-echo "<input type=\"submit\" value=\"" . get_vocab("back") . "\">\n";
-echo "</fieldset>\n";
-echo "</form>\n";
+echo "<a href=javascript:window.location.href='index.php'>Volver</a>\n";
 
 
 // Skip and Book button (to book the entries that don't conflict)

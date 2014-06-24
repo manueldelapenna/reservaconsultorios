@@ -23,7 +23,7 @@
 
 14 de junio:
 
-* Cada usuario NO puede tener mas de 12 reservas SEMANALES, salvo casos excepcionales
+(listo)* Cada usuario NO puede tener mas de 12 reservas SEMANALES, salvo casos excepcionales
 para esto implementar una var global para setear un  MAX_RESERVAS
 
 * Se debe poder anular un día entero o uno o mas horarios para que ningun

@@ -67,15 +67,13 @@ echo "<h3>Configuración del Sistema</h3>"; ?>
 			</td>
 		</tr>
 	</table>
-		<?
-        // The Submit button
-        echo "<div id=\"edit_entry_submit_save\">\n";
-        echo "<input class=\"button default_action\" type=\"submit\" name=\"save_button\" value=\"" .
-          "Actualizar configuración" . "\">\n";
-		echo "<input class=\"button default_action\" onclick=\"window.location.href='index.php'\" type=\"button\" value=\"" .
-          "Cancelar" . "\">\n";
-        echo "</div>\n";
-    ?>
+		
+        
+        <div id="edit_entry_submit_save">
+			<input class="button default_action" type="submit" name="save_button" value="Actualizar configuración">
+			<input class="button default_action" onclick="window.location.href='index.php'" type="button" value="Cancelar">
+        </div>
+    
 	
   </form>
 <?php 

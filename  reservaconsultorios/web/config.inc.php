@@ -1,4 +1,4 @@
-<?php
+<?php	
 
 require('database.php');
 
@@ -609,5 +609,36 @@ $mail_settings['disabled'] = FALSE;
  // $typel["H"] = "H";
  //$typel["I"] = get_vocab("internal");
  // $typel["J"] = "J";
+
+// Set the maximum number of bookings that can be made by any one user, in an interval,
+// which can be a day, week, month or year, or else in the future.  (A week is defined
+// by the $weekstarts setting).   These are global settings, but you can additionally
+// configure per area settings.   This would allow you to set policies such as allowing
+// a maximum of 10 bookings per month in total with a maximum of 1 per day in Area A.
+$max_per_interval_global_enabled['day']    = FALSE;
+$max_per_interval_global['day'] = 1;      // max 1 bookings per day in total
+
+$con=mysqli_connect($host,$username,$password,$databasename);
+// Check connection
+if (mysqli_connect_errno()) {
+  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+}
+
+$result = mysqli_query($con,"SELECT cantidad FROM mrbs_cantidad_max_reservas LIMIT 1");
+$row = mysqli_fetch_array($result);
+mysqli_close($con);
+
+				 
+$max_per_interval_global_enabled['week']   = TRUE;
+$max_per_interval_global['week'] = $row['cantidad']; // max of bookings per week in total
+
+$max_per_interval_global_enabled['month']  = FALSE;
+$max_per_interval_global['month'] = 10;   // max 10 bookings per month in total
+
+$max_per_interval_global_enabled['year']   = FALSE;
+$max_per_interval_global['year'] = 50;    // max 50 bookings per year in total
+
+$max_per_interval_global_enabled['future'] = FALSE;
+$max_per_interval_global['future'] = 100; // max 100 bookings in the future in total
 
 ?>

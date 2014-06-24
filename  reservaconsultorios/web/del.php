@@ -39,7 +39,7 @@ if ($type == "room")
     // We tell them how bad what they're about to do is
     // Find out how many appointments would be deleted
    
-    $sql = "select name, start_time, end_time from $tbl_entry where room_id=$room";
+    $sql = "select start_time, end_time from $tbl_entry where room_id=$room";
     $res = sql_query($sql);
     if (! $res)
     {

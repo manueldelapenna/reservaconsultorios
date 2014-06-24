@@ -614,7 +614,7 @@ fieldset.rep_type_details fieldset {padding-top: 0}
 div#import_submit     {width: <?php echo $general_left_col_width ?>%; max-width: <?php echo $import_left_col_max_width ?>em}
 div#report_submit     {width: <?php echo $general_left_col_width ?>%; max-width: <?php echo $report_left_col_max_width ?>em}
 div#search_submit     {width: <?php echo $general_left_col_width ?>%; max-width: <?php echo $search_left_col_max_width ?>em}
-div#logon_submit      {width: 10em;}
+div#logon_submit      {width: 12.3em;}
 div#db_logon_submit   {width: <?php echo $general_left_col_width ?>%; max-width: <?php echo $db_logon_left_col_max_width ?>em}
 #import_submit input, #report_submit input, #search_submit input, #logon_submit input, #db_logon_submit input
     {position: relative; left: 100%; width: auto}
@@ -899,5 +899,5 @@ div#check_tabs {background-image: none}
 .edit_entry #ui-tab-dialog-close a {float:none; padding:0}
 
 #start_datepicker, #end_datepicker, #rep_end_datepicker{
-	max-width:80px;
+	max-width:90px;
 }

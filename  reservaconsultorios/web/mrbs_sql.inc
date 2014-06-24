@@ -610,7 +610,16 @@ function mrbsCreateSingleEntry($data)
     {
       $data['ical_recur_id'] = gmdate(RFC5545_FORMAT . '\Z', $data['start_time']);
     }
-    $result = mrbsCreateEntry($tbl_entry, $data);
+	$j = $data['duration'];
+	for ($i=0;$i < $j; $i++){
+		$data['duration'] = 1;
+		if ($i != 0){
+			$data['start_time'] = $data['start_time'] + 60 * 60;
+		}
+		$data['end_time'] = $data['start_time'] + 60 * 60;
+		$result = mrbsCreateEntry($tbl_entry, $data);
+	}
+    
     return $result;
   }
   else
