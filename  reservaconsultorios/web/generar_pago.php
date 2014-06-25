@@ -55,38 +55,43 @@ function get_precio_reserva(){
 }
 
 $pagos = $_POST['pagar'];
-if ($pagos){
+if ($pagos){ ?>
     
+	<form action="pagar_reservas.php" method="post">
+	<?php
     echo "<div>";
-     echo "Hora y Fecha: ".time_date_string(time())."<br>";
      echo "Reservas a pagar: ".count($pagos);
      echo "<br>";
-      echo "Profesional: ".$_POST['psicologo']."<br>";
+      echo "<label>Profesional: <label><input value=\"".$_POST['psicologo']."\"<br>";
       echo "Cobrador/a: ".getUserName()."<br>";
       echo "Detalle de las reservas: <br>";
-      foreach ($pagos as $pago){
+	  echo "<input hidden='hidden' name='reservasIds' value='". serialize($pagos)."'/>";
+	  foreach ($pagos as $pago){
         get_reserva($pago,$comienzo, $fin);
         echo "Comienzo: ".$comienzo." - Fin: ".$fin." Precio: $".  get_precio_reserva()."<br>";
         
       }
       $subtotal = get_precio_reserva()*count($pagos);
-      echo "Subtotal: $".$subtotal."<br>";
+      echo "<label>Subtotal: $</label><input name='subtotal' value=\"".$subtotal."\"<br>";
       $descuento = 0;
-      echo "Descuento: $".$descuento."<br>";
+      echo "<label>Descuento: $</label><input name='descuento' value=\"".$descuento."\"<br>";
       $total = $subtotal - $descuento;
-      echo "Total a Pagar: $".$total."<br>";
+      echo "<label>Total a pagar: $</label><input name='total' value=\"".$total."\"<br>";
      echo "</div>"; 
      
      echo "<div id=\"edit_entry_submit_save\">\n";
 		echo "<br/>";
-        echo "<input class=\"button default_action\" type=\"button\" name=\"save_button\" id=\"save_button\" value=\"" .
+        echo "<input class=\"button default_action\" type=\"submit\" name=\"save_button\" id=\"save_button\" value=\"" .
           "Garpar" . "\">\n";
         echo "</div>\n";
+		
+		
+	?>
+	</form>
+	<?php
 }
 else {echo "No se seleccionaron reservas para pagar";}
 
-//var_dump($_POST['3']); 
-//die;
 
 ?>
 
