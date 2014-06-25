@@ -93,18 +93,19 @@ function generar_tabla_reservas($disable=FALSE)
 echo "<table class=\"dwm_main\" id=\"week_main\" data-resolution=\"$resolution\">";
 //echo $inner_html;
 echo "<h3>Pagos</h3>"; ?>
-<form class="form_general" id="main" action="generar_pago.php" method="post">
+<form class="form_general" id="main" action="reservas_impagas_armar_pago.php" method="post">
     <fieldset>
     <legend><?php echo get_vocab($token); ?></legend>
       
       <?php create_input_field_entry_psychologist_id(); 
 	  echo "<br/>";
-	  echo "<input class=\"button default_action\" onclick=\"mostrarFilas()\" type=\"button\" value=\"" .
-          "Ver todos" . "\">\n";
+//	  echo "<input class=\"button default_action\" onclick=\"mostrarFilas()\" type=\"button\" value=\"" .
+//          "Ver todos" . "\">\n";
 	  ?>
 	  
       <?php
-		generar_tabla_reservas();
+		//generar_tabla_reservas();
+        
         // The Submit button
         
         echo "<div id=\"edit_entry_submit_save\">\n";
@@ -113,7 +114,7 @@ echo "<h3>Pagos</h3>"; ?>
           "Generar Pago" . "\">\n";
         echo "</div>\n";
         //envío por post el nombre del psicologo que tiene que pagar
-        
+        echo "<input type=\"hidden\" id=\"psicologo\" name=\"psicologo\" value=\" \"> ";
         
     ?>
     </fieldset>

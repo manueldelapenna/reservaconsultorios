@@ -101,6 +101,6 @@ function info(id,nombre)
         //$('.checks').prop("checked", false);
         //$(".checks:checkbox:checked").removeAttr("checked");
         $(".checks:checkbox:disabled").removeAttr("disabled");
-        $("#psicologo").val(nombre);
+        $("#psicologo").val(id);
 }
 
