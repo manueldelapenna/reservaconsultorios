@@ -7,19 +7,9 @@ require "defaultincludes.inc";
 require_once "mincals.inc";
 require_once "functions_table.inc";
 require_once "mrbs_sql.inc";
+require('database.php');
 
 checkAuthorised();
-
-
-// print the page header
-print_header($day, $month, $year, $area, isset($room) ? $room : "");
-
-// Section with areas, rooms, minicals.
-
-echo "<div id=\"dwm_header\" class=\"screenonly\">\n";
-echo "</div>\n";
-
-
 
 $fecha = time();
 $cobradorId = authGetUserId(getUsername());
@@ -28,17 +18,45 @@ $descuento = $_POST['descuento'];
 $total = $_POST['total'];
 $reservasIds = unserialize($_POST['reservasIds']);
 
+$conn=mysqli_connect($host,$username,$password,$databasename);
+// Check connection
+if (mysqli_connect_errno()) {
+  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+}
+
+$error=0;
+/* disable autocommit */
+mysqli_autocommit($conn, FALSE);
+
 $sql= "INSERT INTO mrbs_pago (fecha, cobrador_id, monto_reservas, descuento, total)
 		values ($fecha, $cobradorId, $monto_reservas, $descuento, $total)";
-sql_command($sql);
-$pago_id = sql_insert_id('mrbs_pago', 'id');
+$result=mysqli_query($conn,$sql);
+$pago_id = mysqli_insert_id($conn);
 
+if(!$result){
+	$error=1;
+}
 
 foreach($reservasIds as $reservaId){
 
-$sql= "UPDATE mrbs_entry SET pago_id=$pago_id where id = $reservaId";
-sql_command($sql);
-
+	$sql= "UPDATE mrbs_entry SET pago_id=$pago_id where id = $reservaId";
+	$result=mysqli_query($conn,$sql);
+	if(!$result){
+		$error=1;
+	}
 }
-    
-output_trailer() ?>
+
+if($error) {
+	mysqli_rollback($conn);
+	
+	//$mensaje = 'Se produjo un error al registrar el pago.';
+	header('location:pago_error.php');
+} else {
+	mysqli_commit($conn);	
+	
+	//$mensaje = 'El pago se ha registrado correctamente, puede generar el recibo si lo desea.';
+	
+}
+mysqli_close($conn);
+header("Location: pago_finalizado.php?error=$error&pago_id=$pago_id");
+?>
