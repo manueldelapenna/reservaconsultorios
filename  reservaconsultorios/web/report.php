@@ -36,6 +36,8 @@ function generate_search_criteria(&$vars)
       
         
       case 'areamatch':
+	  
+	  /*
         $options = sql_query_array("SELECT area_name FROM $tbl_area ORDER BY area_name");
         if ($options === FALSE)
         {
@@ -50,12 +52,14 @@ function generate_search_criteria(&$vars)
                         'value'         => $vars['areamatch']);
         generate_datalist($params);
         echo "</div>\n";
+		*/
         break;
         
         
       case 'roommatch':
         // (We need DISTINCT because it's possible to have two rooms of the same name
         // in different areas)
+		/*
         $options = sql_query_array("SELECT DISTINCT room_name FROM $tbl_room ORDER BY room_name");
         if ($options === FALSE)
         {
@@ -70,6 +74,7 @@ function generate_search_criteria(&$vars)
                         'value'         => $vars['roommatch']);
         generate_datalist($params);
         echo "</div>\n";
+		*/
         break;
       
         
@@ -95,32 +100,38 @@ function generate_search_criteria(&$vars)
       
         
       case 'namematch':  
-        echo "<div id=\"div_namematch\">\n";
+        /*
+		echo "<div id=\"div_namematch\">\n";
         $params = array('label' => get_vocab("match_entry") . ':',
                         'name'  => 'namematch',
                         'value' => $vars['namematch']);
         generate_input($params);
         echo "</div>\n";
+		*/
         break;
       
         
       case 'descrmatch':
-        echo "<div id=\"div_descrmatch\">\n";
+        /*
+		echo "<div id=\"div_descrmatch\">\n";
         $params = array('label' => get_vocab("match_descr") . ':',
                         'name'  => 'descrmatch',
                         'value' => $vars['descrmatch']);
         generate_input($params);
         echo "</div>\n";
+		*/
         break;
   
       
       case 'creatormatch':
+		/*
         echo "<div id=\"div_creatormatch\">\n";
         $params = array('label' => get_vocab("createdby") . ':',
                         'name'  => 'creatormatch',
                         'value' => $vars['creatormatch']);
         generate_input($params);
         echo "</div>\n";
+		*/
         break;
         
 
@@ -184,9 +195,12 @@ function generate_search_criteria(&$vars)
           echo "</div>\n";
         }
         break;
+			         
+      break;
         
 
       default:
+		/*
         // Must be a custom field
         $var = "match_$key";
         global $$var;
@@ -223,6 +237,7 @@ function generate_search_criteria(&$vars)
           }
         }
         echo "</div>\n";
+		*/
         break;
         
     } // switch
@@ -245,6 +260,7 @@ function generate_presentation_options(&$vars)
     switch ($key)
     {
       case 'output':
+	  /*
         echo "<div id=\"div_output\">\n";
         $buttons = array(REPORT  => get_vocab('report'),
                          SUMMARY => get_vocab('summary'));
@@ -254,6 +270,7 @@ function generate_presentation_options(&$vars)
                         'options' => $buttons);
         generate_radio_group($params);                  
         echo "</div>\n";
+		*/
         break;
         
         
@@ -262,10 +279,7 @@ function generate_presentation_options(&$vars)
         $buttons = array(OUTPUT_HTML => get_vocab('html'),
                          OUTPUT_CSV  => get_vocab('csv'));
         // The iCal output button
-        if ($times_somewhere) // We can't do iCalendars for periods yet
-        {
-          $buttons[OUTPUT_ICAL] = "ical";
-        }
+
         $params = array('label'   => get_vocab('format') . ":",
                         'name'    => 'output_format',
                         'value'   => $vars['output_format'],
@@ -276,6 +290,7 @@ function generate_presentation_options(&$vars)
         
 
       case 'sortby':
+	  /*
         echo "<div id=\"div_sortby\">\n";
         $options = array('r' => get_vocab("sort_room"),
                          's' => get_vocab("sort_rep_time"));
@@ -285,10 +300,12 @@ function generate_presentation_options(&$vars)
                         'value'   => $vars['sortby']);
         generate_radio_group($params);
         echo "</div>\n";
+		*/
         break;
 
         
       case 'sumby':
+	  /*
         echo "<div id=\"div_sumby\">\n";
         $options = array('d' => get_vocab("sum_by_descrip"),
                          'c' => get_vocab("sum_by_creator"),
@@ -299,9 +316,9 @@ function generate_presentation_options(&$vars)
                         'value'   => $vars['sumby']);
         generate_radio_group($params);
         echo "</div>\n";
+		*/
         break;
-        
-      
+      	  		
       default:
         break;  
       
@@ -446,6 +463,7 @@ function report_header()
       case 'last_updated':
         $values[] = stype_wrap(get_vocab("lastupdate"), 'title-numeric');
         break;
+			   
       default:
         // the custom fields
         if (array_key_exists($field, $custom_fields))

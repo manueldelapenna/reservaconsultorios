@@ -240,13 +240,14 @@ $vocab["search_for"]         = "Buscar por";
 $vocab["from"]               = "Desde";
 
 // Used in report.php
-$vocab["report_on"]          = "Informe de Reuniones";
+$vocab["format"]    		 = "Formato";
+$vocab["report_on"]          = "Informe de Reservas";
 $vocab["report_start"]       = "Fecha Inicio";
 $vocab["report_end"]         = "Fecha Fin";
 $vocab["match_area"]         = "Agrupación";
 $vocab["match_room"]         = "Sala";
-$vocab["match_type"]         = "Tipo de Coincidencia";
-$vocab["ctrl_click_type"]    = "Use Control-Click para seleccionar más de un Tipo";
+$vocab["match_type"]         = "Reserva generada por";
+$vocab["ctrl_click_type"]    = "Use Control-Click para seleccionar más de uno";
 $vocab["match_entry"]        = "Descripción Breve";
 $vocab["match_descr"]        = "Descripción Completa";
 $vocab["ical"]               = "Informe como iCalendar (archivo .ics) - excluyendo periodos";

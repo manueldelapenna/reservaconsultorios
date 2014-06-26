@@ -18,10 +18,10 @@ Manu:
 (listo)*Hacer que la cancelación de reservas sea solo antes de las 24.00 hs.
 (listo)*No permitir agregar ni editar reservas anteriores a la fecha actual.
 (listo)*Los sábados la grilla debe solo permitir horarios hasta las 13.00 hs. Eliminar domingos
-(listo)*quitar reservas por mes y por año;
+(listo)*quitar reservas por mes y por año
+(listo)*simplificar pantalla de informes
 *Se debe poder anular un día entero o uno o mas horarios para que ningun psicologo pueda reservar
 *pagina de configuracion, falta testeo de errores
-*simplificar pantalla de informes y agregarle ajax en los campos de usuarios
 *cambiar estilo de boton de borrar usuario
 *recuperar contraseña
 
