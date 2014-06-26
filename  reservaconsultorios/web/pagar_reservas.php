@@ -25,38 +25,53 @@ if (mysqli_connect_errno()) {
 }
 
 $error=0;
-/* disable autocommit */
-mysqli_autocommit($conn, FALSE);
 
-$sql= "INSERT INTO mrbs_pago (fecha, cobrador_id, monto_reservas, descuento, total)
-		values ($fecha, $cobradorId, $monto_reservas, $descuento, $total)";
+//chequea si las reservas están pagas (por si se recarga la página)
+$chequeaReservaPaga = $reservasIds[0];
+
+$sql= "select * from mrbs_entry
+	   where id = $chequeaReservaPaga and pago_id is null";
 $result=mysqli_query($conn,$sql);
-$pago_id = mysqli_insert_id($conn);
 
-if(!$result){
-	$error=1;
+$noEstanPagas = mysqli_num_rows($result);
+
+if(!$noEstanPagas){
+	$error = 1;
 }
 
-foreach($reservasIds as $reservaId){
 
-	$sql= "UPDATE mrbs_entry SET pago_id=$pago_id where id = $reservaId";
+	/* disable autocommit */
+	mysqli_autocommit($conn, FALSE);
+
+	$sql= "INSERT INTO mrbs_pago (fecha, cobrador_id, monto_reservas, descuento, total)
+			values ($fecha, $cobradorId, $monto_reservas, $descuento, $total)";
 	$result=mysqli_query($conn,$sql);
+	$pago_id = mysqli_insert_id($conn);
+
 	if(!$result){
 		$error=1;
 	}
-}
 
-if($error) {
-	mysqli_rollback($conn);
-	
-	//$mensaje = 'Se produjo un error al registrar el pago.';
-	header('location:pago_error.php');
-} else {
-	mysqli_commit($conn);	
-	
-	//$mensaje = 'El pago se ha registrado correctamente, puede generar el recibo si lo desea.';
-	
-}
-mysqli_close($conn);
-header("Location: pago_finalizado.php?error=$error&pago_id=$pago_id");
+	foreach($reservasIds as $reservaId){
+
+		$sql= "UPDATE mrbs_entry SET pago_id=$pago_id where id = $reservaId";
+		$result=mysqli_query($conn,$sql);
+		if(!$result){
+			$error=1;
+		}
+	}
+
+	if($error) {
+		mysqli_rollback($conn);
+		
+		//$mensaje = 'Se produjo un error al registrar el pago.';
+		header('location:pago_error.php');
+	} else {
+		mysqli_commit($conn);	
+		
+		//$mensaje = 'El pago se ha registrado correctamente, puede generar el recibo si lo desea.';
+		
+	}
+	mysqli_close($conn);
+	header("Location: pago_finalizado.php?error=$error&pago_id=$pago_id");
 ?>

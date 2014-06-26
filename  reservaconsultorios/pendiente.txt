@@ -1,14 +1,7 @@
 (listo)*corregir campos del mostrar reserva, faltan psicologo y usuario creador
 (listo)*corregir vista de edici�n de reserva
-*alta y edicion de reserva con ajax en usuarios psicologos cuando crea el administrador
-*corregir vista de mails, se ve mal el tilde en el asunto y en el cuerpo falta el psicologo y el nombre completo del creador
-*(casi listo)corregir mails: el usuario que recibe es siempre el psicologo.
 (listo)*mandar mails cuando se crea un usuario
-*recuperar contraseña
-*pagina de pagos realizados
-*pagina de reservas impagas
-*pagina de configuracion, falta testeo de errores
-*simplificar pantalla de informes y agregarle ajax en los campos de usuarios
+(listo)*pagina de reservas impagas
 (listo)*agregar tabla de pagos:
 	Pago:
 		fecha:datetime
@@ -18,18 +11,24 @@
 		total: float
 		
 (listo)*agregar id de pago a cada reserva
-*agregar modulo de precio de consultorios. (input con precio actual del alquiler de 1 hora de consultorio)
-*cambiar estilo de boton de borrar usuario
+(listo)* Cada usuario NO puede tener mas de 12 reservas SEMANALES, salvo casos excepcionales para esto implementar una var global para setear un  MAX_RESERVAS
+(listo)*agregar modulo de precio de consultorios. (input con precio actual del alquiler de 1 hora de consultorio)
 
-14 de junio:
-
-(listo)* Cada usuario NO puede tener mas de 12 reservas SEMANALES, salvo casos excepcionales
-para esto implementar una var global para setear un  MAX_RESERVAS
-
-* Se debe poder anular un día entero o uno o mas horarios para que ningun
-psicologo pueda reservar
-
+Manu:
+*Hacer que la cancelación de reservas sea solo antes de las 24.00 hs.
+*Se debe poder anular un día entero o uno o mas horarios para que ningun psicologo pueda reservar
 *Los sábados la grilla debe solo permitir horarios hasta las 13.00 hs. Eliminar 
 domingos
+*pagina de configuracion, falta testeo de errores
+*simplificar pantalla de informes y agregarle ajax en los campos de usuarios
+*cambiar estilo de boton de borrar usuario
+*recuperar contraseña
 
-* Hacer que la cancelación de reservas sea solo antes de las 24.00 hs.
+Tincho:
+*pagina de pagos realizados
+*generar recibo pdf
+*alta y edicion de reserva con ajax en usuarios psicologos cuando crea el administrador
+*corregir vista de mails, se ve mal el tilde en el asunto y en el cuerpo falta el psicologo y el nombre completo del creador
+*(casi listo)corregir mails: el usuario que recibe es siempre el psicologo.
+
+Algo más?
