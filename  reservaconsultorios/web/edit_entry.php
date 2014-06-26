@@ -51,6 +51,29 @@
 require "defaultincludes.inc";
 require_once "mrbs_sql.inc";
 
+if (!isset($_GET['hour']) && $_GET['day'] == date('d') && $_GET['year'] == date('Y') && $_GET['month'] == date('m'))
+{
+	if (date('H')>7 &&date('H')<21){
+		$_GET['hour'] = date('H') + 1;
+		$_GET['minute'] = 0;
+	}
+}
+
+if (authGetUserLevel(getUserName()) != 2){
+	if (mktime($_GET['hour'],$_GET['minute'],0,$_GET['month'],$_GET['day'],$_GET['year']) < time()){
+		showCantEditBooking($day, $month, $year, $area, $room);
+		exit;
+	}
+}
+
+if (authGetUserLevel(getUserName()) != 2){
+	if (date('D', mktime($_GET['hour'],$_GET['minute'],0,$_GET['month'],$_GET['day'],$_GET['year'])) == "Sat" && $_GET['hour'] > 12){
+		showCantEditBookingSaturday($day, $month, $year, $area, $room);
+		exit;
+	}
+}
+
+
 $fields = sql_field_info($tbl_entry);
 $custom_fields = array();
 
@@ -1249,7 +1272,7 @@ if (($edit_type == "series") && $repeats_allowed)
                   'value'         => $rep_type,
                   'disabled'      => $disabled,
                   'options'       => array());
-  foreach (array(REP_NONE, REP_DAILY, REP_WEEKLY, REP_MONTHLY, REP_YEARLY) as $i)
+  foreach (array(REP_NONE, REP_DAILY, REP_WEEKLY) as $i)
   {
     $params['options'][$i] = get_vocab("rep_type_$i");
   }
@@ -1292,7 +1315,7 @@ if (($edit_type == "series") && $repeats_allowed)
                       'step'       => '1',
                       'min'        => REP_NUM_WEEKS_MIN,
                       'value'      => $rep_num_weeks,
-                      'suffix'     => get_vocab("weeks"),
+                      'suffix'     => get_vocab("weeks") . ' de por medio',
                       'disabled'   => $disabled);
       generate_input($params);
     

@@ -190,7 +190,49 @@ function showCantDeleteBooking($day, $month, $year, $area, $room, $multiple)
 	}
   ?>
   <p>
-     Únicamente se permite cancelar reservas con 24 horas de antelación. Ante cualquier inconveniente, comuníquese con el Colegio de Psicólogos.
+     Únicamente se permite cancelar reservas con 24 horas de antelación. Ante cualquier inconveniente comuníquese con el Colegio de Psicólogos.
+  </p>
+  
+  <p>
+    <a href="javascript:history.back()">
+      <?php echo get_vocab("returnprev"); ?>
+    </a>
+  </p>
+<?php
+  // Print footer and exit
+  print_footer(TRUE);
+}
+
+function showCantEditBooking($day, $month, $year, $area, $room)
+{
+  global $HTTP_REFERER;
+
+  print_header($day, $month, $year, $area, isset($room) ? $room : "");
+?>
+  <h1>Error de Alta/Edición de Reserva</h1>
+  <p>
+     No se puede dar de alta ni editar una reserva anterior a la fecha actual. Ante cualquier inconveniente comuníquese con el Colegio de Psicólogos.
+  </p>
+  
+  <p>
+    <a href="javascript:history.back()">
+      <?php echo get_vocab("returnprev"); ?>
+    </a>
+  </p>
+<?php
+  // Print footer and exit
+  print_footer(TRUE);
+}
+
+function showCantEditBookingSaturday($day, $month, $year, $area, $room)
+{
+  global $HTTP_REFERER;
+
+  print_header($day, $month, $year, $area, isset($room) ? $room : "");
+?>
+  <h1>Error de Alta de Reserva</h1>
+  <p>
+     No se pueden dar de alta reservas los Sábados después de las 13:00hs. Ante cualquier inconveniente comuníquese con el Colegio de Psicólogos.
   </p>
   
   <p>

@@ -756,7 +756,7 @@ function day_table_innerhtml($day, $month, $year, $room, $area, $timetohighlight
   // occur on or cross the current day.
   $sql = "SELECT R.id AS room_id, start_time, end_time, repeat_id,
                  E.id AS entry_id, type, (concat(u.real_lastname, ', ',u.real_name)) as name,
-                 E.create_by AS entry_create_by
+                 E.create_by AS entry_create_by, E.psychologist_id
             FROM $tbl_entry E, $tbl_room R, mrbs_users u
            WHERE E.room_id = R.id
 			 AND E.psychologist_id = u.id
@@ -776,6 +776,7 @@ function day_table_innerhtml($day, $month, $year, $room, $area, $timetohighlight
 
   for ($i = 0; ($row = sql_row_keyed($res, $i)); $i++)
   {
+  
     // Each row we've got here is an appointment.
     //  row['room_id'] = Room ID
     //  row['start_time'] = start time

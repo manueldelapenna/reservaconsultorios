@@ -182,7 +182,7 @@ $all_day = preg_replace("/ /", "&nbsp;", get_vocab("all_day"));
 for ($day_num = 1; $day_num<=$days_in_month; $day_num++)
 {
   $sql = "SELECT start_time, end_time, $tbl_entry.id, (concat(u.real_lastname, ', ',u.real_name)) as name, type,
-                 repeat_id, status, create_by
+                 repeat_id, status, create_by, psychologist_id
             FROM $tbl_entry, mrbs_users u
            WHERE room_id=$room
 			 AND u.id = psychologist_id
@@ -242,7 +242,12 @@ for ($day_num = 1; $day_num<=$days_in_month; $day_num++)
       else
       {
         $d[$day_num]["status"][] = $row['status'] & ~STATUS_PRIVATE;  // Clear the private bit
-        $d[$day_num]["shortdescrip"][] = htmlspecialchars($row['name']);
+        if (authGetUserLevel($user) == 2 || authGetUserId($user) == $row['psychologist_id']){
+			$d[$day_num]["shortdescrip"][] = $row['name'];
+		}else{
+			$d[$day_num]["shortdescrip"][] = 'Ocupado';
+		}
+		
       }
       
 
@@ -426,7 +431,7 @@ for ($cday = 1; $cday <= $days_in_month; $cday++)
     }
     else
     {
-      $query_string .= "&amp;hour=$morningstarts&amp;minute=0";
+      $query_string .= "";
     }
     
     echo "<a class=\"new_booking\" href=\"edit_entry.php?$query_string\">\n";
