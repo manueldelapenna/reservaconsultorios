@@ -15,7 +15,7 @@
 (listo)*agregar modulo de precio de consultorios. (input con precio actual del alquiler de 1 hora de consultorio)
 
 Manu:
-*Hacer que la cancelación de reservas sea solo antes de las 24.00 hs.
+(listo)*Hacer que la cancelación de reservas sea solo antes de las 24.00 hs.
 *Se debe poder anular un día entero o uno o mas horarios para que ningun psicologo pueda reservar
 *Los sábados la grilla debe solo permitir horarios hasta las 13.00 hs. Eliminar 
 domingos

@@ -177,6 +177,32 @@ function showAccessDenied($day, $month, $year, $area, $room)
   print_footer(TRUE);
 }
 
+function showCantDeleteBooking($day, $month, $year, $area, $room, $multiple)
+{
+  global $HTTP_REFERER;
+
+  print_header($day, $month, $year, $area, isset($room) ? $room : "");
+?>
+  <h1>Reserva NO Borrada</h1>
+  <?php 
+	if ($multiple){
+		echo "<p>La serie de reservas contiene reservas que no pueden ser borradas. Intente borrar manualmente las reservas pertenecientes a la serie.</p>";
+	}
+  ?>
+  <p>
+     Únicamente se permite cancelar reservas con 24 horas de antelación. Ante cualquier inconveniente, comuníquese con el Colegio de Psicólogos.
+  </p>
+  
+  <p>
+    <a href="javascript:history.back()">
+      <?php echo get_vocab("returnprev"); ?>
+    </a>
+  </p>
+<?php
+  // Print footer and exit
+  print_footer(TRUE);
+}
+
 /* auth_can_edit_user($creator, $user)
  * 
  * Determines if a user is able to edit another user's details
@@ -220,6 +246,6 @@ function auth_can_edit_user($user, $target)
 //           the room; otherwise FALSE
 function auth_book_admin($user, $room)
 {
-  return (authGetUserLevel($user) >= 2);
+  return (authGetUserLevel($user) >= 1);
 }
 ?>

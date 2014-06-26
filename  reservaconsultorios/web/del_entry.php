@@ -39,74 +39,117 @@ if (empty($returl))
 
 if ($info = mrbsGetBookingInfo($id, FALSE, TRUE))
 {
-  $user = getUserName();
-  // check that the user is allowed to delete this entry
-  if (isset($action) && ($action="reject"))
-  {
-    $authorised = auth_book_admin($user, $info['room_id']);
-  }
-  else
-  {
-    $authorised = getWritable($info['create_by'], $user, $info['room_id']);
-  }
-  if ($authorised)
-  {
-    $day   = strftime("%d", $info["start_time"]);
-    $month = strftime("%m", $info["start_time"]);
-    $year  = strftime("%Y", $info["start_time"]);
-    $area  = mrbsGetRoomArea($info["room_id"]);
-    // Get the settings for this area (they will be needed for policy checking)
-    get_area_settings($area);
     
-    $notify_by_email = $mail_settings['on_delete'] && $need_to_send_mail;
+	$time = time();
+	$diaAnterior = $info['start_time'] - (24 * 60 * 60);
+	$anterior24hs = !($diaAnterior > $time);
+	$user = getUserName();
 
-    if ($notify_by_email)
-    {
-      require_once "functions_mail.inc";
-      // Gather all fields values for use in emails.
-      $mail_previous = mrbsGetBookingInfo($id, FALSE);
-      // If this is an individual entry of a series then force the entry_type
-      // to be a changed entry, so that when we create the iCalendar object we know that
-      // we only want to delete the individual entry
-      if (!$series && ($mail_previous['rep_type'] != REP_NONE))
-      {
-        $mail_previous['entry_type'] = ENTRY_RPT_CHANGED;
-      }
-    }
-    sql_begin();
-    $start_times = mrbsDelEntry(getUserName(), $id, $series, 1);
-    sql_commit();
-    // [At the moment MRBS does not inform the user if it was only able to
-    // delete some members of a series but not all.    This could happen for
-    // example if a booking policy is in force that prevents the deletion of entries
-    // in the past.   It would be better to inform the user that the operation has only
-    // been partially successful]
-    if ($start_times !== FALSE)
-    {
-      // Send a mail to the Administrator
-      if ($notify_by_email)
-      {
-        // Now that we've finished with mrbsDelEntry, change the id so that it's
-        // the repeat_id if we're looking at a series.   (This is a complete hack, 
-        // but brings us back into line with the rest of MRBS until the anomaly
-        // of del_entry is fixed) 
-        if ($series)
-        {
-          $mail_previous['id'] = $mail_previous['repeat_id'];
-        }
-        if (isset($action) && ($action == "reject"))
-        {
-          $result = notifyAdminOnDelete($mail_previous, $series, $start_times, $action, $note);
-        }
-        else
-        {
-          $result = notifyAdminOnDelete($mail_previous, $series, $start_times);
-        }
-      }
-      Header("Location: $returl");
-      exit();
-    }
-  }
+	if ($info['rep_type'] > 0){
+		$sql = "SELECT COUNT(*)
+				FROM mrbs_entry
+				WHERE repeat_id=$info[repeat_id] and (start_time - (24*60*60) < $time)
+				LIMIT 1";
+		
+		$result = sql_query1($sql);
+		if ($result == 0)
+		{
+			$anterior24hs = false;
+		}
+		else
+		{
+			$anterior24hs = true;
+		}
+		
+	}
+	
+	
+	if ((authGetUserLevelById(authGetUserId($user))>1) || ((authGetUserLevelById(authGetUserId($user)) == 1 && !$anterior24hs))){
+	
+	
+		// check that the user is allowed to delete this entry
+		if (isset($action) && ($action="reject"))
+		{
+		$authorised = auth_book_admin($user, $info['room_id']);
+		}
+		else
+		{
+		$authorised = getWritable($info['create_by'], $user, $info['room_id']);
+		}
+		if ($authorised)
+		{
+			$day   = strftime("%d", $info["start_time"]);
+			$month = strftime("%m", $info["start_time"]);
+			$year  = strftime("%Y", $info["start_time"]);
+			$area  = mrbsGetRoomArea($info["room_id"]);
+			// Get the settings for this area (they will be needed for policy checking)
+			get_area_settings($area);
+
+			$notify_by_email = $mail_settings['on_delete'] && $need_to_send_mail;
+
+			if ($notify_by_email)
+			{
+			  require_once "functions_mail.inc";
+			  // Gather all fields values for use in emails.
+			  $mail_previous = mrbsGetBookingInfo($id, FALSE);
+			  // If this is an individual entry of a series then force the entry_type
+			  // to be a changed entry, so that when we create the iCalendar object we know that
+			  // we only want to delete the individual entry
+			  if (!$series && ($mail_previous['rep_type'] != REP_NONE))
+			  {
+				$mail_previous['entry_type'] = ENTRY_RPT_CHANGED;
+			  }
+			}
+			sql_begin();
+			$start_times = mrbsDelEntry(getUserName(), $id, $series, 1);
+			sql_commit();
+			// [At the moment MRBS does not inform the user if it was only able to
+			// delete some members of a series but not all.    This could happen for
+			// example if a booking policy is in force that prevents the deletion of entries
+			// in the past.   It would be better to inform the user that the operation has only
+			// been partially successful]
+			if ($start_times !== FALSE)
+			{
+			  // Send a mail to the Administrator
+			  if ($notify_by_email)
+			  {
+				// Now that we've finished with mrbsDelEntry, change the id so that it's
+				// the repeat_id if we're looking at a series.   (This is a complete hack, 
+				// but brings us back into line with the rest of MRBS until the anomaly
+				// of del_entry is fixed) 
+				if ($series)
+				{
+				  $mail_previous['id'] = $mail_previous['repeat_id'];
+				}
+				if (isset($action) && ($action == "reject"))
+				{
+				  $result = notifyAdminOnDelete($mail_previous, $series, $start_times, $action, $note);
+				}
+				else
+				{
+				  $result = notifyAdminOnDelete($mail_previous, $series, $start_times);
+				}
+			  }
+			  Header("Location: $returl");
+			  exit();
+			}
+		}
+
+	}else{
+		if (((authGetUserLevelById(authGetUserId($user)) == 1 && $anterior24hs))){
+			if ($info['rep_type'] == 0)
+			{
+				showCantDeleteBooking($day, $month, $year, $area, "", FALSE);
+			}
+			else
+			{
+				showCantDeleteBooking($day, $month, $year, $area, "", TRUE);
+			}
+			
+		}
+	}
+  
+  
 }
 
 // If you got this far then we got an access denied.
