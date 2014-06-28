@@ -21,7 +21,7 @@ echo "</div>\n";
 
 $error=$_GET['error'];
 $pago_id = $_GET['pago_id'];
-$cobradorId = $_GET['cobrador_id'];
+$cobrador_id = $_GET['cobrador_id'];
 
 if ($error){?>
 	<h1>Error al registrar el pago</h1>
