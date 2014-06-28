@@ -31,6 +31,9 @@ Tincho:
 *alta y edicion de reserva con ajax en usuarios psicologos cuando crea el administrador
 *corregir vista de mails, se ve mal el tilde en el asunto y en el cuerpo falta el psicologo y el nombre completo del creador
 *(casi listo)corregir mails: el usuario que recibe es siempre el psicologo.
+*Volver a deshabilitar el boton "Siguiente" en reservas_impagas y pagos_realizados
+o sacarlo directamente y que vaya a la otra pantalla al hacer click sobre el nombre
+
 
 Algo más?
 Falta lo de los acentos en el ajax que hace que no busque bien
