@@ -53,12 +53,12 @@ $profesional = $fila['real_lastname'].", ".$fila['real_name'];
 $pdf=new FPDF();
 $pdf->AddPage();
 $pdf->SetFont('Arial','B',12);
-$pdf->Cell(40,10,'Colegio de Psicologos Distrito VII'); 
+$pdf->Cell(40,10,utf8_decode("Colegio de Psicólogos Distrito VII")); 
 $pdf->Ln(10);
 $pdf->Cell(0,6,'Recibo Nro.: 0000'.$pago,0,1);
 $pdf->Cell(0,6,'Fecha de pago: '.$fecha_esp,0,1);
-$pdf->Cell(0,6,'Cobrador: '.$cobrador,0,1);
-$pdf->Cell(0,6,'Profesional: '.$profesional,0,1);
+$pdf->Cell(0,6,'Cobrador: '.utf8_decode($cobrador),0,1);
+$pdf->Cell(0,6,'Profesional: '.utf8_decode($profesional),0,1);
 $pdf->Cell(0,6,'---------------------------------- ',0,1);
 $pdf->Cell(0,6,'Detalle de las reservas: ',0,1);
 for ($i = 0; ($row = sql_row_keyed($res, $i)); $i++)
