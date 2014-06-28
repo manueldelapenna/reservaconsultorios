@@ -29,7 +29,7 @@ echo "</div>\n";
 
 
 
-function generar_tabla_reservas($psicologo_id)
+function generar_tabla_reservas($psicologo_id,&$hay_datos)
 {
     $sql = "SELECT e.id, e.pago_id, u.real_lastname, u.real_name, e.psychologist_id, e.create_by, e.start_time, e.end_time
             FROM  mrbs_entry e, mrbs_users u
@@ -37,13 +37,14 @@ function generar_tabla_reservas($psicologo_id)
 		
         ORDER BY e.timestamp";
     $res = sql_query($sql);
-    
-    
+    $row = sql_row_keyed($res,0);
+    if ($row){
+     $hay_datos = true;
    //echo "<div id=\"user_list\" class=\"datatable_container\">/n";
    echo "<table class=\"admin_table display\" id=\"users_table\">";
    echo "<thead>";
-   echo "<tr><th>ID</th>";
-   echo "<th>Reserva para</th>";
+   //echo "<tr><th>ID</th>";
+   echo "<tr><th>Reserva para</th>";
    echo "<th>Creada por</th>";
    echo "<th>Fecha Inicio</th>";
    echo "<th>Fecha Fin</th>";
@@ -52,8 +53,8 @@ function generar_tabla_reservas($psicologo_id)
    echo "<tbody>";
    for ($i = 0; ($row = sql_row_keyed($res, $i)); $i++)
    {
-     echo "<tr name=\"".$row['psychologist_id']."\"><td>".$row['psychologist_id']."</td>";
-     echo "<td>".$row['real_lastname'].", ".$row['real_name']."</td>";
+     //echo "<tr name=\"".$row['psychologist_id']."\"><td>".$row['psychologist_id']."</td>";
+     echo "<tr name=\"".$row['psychologist_id']."\"><td>".$row['real_lastname'].", ".$row['real_name']."</td>";
      echo "<td>".$row['create_by']."</td>";
      echo "<td>".time_date_string($row['start_time'])."</td>";
      echo "<td>".time_date_string($row['end_time'])."</td>";
@@ -63,7 +64,8 @@ function generar_tabla_reservas($psicologo_id)
    }
    echo "</tbody>";
    echo "</table>";
-   
+   }
+   else {echo "<label>No se registran pagos pendientes para esta persona</label>";}
    //echo "</div>";
 
     
@@ -80,14 +82,23 @@ echo "<h3>Pagos de: $psicologo </h3>"; ?>
       <?php
         
       $psicologo_id = $_POST['psicologo'];
-      generar_tabla_reservas($psicologo_id);
+      $hay_datos = false;
+      generar_tabla_reservas($psicologo_id,$hay_datos);
         // The Submit button
-        
+      if ($hay_datos){ 
         echo "<div id=\"edit_entry_submit_save\">\n";
 		echo "<br/>";
         echo "<input class=\"button default_action\" type=\"submit\" name=\"save_button\" id=\"save_button\" value=\"" .
           "Generar Pago" . "\">\n";
         echo "</div>\n";
+      }
+      else {
+          echo "<div id=\"edit_entry_submit_save\">\n";
+		echo "<br/>";
+        echo "<input class=\"button default_action\" type=\"button\" name=\"save_button\" id=\"save_button\" value=\"" .
+          "Volver" . "\" onclick=\"javascript:window.location.href='reservas_impagas.php'\" > \n";
+        echo "</div>\n";
+      }
         
         
     ?>

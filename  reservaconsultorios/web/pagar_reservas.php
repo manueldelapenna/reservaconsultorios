@@ -11,7 +11,8 @@ require('database.php');
 
 checkAuthorised();
 
-$fecha = time();
+//$fecha = time();
+$fecha = date("Y-m-d");
 $cobradorId = authGetUserId(getUsername());
 $monto_reservas = $_POST['subtotal'];
 $descuento = $_POST['descuento'];
@@ -26,7 +27,7 @@ if (mysqli_connect_errno()) {
 
 $error=0;
 
-//chequea si las reservas están pagas (por si se recarga la página)
+//chequea si las reservas estï¿½n pagas (por si se recarga la pï¿½gina)
 $chequeaReservaPaga = $reservasIds[0];
 
 $sql= "select * from mrbs_entry
@@ -44,7 +45,7 @@ if(!$noEstanPagas){
 	mysqli_autocommit($conn, FALSE);
 
 	$sql= "INSERT INTO mrbs_pago (fecha, cobrador_id, monto_reservas, descuento, total)
-			values ($fecha, $cobradorId, $monto_reservas, $descuento, $total)";
+			values (now(), $cobradorId, $monto_reservas, $descuento, $total)";
 	$result=mysqli_query($conn,$sql);
 	$pago_id = mysqli_insert_id($conn);
 
@@ -73,5 +74,5 @@ if(!$noEstanPagas){
 		
 	}
 	mysqli_close($conn);
-	header("Location: pago_finalizado.php?error=$error&pago_id=$pago_id");
+	header("Location: pago_finalizado.php?error=$error&pago_id=$pago_id&cobrador_id=$cobradorId");
 ?>

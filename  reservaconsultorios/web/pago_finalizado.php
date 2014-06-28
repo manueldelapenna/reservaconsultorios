@@ -21,6 +21,7 @@ echo "</div>\n";
 
 $error=$_GET['error'];
 $pago_id = $_GET['pago_id'];
+$cobradorId = $_GET['cobrador_id'];
 
 if ($error){?>
 	<h1>Error al registrar el pago</h1>
@@ -31,7 +32,7 @@ if ($error){?>
 ?>
 	<h1>Pago registrado</h1>
 	<p>El pago se registr&oacute; correctamente, puede imprimir el recibo si as&iacute; lo desea.</p>
-	<a href="imprimir_recibo.php?pago_id=<?php echo $pago_id?>">Imprimir Recibo</a>
+	<a href="imprimir_recibo.php?pago_id=<?php echo $pago_id?>&cobrador_id=<?php echo $cobrador_id?>">Imprimir Recibo</a>
 <?php
 }
 

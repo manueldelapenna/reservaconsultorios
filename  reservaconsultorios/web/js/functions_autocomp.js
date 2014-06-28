@@ -104,3 +104,15 @@ function info(id,nombre)
         $("#psicologo").val(id);
 }
 
+function calcular_desc()
+{
+    var actual = parseInt(document.getElementById("descuento").value);
+    if (isNaN(actual)){
+      alert ("Debe introducir un valor numérico");
+    }
+    else{
+      var total = parseInt(document.getElementById("total").value);
+      total = total - actual;
+      document.getElementById("total").value = total;
+    }  
+}

@@ -1,7 +1,7 @@
 <?php
 // $Id: week.php 2374 2012-08-12 19:11:43Z cimorrison $
 
-// mrbs/week.php - Week-at-a-time view
+// mrbs/pagos_realizados.php - Week-at-a-time view
 
 require "defaultincludes.inc";
 require_once "mincals.inc";
@@ -92,8 +92,8 @@ function generar_tabla_reservas($disable=FALSE)
 
 echo "<table class=\"dwm_main\" id=\"week_main\" data-resolution=\"$resolution\">";
 //echo $inner_html;
-echo "<h3>Reservas sin pagar</h3>"; ?>
-<form class="form_general" id="main" action="reservas_impagas_armar_pago.php" method="post">
+echo "<h3>Pagos Realizados</h3>"; ?>
+<form class="form_general" id="main" action="pagos_realizados_ver_pagos.php" method="post">
     <fieldset>
     <legend><?php echo get_vocab($token); ?></legend>
       
