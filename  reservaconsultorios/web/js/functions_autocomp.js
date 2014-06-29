@@ -15,13 +15,13 @@ $(document).ready(function()
         });
     };
  
-    $("input[name=f_psychologist_input_id]").delayPasteKeyUp(function()
+    $("input[name=f_psychologist_id]").delayPasteKeyUp(function()
     {
 		if ($('#input-ajax').val().length > 0){
 			$.ajax({
 				type: "POST",
 				url: "./autocompletado/app/instancias/autocomplete.php",
-				data: "f_psychologist_input_id="+$("input[name=f_psychologist_input_id]").val(),
+				data: "f_psychologist_id="+$("input[name=f_psychologist_id]").val(),
 				success: function(data)
 				{
 					if(data)
@@ -42,7 +42,7 @@ $(document).ready(function()
 						else
 						{
 							html+='<a href="#" class="list-group-item">';
-							html+='<h6 class="list-group-item-heading">No se ha encontrado nada con '+$("input[name=f_psychologist_input_id]").val()+'</h6>';
+							html+='<h6 class="list-group-item-heading">No se ha encontrado nada con '+$("input[name=f_psychologist_id]").val()+'</h6>';
 							html+='</a>';
 						}
 						html+='</div>';
@@ -57,6 +57,7 @@ $(document).ready(function()
 		}else{
 			html="";
 			$("#busqueda").html("").append(html);
+                        $('#save_button').attr('disabled',true);
 		}
     }, 500);
 

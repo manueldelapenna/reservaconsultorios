@@ -41,7 +41,7 @@ function create_input_field_entry_psychologist_id($disabled=FALSE)
   $res = sql_query($sql);
   
   echo "<label>Apellido de Psicólogo/a:</label>";
-  echo"<input id=\"input-ajax\" name=\"f_psychologist_input_id\">";
+  echo"<input id=\"input-ajax\" name=\"f_psychologist_id\" autocomplete=\"off\">";
   
 
   echo "<div id=\"busqueda\">";

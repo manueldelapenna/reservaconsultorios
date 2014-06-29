@@ -595,6 +595,28 @@ function create_field_entry_psychologist_id($disabled=FALSE)
   echo "</div>\n";
 }
 
+//genera el input para buscar con ajax
+function create_input_field_entry_psychologist_id($disabled=FALSE)
+{
+  echo "<div id=\"div_psychogist_id\">\n";
+  //desactiva el select si no es usuario administrador
+  $deactivate_select = authGetUserLevel(getUserName()) == 1;
+  
+  $sql = "SELECT u.id, u.name, u.real_name, u.real_lastname
+            FROM mrbs_users u
+			where u.level = 1
+        ORDER BY u.real_lastname, u.real_name";
+  $res = sql_query($sql);
+  
+  echo "<label>Apellido de Psicólogo/a:</label>";
+  echo"<input id=\"input-ajax\" name=\"f_psychologist_id\" autocomplete=\"off\">";
+  echo "<input type=\"hidden\" id=\"psicologo\" name=\"psicologo\" value=\" \"> ";
+
+  
+
+  echo "</div>\n";
+}
+
 function create_field_entry_pago_id($disabled=FALSE)
 {
 
@@ -1233,7 +1255,11 @@ foreach ($edit_entry_field_order as $key)
     break;
 	
   case 'psychologist_id':
-    create_field_entry_psychologist_id();
+    create_input_field_entry_psychologist_id();
+    echo "<br>";
+    echo "<div id=\"busqueda\">";
+    echo "</div>";
+    //create_field_entry_psychologist_id();
     break;
 	
   case 'pago_id':
@@ -1244,6 +1270,7 @@ foreach ($edit_entry_field_order as $key)
     create_field_entry_custom_field($custom_fields_map[$key], $key);
     break;
   }
+  
 }
 
 

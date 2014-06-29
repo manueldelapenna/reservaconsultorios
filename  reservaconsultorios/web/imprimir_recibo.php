@@ -50,6 +50,7 @@ $profesional = $fila['real_lastname'].", ".$fila['real_name'];
 //  }
      
 
+
 $pdf=new FPDF();
 $pdf->AddPage();
 $pdf->SetFont('Arial','B',12);
@@ -65,7 +66,7 @@ for ($i = 0; ($row = sql_row_keyed($res, $i)); $i++)
   {
       $inicio = $row['start_time'];
       $fin = $row['end_time'];
-      $pdf->Cell(0,6,'Comienzo: '.time_date_string($inicio).' - Fin: '.time_date_string($fin),0,1);
+      $pdf->Cell(0,6,'Comienzo: '.utf8_decode(time_date_string($inicio)).' - Fin: '.utf8_decode(time_date_string($fin)),0,1);
              
   }
 $pdf->Cell(0,6,'---------------------------------- ',0,1);

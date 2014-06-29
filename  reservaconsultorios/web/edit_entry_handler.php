@@ -5,6 +5,8 @@ require "defaultincludes.inc";
 require_once "mrbs_sql.inc";
 require_once "functions_ical.inc";
 
+//copio el id del psicologo al input del ajax para que pueda hacer la consulta ocn el id
+$_POST['f_psychologist_id'] = $_POST['psicologo'];
 
 function invalid_booking($message)
 {
