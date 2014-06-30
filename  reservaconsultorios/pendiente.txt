@@ -37,3 +37,19 @@ o sacarlo directamente y que vaya a la otra pantalla al hacer click sobre el nom
 
 Algo más?
 Falta lo de los acentos en el ajax que hace que no busque bien
+
+*arreglar campos de edicion de usuario y poner que el boton cancelar vaya a index.php
+*traducir el show/hide columns de salas y usuarios
+*traducir "back" del menú principal cuando se hace mas chico
+*simplificar footer, poner vista por dia, semana o mes desde el menú
+*cambiar tamaño nombre de dias de los calendarios a 0.8rem
+*cambiar tamaño de numeros del calendario mensual a small
+*mejorar dialogos de confirmación
+*cambiar tiempo de duración de sesion desde config
+*ver como deshabilitar el autocompletado del input en las busquedas por AJAX
+*alinear mejor botones en:
+	*Reservas impagas
+	*Configuracion
+	*Lista de usuarios
+	*Salas (agrupaciones)
+	*Informes
