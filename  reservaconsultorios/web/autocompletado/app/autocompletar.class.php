@@ -17,16 +17,40 @@ class Autocompletar
 	public function findData($search)
 	{
         
-	$query = $this->dbh->prepare("SELECT concat(real_lastname, ', ', real_name) as nombre, id FROM mrbs_users WHERE (real_lastname LIKE :search)  AND level < 2");
+	$query = $this->dbh->prepare("SELECT concat(real_lastname, ', ', real_name) as nombre, id FROM mrbs_users WHERE (real_lastname LIKE _utf8 :search COLLATE utf8_general_ci)  AND level < 2");
         $query->execute(array(':search' => '%'.$search.'%'));
         $this->dbh = null;
-        if($query->rowCount() > 0)
+        $cant = $query->rowCount();
+        if($cant > 0)
         {
-        	echo json_encode(array('res' => 'full','data' => $query->fetchAll()));
+                $array = $query->fetchAll();
+                
+//                foreach ($array as $value)
+//                {
+//                    $nom1 = utf8_encode($value['nombre']);
+//                    $value['nombre'] = 'martin';
+//                    $nom2 = utf8_encode($value[0]);
+//                    $value[0] = $nom2;
+//                    
+////                    $value['nombre'] = $encoded;
+////                    $encoded = array_map('utf8_encode',$value[0]);
+////                    $value[0] = $encoded;
+//                    
+//                }
+                for ($i=0;$i<$cant;$i++)
+                {
+                   $array[$i]['nombre']=utf8_encode($array[$i]['nombre']);
+                   $array[$i][0]=utf8_encode($array[$i][0]);
+                }
+//                var_dump($array);
+//                die;
+                
+        	echo json_encode(array('res' => 'full','data' => $array));
         }
         else
         {
         	echo json_encode(array('res' => 'empty'));
         }
 	}
+        
 }

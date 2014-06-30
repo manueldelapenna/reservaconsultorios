@@ -29,7 +29,7 @@ echo "</div>\n";
 
 
 
-function generar_tabla_pagos($psicologo_id)
+function generar_tabla_pagos($psicologo_id,&$hay_datos)
 {
     $sql = "SELECT p.id, p.fecha, u.real_name, u.real_lastname, p.cobrador_id, p.monto_reservas, p.descuento, p.total
             FROM mrbs_pago p join (mrbs_entry e join mrbs_users u)
@@ -37,8 +37,9 @@ function generar_tabla_pagos($psicologo_id)
             GROUP BY  p.id
             ORDER BY p.fecha desc";
     $res = sql_query($sql);
-    
-    
+    $row = sql_row_keyed($res,0);
+    if ($row){
+     $hay_datos = true; 
    //echo "<div id=\"user_list\" class=\"datatable_container\">/n";
    echo "<table class=\"admin_table display\" id=\"users_table\">";
    echo "<thead>";
@@ -70,7 +71,7 @@ function generar_tabla_pagos($psicologo_id)
    }
    echo "</tbody>";
    echo "</table>";
-   
+  } //if
    //echo "</div>";
 
     
@@ -79,7 +80,7 @@ function generar_tabla_pagos($psicologo_id)
 
 echo "<table class=\"dwm_main\" id=\"week_main\" data-resolution=\"$resolution\">";
 //echo $inner_html;
-$psicologo = $_POST['f_psychologist_input_id'];
+$psicologo = $_POST['f_psychologist_id'];
 echo "<h3>Pagos realizados de: $psicologo </h3>"; ?>
 <form class="form_general" id="main" action="generar_pago.php" method="post">
    
@@ -87,8 +88,16 @@ echo "<h3>Pagos realizados de: $psicologo </h3>"; ?>
       <?php
         
       $psicologo_id = $_POST['psicologo'];
-      
-      generar_tabla_pagos($psicologo_id);
+      $hay_datos = false;
+      generar_tabla_pagos($psicologo_id,$hay_datos);
+      if ($hay_datos == false){
+        echo "<label>No se registran pagos realizados por esta persona</label>";
+      }
+      echo "<div id=\"edit_entry_submit_save\">\n";
+		echo "<br/>";
+        echo "<input class=\"button default_action\" type=\"button\" name=\"save_button\" id=\"save_button\" value=\"" .
+          "Volver" . "\" onclick=\"javascript:window.location.href='pagos_realizados.php'\" > \n";
+        echo "</div>\n";
         // The Submit button
         
 //        echo "<div id=\"edit_entry_submit_save\">\n";

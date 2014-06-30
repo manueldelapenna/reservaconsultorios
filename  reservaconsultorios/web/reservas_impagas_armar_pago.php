@@ -74,7 +74,7 @@ function generar_tabla_reservas($psicologo_id,&$hay_datos)
 
 echo "<table class=\"dwm_main\" id=\"week_main\" data-resolution=\"$resolution\">";
 //echo $inner_html;
-$psicologo = $_POST['f_psychologist_input_id'];
+$psicologo = $_POST['f_psychologist_id'];
 echo "<h3>Pagos de: $psicologo </h3>"; ?>
 <form class="form_general" id="main" action="generar_pago.php" method="post">
    

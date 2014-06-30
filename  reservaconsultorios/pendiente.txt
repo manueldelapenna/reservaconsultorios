@@ -13,6 +13,7 @@
 (listo)*agregar id de pago a cada reserva
 (listo)* Cada usuario NO puede tener mas de 12 reservas SEMANALES, salvo casos excepcionales para esto implementar una var global para setear un  MAX_RESERVAS
 (listo)*agregar modulo de precio de consultorios. (input con precio actual del alquiler de 1 hora de consultorio)
+(listo)*Los acentos en el ajax que hace que no busque bien
 
 Manu:
 (listo)*Hacer que la cancelación de reservas sea solo antes de las 24.00 hs.
@@ -33,10 +34,10 @@ Tincho:
 *(casi listo)corregir mails: el usuario que recibe es siempre el psicologo.
 *(listo)Volver a deshabilitar el boton "Siguiente" en reservas_impagas y pagos_realizados
 o sacarlo directamente y que vaya a la otra pantalla al hacer click sobre el nombre
-*Si no hay pagos realizados por una persona, mostrar ese aviso y no la tabla vacía
+*(listo)Si no hay pagos realizados por una persona, mostrar ese aviso y no la tabla vacía
 
 Algo más?
-Falta lo de los acentos en el ajax que hace que no busque bien
+
 
 *arreglar campos de edicion de usuario y poner que el boton cancelar vaya a index.php
 *traducir el show/hide columns de salas y usuarios
