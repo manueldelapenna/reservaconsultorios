@@ -54,3 +54,6 @@ Algo más?
 	*Lista de usuarios
 	*Salas (agrupaciones)
 	*Informes
+	
+*editar usuario no cambia nombre y apellido real
+*en la búsqueda de AJAX sigue apareciendo null
