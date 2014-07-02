@@ -24,7 +24,7 @@ Manu:
 (listo)*Se debe poder anular un día entero o uno o mas horarios para que ningun psicologo pueda reservar
 *pagina de configuracion, falta testeo de errores
 *cambiar estilo de boton de borrar usuario
-*recuperar contraseña
+(listo)*recuperar contraseña
 
 Tincho:
 *(listo)pagina de pagos realizados

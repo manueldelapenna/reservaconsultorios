@@ -1025,6 +1025,38 @@ function notificarAusuario($usuario,$pass){
 //    die;
 }
 
+function notificarAusuarioCambioDePassword($usuario,$pass){
+    global $mail_settings;    
+    $from = $mail_settings['from'];
+    $to = get_email_address($usuario);
+    $addresses = array();
+    $addresses['from'] = $from;
+    $addresses['to']   = $to;
+    //$addresses['cc'] = get_address_list($cc);
+    $subject = "Recuperar contraseña de Sistema de Reservas";
+    $text_body = array();
+    //$text_body['content'] = "Estimado/a, sus datos de acceso al sistema reservas son: usuario: $usuario"." , password: $pass";
+    $html_body = array();
+    $html_body['content'] = "<p>Estimado/a, sus datos de acceso al sistema reservas son:</p>  <p>usuario: $usuario</p>"."<p>password: $pass</p>";
+    $html_body['cid'] = generate_global_uid("html");
+    $attachment = array();
+    
+    //aca tiene que ir un if (existe dirección de correo $to) mando, si no, no.
+    $result = sendMail($addresses,
+                     $subject,
+                     $text_body,
+                     $html_body,
+                     $attachment,
+                     get_mail_charset());
+    return $result;
+    
+//    echo "Aca debería estar mandando el mail al usuario: $usuario".", ".$pass;
+//    echo "<br>";
+//    echo "enviado desde: $from hacia: ".$to;
+//    
+//    die;
+}
+
 // }}}
 // {{{ notifyAdminOnDelete()
 

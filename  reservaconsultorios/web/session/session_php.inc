@@ -158,6 +158,8 @@ function printLoginForm($TargetURL)
     </div>
   </fieldset>
 </form>
+
+<p>¿Ha olvidado su contraseña? <a href="recuperar_password.php">click aquí para recuperarla</a></p>
 <?php
   echo "</div>";  // Close of the contents div
   // Print footer and exit
