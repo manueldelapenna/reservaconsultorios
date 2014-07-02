@@ -170,6 +170,11 @@ function print_theme_header($day, $month, $year, $area, $room)
 		  </li>
 		  <li>
 		  <?php
+				echo "<a href=\"null_entry.php\">Anulación de turnos</a>\n";
+		  ?>
+		  </li>
+		  <li>
+		  <?php
 				echo "<a href=\"edit_users.php\">" . Usuarios . "</a>\n";
 		  ?>
 		  </li>		  
