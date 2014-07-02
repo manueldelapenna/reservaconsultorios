@@ -242,7 +242,7 @@ function map_add_booking ($row, &$column, $am7, $pm7)
   if (!isset($column[$first_slot][1]["id"]))
   {
   
-    if (authGetUserLevel($user) == 2 || authGetUserId($user) == $row['psychologist_id']){
+    if ((authGetUserLevel($user) == 2 || authGetUserId($user) == $row['psychologist_id']) || $row['type'] == 'N'){
 		$column[$first_slot][0]["data"]       = $row['name'];
 	}else{
 		$column[$first_slot][0]["data"]       = 'Ocupado';
@@ -755,12 +755,17 @@ function day_table_innerhtml($day, $month, $year, $room, $area, $timetohighlight
   // form of the original which had 3 BETWEEN parts. It selects all entries which
   // occur on or cross the current day.
   $sql = "SELECT R.id AS room_id, start_time, end_time, repeat_id,
-                 E.id AS entry_id, type, (concat(u.real_lastname, ', ',u.real_name)) as name,
+                 E.id AS entry_id, type, (
+											CASE 
+												WHEN E.psychologist_id IS NULL
+												THEN 'No disponible'
+											ELSE (concat(u.real_lastname, ', ',u.real_name))
+											END
+										) as name,
                  E.create_by AS entry_create_by, E.psychologist_id
-            FROM $tbl_entry E, $tbl_room R, mrbs_users u
-           WHERE E.room_id = R.id
-			 AND E.psychologist_id = u.id
-             AND R.area_id = $area
+            FROM $tbl_entry E inner join $tbl_room R on E.room_id = R.id left join mrbs_users u on E.psychologist_id = u.id
+           WHERE 
+             R.area_id = $area
              AND R.disabled = 0
              AND start_time <= $pm7 AND end_time > $am7
         ORDER BY start_time";   // necessary so that multiple bookings appear in the right order
@@ -1077,12 +1082,18 @@ function week_table_innerhtml($day, $month, $year, $room, $area, $timetohighligh
 
   for ($j = 0; $j<=($num_of_days-1) ; $j++)
   {
-    $sql = "SELECT room_id, start_time, end_time, type, (concat(u.real_lastname, ', ',u.real_name)) as name, status, repeat_id,
+    $sql = "SELECT room_id, start_time, end_time, type, (
+											CASE 
+												WHEN psychologist_id IS NULL
+												THEN 'No disponible'
+											ELSE (concat(u.real_lastname, ', ',u.real_name))
+											END
+										) as name,
+										status, repeat_id,
                    $tbl_entry.id AS entry_id, 
                    create_by AS entry_create_by, $tbl_entry.user_id, $tbl_entry.psychologist_id
-              FROM $tbl_entry, mrbs_users u
+              FROM $tbl_entry left join mrbs_users u on u.id = psychologist_id
              WHERE room_id = $room
-			   AND u.id = psychologist_id
                AND start_time <= $pm7[$j] AND end_time > $am7[$j]
           ORDER BY start_time";   // necessary so that multiple bookings appear in the right order
 

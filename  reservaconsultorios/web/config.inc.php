@@ -641,4 +641,8 @@ $max_per_interval_global['year'] = 50;    // max 50 bookings per year in total
 $max_per_interval_global_enabled['future'] = FALSE;
 $max_per_interval_global['future'] = 100; // max 100 bookings in the future in total
 
+$booking_types[] = "N";
+$vocab_override["es"]["type.N"] = "No Disponible";
+$vocab_override["en"]["type.N"] = "not available";
+
 ?>

@@ -79,6 +79,7 @@ $multiple_control_color         = "#ffff22";        // background colour for the
 // displays in the day, week and month views
 $color_types = array(
     'E' => "#008CBA",
+	'N' => "#ff4d48",
     'I' => "#43AC6A"); 
 
 // colours used for pending.php and bookings awaiting approval

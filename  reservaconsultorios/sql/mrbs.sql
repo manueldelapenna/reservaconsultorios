@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 19-06-2014 a las 14:10:48
+-- Tiempo de generación: 02-07-2014 a las 13:46:33
 -- Versión del servidor: 5.5.8
 -- Versión de PHP: 5.3.5
 
@@ -108,7 +108,7 @@ CREATE TABLE IF NOT EXISTS `mrbs_entry` (
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `create_by` varchar(80) NOT NULL DEFAULT '',
   `user_id` int(11) NOT NULL,
-  `psychologist_id` int(11) NOT NULL,
+  `psychologist_id` int(11) DEFAULT NULL,
   `pago_id` int(11) DEFAULT NULL,
   `type` char(1) NOT NULL DEFAULT 'E',
   `status` tinyint(3) unsigned NOT NULL DEFAULT '0',
@@ -124,12 +124,29 @@ CREATE TABLE IF NOT EXISTS `mrbs_entry` (
   KEY `idxEndTime` (`end_time`),
   KEY `user_id` (`user_id`),
   KEY `psychologist_id` (`psychologist_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
 
 --
 -- Volcar la base de datos para la tabla `mrbs_entry`
 --
 
+INSERT INTO `mrbs_entry` (`id`, `start_time`, `end_time`, `entry_type`, `repeat_id`, `room_id`, `timestamp`, `create_by`, `user_id`, `psychologist_id`, `pago_id`, `type`, `status`, `reminded`, `info_time`, `info_user`, `info_text`, `ical_uid`, `ical_sequence`, `ical_recur_id`) VALUES
+(6, 1403618400, 1403622000, 1, 3, 4, '2014-06-23 14:47:13', 'manuel', 4, 3, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53a868218148a-146f7dd4@localhost', 0, '20140624T140000Z'),
+(7, 1403704800, 1403708400, 1, 3, 4, '2014-06-23 14:47:13', 'manuel', 4, 3, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53a868218148a-146f7dd4@localhost', 0, '20140625T140000Z'),
+(8, 1403791200, 1403794800, 1, 3, 4, '2014-06-23 14:47:13', 'manuel', 4, 3, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53a868218148a-146f7dd4@localhost', 0, '20140626T140000Z'),
+(9, 1403877600, 1403881200, 1, 3, 4, '2014-06-23 14:47:13', 'manuel', 4, 3, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53a868218148a-146f7dd4@localhost', 0, '20140627T140000Z'),
+(10, 1403632800, 1403636400, 1, 4, 4, '2014-06-23 14:48:45', 'manuel', 4, 5, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53a8687dae843-b21f9f98@localhost', 0, '20140624T180000Z'),
+(11, 1403719200, 1403722800, 1, 4, 4, '2014-06-23 14:48:45', 'manuel', 4, 5, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53a8687dae843-b21f9f98@localhost', 0, '20140625T180000Z'),
+(12, 1403805600, 1403809200, 1, 4, 4, '2014-06-23 14:48:45', 'manuel', 4, 5, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53a8687dae843-b21f9f98@localhost', 0, '20140626T180000Z'),
+(13, 1403892000, 1403895600, 1, 4, 4, '2014-06-23 14:48:45', 'manuel', 4, 5, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53a8687dae843-b21f9f98@localhost', 0, '20140627T180000Z'),
+(14, 1403607600, 1403611200, 0, 0, 4, '2014-06-23 14:50:14', 'manuel', 4, 3, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53a868d631881-4a3fd911@localhost', 0, ''),
+(15, 1403823600, 1403827200, 0, 0, 4, '2014-06-23 14:51:45', 'manuel', 4, 5, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53a86931353e6-a01dfc71@localhost', 0, ''),
+(16, 1403784000, 1403787600, 0, 0, 4, '2014-06-23 14:53:21', 'manuel', 4, 3, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53a86991e9cb3-09060616@localhost', 0, ''),
+(18, 1404295200, 1404298800, 0, 0, 4, '2014-07-02 12:56:33', 'manuel', 4, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, 'MRBS-53b42bb1e7de0-6766aa27@localhost', 0, ''),
+(23, 1404489600, 1404493200, 0, 0, 4, '2014-07-02 13:00:09', 'manuel', 4, 5, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53b42c8992282-ca4b3353@localhost', 0, ''),
+(24, 1404475200, 1404478800, 0, 0, 4, '2014-07-02 13:00:30', 'manuel', 4, 3, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53b42c9e83f64-0ffd15f0@localhost', 0, ''),
+(27, 1404482400, 1404486000, 0, 0, 4, '2014-07-02 13:03:31', 'manuel', 4, 5, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53b42d53d03b2-265c2b6a@localhost', 0, ''),
+(28, 1404298800, 1404302400, 0, 0, 4, '2014-07-02 13:10:05', 'manuel', 4, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, 'MRBS-53b42edd7d0bb-a3eb043e@localhost', 0, '');
 
 -- --------------------------------------------------------
 
@@ -170,7 +187,7 @@ CREATE TABLE IF NOT EXISTS `mrbs_repeat` (
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `create_by` varchar(80) NOT NULL DEFAULT '',
   `user_id` int(11) NOT NULL,
-  `psychologist_id` int(11) NOT NULL,
+  `psychologist_id` int(11) DEFAULT NULL,
   `pago_id` int(11) DEFAULT NULL,
   `type` char(1) NOT NULL DEFAULT 'E',
   `rep_num_weeks` smallint(6) DEFAULT NULL,
@@ -186,12 +203,16 @@ CREATE TABLE IF NOT EXISTS `mrbs_repeat` (
   PRIMARY KEY (`id`),
   KEY `psychologist_id` (`psychologist_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Volcar la base de datos para la tabla `mrbs_repeat`
 --
 
+INSERT INTO `mrbs_repeat` (`id`, `start_time`, `end_time`, `rep_type`, `end_date`, `rep_opt`, `room_id`, `timestamp`, `create_by`, `user_id`, `psychologist_id`, `pago_id`, `type`, `rep_num_weeks`, `month_absolute`, `month_relative`, `status`, `reminded`, `info_time`, `info_user`, `info_text`, `ical_uid`, `ical_sequence`) VALUES
+(1, 1403704800, 1403708400, 1, 1403964000, '0', 4, '2014-06-23 13:21:02', 'manuel', 4, 3, NULL, 'I', 1, NULL, NULL, 0, NULL, NULL, NULL, NULL, 'MRBS-53a853ee2e15c-9b644ca9@localhost', 0),
+(3, 1403618400, 1403622000, 1, 1403877600, '0', 4, '2014-06-23 14:47:13', 'manuel', 4, 3, NULL, 'I', 1, NULL, NULL, 0, NULL, NULL, NULL, NULL, 'MRBS-53a868218148a-146f7dd4@localhost', 0),
+(4, 1403632800, 1403636400, 1, 1403892000, '0', 4, '2014-06-23 14:48:45', 'manuel', 4, 5, NULL, 'I', 1, NULL, NULL, 0, NULL, NULL, NULL, NULL, 'MRBS-53a8687dae843-b21f9f98@localhost', 0);
 
 -- --------------------------------------------------------
 
@@ -211,15 +232,14 @@ CREATE TABLE IF NOT EXISTS `mrbs_room` (
   `custom_html` text,
   PRIMARY KEY (`id`),
   KEY `idxSortKey` (`sort_key`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Volcar la base de datos para la tabla `mrbs_room`
 --
 
 INSERT INTO `mrbs_room` (`id`, `disabled`, `area_id`, `room_name`, `sort_key`, `description`, `capacity`, `room_admin_email`, `custom_html`) VALUES
-(4, 0, 6, 'Consultorio 1', 'Consultorio 1', '', 0, NULL, NULL),
-(5, 0, 6, 'Consultorio 2', 'Consultorio 2', '', 0, NULL, NULL);
+(4, 0, 6, 'Consultorio 1', 'Consultorio 1', '', 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
