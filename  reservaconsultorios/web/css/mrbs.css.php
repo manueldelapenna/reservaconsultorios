@@ -382,8 +382,8 @@ for ($i=1; $i<=$classes_required; $i++)
   $rule = "div.slots" . $i . " {min-height: " . $div_height . "px";
   if ($clipped)
   {
-    $rule .= "; max-height: " . $div_height . "px"; 
-    $rule .= "; height: "     . $div_height . "px";
+    //$rule .= "; max-height: " . $div_height . "px"; 
+    //$rule .= "; height: "     . $div_height . "px";
   }
   $rule .= "}";
   echo $rule . "\n";
