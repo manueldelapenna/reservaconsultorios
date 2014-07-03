@@ -40,7 +40,7 @@ o sacarlo directamente y que vaya a la otra pantalla al hacer click sobre el nom
 Algo más?
 
 
-*arreglar campos de edicion de usuario y poner que el boton cancelar vaya a index.php
+(listo)*arreglar campos de edicion de usuario y poner que el boton cancelar vaya a index.php
 *traducir el show/hide columns de salas y usuarios
 *traducir "back" del menú principal cuando se hace mas chico
 *simplificar footer, poner vista por dia, semana o mes desde el menú
@@ -56,4 +56,4 @@ Algo más?
 	*Salas (agrupaciones)
 	*Informes
 	
-*editar usuario no cambia nombre y apellido real
+(listo)*editar usuario no cambia nombre y apellido real
