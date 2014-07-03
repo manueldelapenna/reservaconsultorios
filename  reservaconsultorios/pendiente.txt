@@ -58,5 +58,6 @@ Algo más?
 *traducir "back" del menú principal cuando se hace mas chico
 *mejorar dialogos de confirmación
 *cambiar tiempo de duración de sesion desde config
+*acomodar columnas de listado de informes
 
 	
