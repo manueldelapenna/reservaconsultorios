@@ -57,13 +57,13 @@ echo "<h3>Configuración del Sistema</h3>"; ?>
 		<tr>
 			<td>Valor consultorio:</td>
 			<td>
-				<input name="valorConsultorio" size=6 value=<?php echo getValorConsultorio();?>>
+				<input type="number" name="valorConsultorio" size=6 value=<?php echo getValorConsultorio();?> required>
 			</td>
 		</tr>
 		<tr>
 			<td>Cantidad máxima de reservas por Psicólogo:</td>
 			<td>
-				<input name="cantidadMaxReservas" size=6 value=<?php echo getCantidadMaxReservas();?>>
+				<input type="number" name="cantidadMaxReservas" size=6 value=<?php echo getCantidadMaxReservas();?> required>
 			</td>
 		</tr>
 	</table>

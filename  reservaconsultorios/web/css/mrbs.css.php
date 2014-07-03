@@ -33,7 +33,7 @@ body {font-size: small;
 .warning {color: <?php echo $highlight_font_color ?>}                        /* for warning messages */
 .note    {font-style: italic}
 
-div#contents, div.trailer {padding: 0 2em}
+div#contents, div.trailer {padding: 0 2em; min-height:550px;}
 
 h1 {font-size: x-large; clear: both}
 h2 {font-size: large; clear: both}
@@ -245,7 +245,7 @@ div.cell_header {position: relative; width: 100%; z-index: 20;         /* needs 
      min-height: 20%; height: 20%; max-height: 20%; overflow: hidden}
 
 #month_main div.cell_header a {display: block; width: auto; float: left}                                                                               
-#month_main div.cell_header a.monthday {font-size: medium}  /* the date in the top left corner */
+#month_main div.cell_header a.monthday {font-size: small}  /* the date in the top left corner */
 #month_main div.cell_header a.week_number {opacity: 0.5; padding: 2px 4px 0 4px}
 
 div.booking_list {position: relative; z-index: 20;                      /* contains the list of bookings */
@@ -705,10 +705,10 @@ form#form_edit_users {width: auto; margin-top: 2.0em}
                     width: <?php echo $edit_users_label_width + $edit_users_gap + $edit_users_input_width + 5?>em}
 #form_edit_users ul {clear: left}
 #form_edit_users input.submit {right: 2.0em}                                   /* and put the OK on the right     */
-#form_delete_users input.submit {left: 2.0em}                                  /* and put the Delete on the left */
+#form_delete_users input.submit {left: 1.85em}                                  /* and put the Delete on the left */
 #form_edit_users input.checkbox {width: auto; margin-left: <?php echo $edit_users_gap ?>em}
 form.edit_users_error {width: 10em; margin-top: 2.0em}
-div#user_list {padding: 2em 0}
+div#user_list {padding: 0 0}
 
 #users_table td {text-align: right}
 #users_table td div.string {text-align: left}

@@ -514,7 +514,7 @@ if (isset($Action) && ( ($Action == "Edit") or ($Action == "Add") ))
 		$my_id = sql_query1("SELECT id FROM $tbl_users WHERE name='".sql_escape($user)."' LIMIT 1");
         
 		if ($Id != $my_id){
-			echo "<input class=\"submit\" type=\"submit\" " . 
+			echo "<input class=\"submit button\" type=\"submit\" " . 
               (($editing_last_admin) ? "disabled=\"disabled\"" : "") .
               "value=\"" . get_vocab("delete_user") . "\">\n";
 		}

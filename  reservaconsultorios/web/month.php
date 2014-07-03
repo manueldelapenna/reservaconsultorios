@@ -72,6 +72,11 @@ for ($j = 1; $j<=$days_in_month; $j++)
 
 // Section with areas, rooms, minicals.
 echo "<div id=\"dwm_header\" class=\"screenonly\">\n";
+?>
+<input class="button" type="button" onclick="window.location.href='day.php?year=$ty&amp;month=$tm&amp;day=$td&amp;area=$area&amp;room=$room'" value="Ver día">
+<input class="button" type="button" onclick="window.location.href='week.php?year=$ty&amp;month=$tm&amp;day=$td&amp;area=$area&amp;room=$room'" value="Ver semana">
+<input class="button" type="button" onclick="window.location.href='month.php?year=$ty&amp;month=$tm&amp;day=$td&amp;area=$area&amp;room=$room'"value="Ver mes" disabled>
+<?php
 
 // Get the area and room names (we will need them later for the heading)
 $this_area_name = "";

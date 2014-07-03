@@ -23,8 +23,8 @@ Manu:
 (listo)*simplificar pantalla de informes
 (listo)*Se debe poder anular un día entero o uno o mas horarios para que ningun psicologo pueda reservar
 (listo)*recuperar contraseña
-*pagina de configuracion, falta testeo de errores
-*cambiar estilo de boton de borrar usuario
+(listo)*cambiar estilo de boton de borrar usuario
+(listo)*pagina de configuracion, falta testeo de errores
 
 
 Tincho:
@@ -41,19 +41,22 @@ Algo más?
 
 
 (listo)*arreglar campos de edicion de usuario y poner que el boton cancelar vaya a index.php
-*traducir el show/hide columns de salas y usuarios
-*traducir "back" del menú principal cuando se hace mas chico
-*simplificar footer, poner vista por dia, semana o mes desde el menú
-*cambiar tamaño nombre de dias de los calendarios a 0.8rem
-*cambiar tamaño de numeros del calendario mensual a small
-*mejorar dialogos de confirmación
-*cambiar tiempo de duración de sesion desde config
-*ver como deshabilitar el autocompletado del input en las busquedas por AJAX
-*alinear mejor botones en:
+(listo)*cambiar tamaño nombre de dias de los calendarios a 0.8rem
+(listo)*cambiar tamaño de numeros del calendario mensual a small
+(listo)*ver como deshabilitar el autocompletado del input en las busquedas por AJAX
+(listo)*alinear mejor botones en:
 	*Reservas impagas
 	*Configuracion
 	*Lista de usuarios
 	*Salas (agrupaciones)
 	*Informes
-	
+(listo)*simplificar footer, poner vista por dia, semana o mes desde el menú
 (listo)*editar usuario no cambia nombre y apellido real
+
+
+*traducir el show/hide columns de salas y usuarios
+*traducir "back" del menú principal cuando se hace mas chico
+*mejorar dialogos de confirmación
+*cambiar tiempo de duración de sesion desde config
+
+	

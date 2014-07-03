@@ -30,7 +30,11 @@ $timestamp = mktime(12, 0, 0, $month, $day, $year);
 print_header($day, $month, $year, $area, isset($room) ? $room : "");
 
 echo "<div id=\"dwm_header\" class=\"screenonly\">\n";
-
+?>
+<input class="button" type="button" onclick="window.location.href='day.php?year=$ty&amp;month=$tm&amp;day=$td&amp;area=$area&amp;room=$room'" value="Ver día" disabled>
+<input class="button" type="button" onclick="window.location.href='week.php?year=$ty&amp;month=$tm&amp;day=$td&amp;area=$area&amp;room=$room'" value="Ver semana">
+<input class="button" type="button" onclick="window.location.href='month.php?year=$ty&amp;month=$tm&amp;day=$td&amp;area=$area&amp;room=$room'"value="Ver mes">
+<?php
 // Show all available areas
 echo make_area_select_html('day.php', $area, $year, $month, $day);
 

@@ -38,7 +38,7 @@ echo "<div id=\"dwm_header\" class=\"screenonly\">\n";
 
 echo "</div>\n";
 
-echo "<h3>Los cambios se realizaron correctamente</h3>";
+echo "<h2>Los cambios se realizaron correctamente</h2>";
 echo "<input class=\"button default_action\" onclick=\"window.location.href='index.php'\" type=\"button\" value=\"" .
           "Volver a inicio" . "\">\n";
 

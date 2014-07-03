@@ -139,7 +139,7 @@ function print_theme_header($day, $month, $year, $area, $room)
           
         </div>
       </li>
-      
+	  
     </ul>
 
     <!-- Top Bar Right Nav Elements -->

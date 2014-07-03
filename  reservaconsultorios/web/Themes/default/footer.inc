@@ -8,7 +8,11 @@ function print_theme_footer()
   <script>
       $(document).foundation();
   </script>
-  
+  </div>
+    <div style="background-color:#000000; margin-right:-26px; margin-left:-26px; clear:both; height:70px;">
+	  <p style="color:#ccc; text-align:center; padding-top:20px">©2014 Colegio de Psicólogos Distrito VII. Todos los derechos reservados.</p>
+    </div>
+	
   </body>
 </html>
 <?php
