@@ -335,7 +335,7 @@ if (isset($Action) && ( ($Action == "Edit") or ($Action == "Add") ))
           foreach ($fields as $field)
           {
             $key = $field['name'];
-            $params = array('label' => get_loc_field_name($tbl_users, $key) . ':',
+            $params = array('label' => get_loc_field_name($tbl_users, $key) . ' usuario:',
                             'name'  => VAR_PREFIX . $key,
                             'value' => $data[$key]);
             if (isset($maxlength["users.$key"]))
@@ -386,12 +386,28 @@ if (isset($Action) && ( ($Action == "Edit") or ($Action == "Add") ))
                     // you cannot change a username (even your own) unless you have user editing rights
                     $params['disabled'] = ($level < $min_user_editing_level);
                     $params['mandatory'] = TRUE;
+					$params['type'] = 'text';
                     generate_input($params);
                     break;
                   case 'email':
                     $params['type'] = 'email';
                     $params['attributes'] = 'multiple';
+					$params['mandatory'] = TRUE;
                     generate_input($params);
+                    break;
+				  case 'real_name':
+					$value = $params['value'];
+                    echo "<div>
+						<label for='f_real_name'>Nombre Real:</label>
+						<input id='f_real_name' type='text' value='$value' maxlength=75 name='f_real_name' multiple='' required	>
+					</div>";
+                    break;
+				  case 'real_lastname':
+					$value = $params['value'];
+                    echo "<div>
+						<label for='f_real_lastname'>Apellido:</label>
+						<input id='f_real_lastname' type='text' value='$value' maxlength=75 name='f_real_lastname' multiple='' required	>
+					</div>";
                     break;
                   default:    
                     // Output a checkbox if it's a boolean or integer <= 2 bytes (which we will
@@ -480,8 +496,8 @@ if (isset($Action) && ( ($Action == "Edit") or ($Action == "Add") ))
           ?>
           <input type="hidden" name="Action" value="Update">    
 		  <div>
+			<input class="button default_action" type="button" value="Cancelar" onclick="window.location.href='index.php'">
 			<input class="button default_action" type="submit" value="<?php echo(get_vocab("save")); ?>">
-			<input class="button default_action" type="button" value="Cancelar" onclick="javascript:history.back()">
 		  </div>
           
         </div>
@@ -876,10 +892,17 @@ if ($initial_user_creation != 1)   // don't print the user table if there are no
     echo "<th>" . get_vocab("users.name") . "</th>\n";
   
     // Other column headers
-    foreach ($fields as $field)
+	foreach ($fields as $field)
     {
       $fieldname = $field['name'];
-    
+	  
+	  if ($fieldname == "real_name"){
+		$fieldname = "Nombre Real";
+	  }
+	  if ($fieldname == "real_lastname"){
+		$fieldname = "Apellido";
+	  }
+	  
       if (!in_array($fieldname, $ignore_columns))
       {
         $heading = get_loc_field_name($tbl_users, $fieldname);
