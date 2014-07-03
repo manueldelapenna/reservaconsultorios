@@ -228,6 +228,37 @@ function get_email_address($user)
   return $email;
 }
 
+//Función que me retorna el nombre de un psicologo dado su id
+function get_psychologist_name($booker_id)
+{
+    global $tbl_users;
+    
+    $nombre = sql_query1("SELECT name 
+                         FROM $tbl_users 
+                         WHERE id=$booker_id
+                         LIMIT 1");
+    return $nombre;
+}
+
+function get_nombre_completo($creador_id)
+{
+    global $tbl_users;
+    $nombre_completo = sql_query1("SELECT concat(real_lastname, ', ', real_name) as nombre
+                                   FROM $tbl_users
+                                   WHERE id=$creador_id");
+    return $nombre_completo;
+}
+
+function get_id_usuario($usuario)
+{
+    global $tbl_users;
+    $id_usuario = sql_query1("SELECT id
+                                   FROM $tbl_users
+                                   WHERE name='$usuario'");
+    return $id_usuario;
+    
+}
+
 // get the list of email addresses that are allowed to approve bookings
 // for the room with id $room_id
 // (At the moment this is just the admin email address, but this could
@@ -477,7 +508,9 @@ function create_body($data, $mail_previous, $compare, $series, $action, $as_html
       // be the same as the creator)
       $body .= get_mail_vocab("deleted_by") . ': ';
       $user = getUserName();
-      $body .= $user;
+      $borrador_id = get_id_usuario($user);
+      $borrador_name = get_nombre_completo($borrador_id);
+      $body .= $borrador_name;
       break;
     default:
       if ($compare)
@@ -531,19 +564,20 @@ function create_body($data, $mail_previous, $compare, $series, $action, $as_html
 
   
   // Always display the brief description
-  $body .= create_body_table_row (get_mail_vocab("namebooker"),
-                                  $data['name'],
-                                  $mail_previous['name'],
-                                  $compare, $as_html);
+  
+//  $body .= create_body_table_row (get_mail_vocab("namebooker"),
+//                                  $data['name'],
+//                                  $mail_previous['name'],
+//                                  $compare, $as_html);
   
   // Displays/don't displays entry details
   if ($mail_settings['details'])
   {
     // Description:
-    $body .= create_body_table_row (get_mail_vocab("description"),
-                                    $data['description'],
-                                    $mail_previous['description'],
-                                    $compare, $as_html);
+//    $body .= create_body_table_row (get_mail_vocab("description"),
+//                                    $data['description'],
+//                                    $mail_previous['description'],
+//                                    $compare, $as_html);
                                                                                          
     if ($confirmation_enabled)
     {                        
@@ -612,47 +646,50 @@ function create_body($data, $mail_previous, $compare, $series, $action, $as_html
                                     $compare, $as_html);
                                          
     // Created by
-    $body .= create_body_table_row (get_mail_vocab("createdby"),
-                                    $data['create_by'],
+    //$creador_name = $data['create_by'];
+    $creador_name = get_nombre_completo($data['user_id']);
+    $body .= create_body_table_row (get_mail_vocab("createdby"), 
+                                    $creador_name,
+                                    //$data['create_by'],
                                     $mail_previous['create_by'],
-                                    $compare, $as_html);
+                                    $compare, $as_html);  
                      
-    // Custom fields
-    $fields = sql_field_info($tbl_entry);
-    foreach ($fields as $field)
-    {
-      if (!in_array($field['name'], $standard_fields['entry']))
-      {
-        $key = $field['name'];
-        $value = (isset($data[$key])) ? $data[$key] : '';
-        // Convert any booleans or pseudo-booleans to text strings (in the mail language)
-        if (($field['nature'] == 'boolean') || 
-            (($field['nature'] == 'integer') && isset($field['length']) && ($field['length'] <= 2)) )
-        {
-          $value = ($value) ? get_mail_vocab("yes") : get_mail_vocab("no");
-          if ($compare)
-          {
-            $mail_previous[$key] = ($mail_previous[$key]) ? get_mail_vocab("yes") : get_mail_vocab("no");
-          }
-        }
-        // For any associative arrays we want the value rather than the key
-        if (isset($select_options["entry.$key"]) &&
-            is_assoc($select_options["entry.$key"]) && 
-            array_key_exists($value, $select_options["entry.$key"]))
-        {
-          $value = $select_options["entry.$key"][$value];
-          if ($compare &&
-              array_key_exists($mail_previous[$key], $select_options["entry.$key"]))
-          {
-            $mail_previous[$key] = $select_options["entry.$key"][$mail_previous[$key]];
-          }
-        }
-        $body .= create_body_table_row (get_mail_field_name($tbl_entry, $key),
-                                        $value,
-                                        ($compare) ? $mail_previous[$key] : '',
-                                        $compare, $as_html);
-      }
-    }
+    // Custom fields -NO LOS VOY A USAR
+//    $fields = sql_field_info($tbl_entry);
+//    foreach ($fields as $field)
+//    {
+//      if (!in_array($field['name'], $standard_fields['entry']))
+//      {
+//        $key = $field['name'];
+//        $value = (isset($data[$key])) ? $data[$key] : '';
+//        // Convert any booleans or pseudo-booleans to text strings (in the mail language)
+//        if (($field['nature'] == 'boolean') || 
+//            (($field['nature'] == 'integer') && isset($field['length']) && ($field['length'] <= 2)) )
+//        {
+//          $value = ($value) ? get_mail_vocab("yes") : get_mail_vocab("no");
+//          if ($compare)
+//          {
+//            $mail_previous[$key] = ($mail_previous[$key]) ? get_mail_vocab("yes") : get_mail_vocab("no");
+//          }
+//        }
+//        // For any associative arrays we want the value rather than the key
+//        if (isset($select_options["entry.$key"]) &&
+//            is_assoc($select_options["entry.$key"]) && 
+//            array_key_exists($value, $select_options["entry.$key"]))
+//        {
+//          $value = $select_options["entry.$key"][$value];
+//          if ($compare &&
+//              array_key_exists($mail_previous[$key], $select_options["entry.$key"]))
+//          {
+//            $mail_previous[$key] = $select_options["entry.$key"][$mail_previous[$key]];
+//          }
+//        }
+//        $body .= create_body_table_row (get_mail_field_name($tbl_entry, $key),
+//                                        $value,
+//                                        ($compare) ? $mail_previous[$key] : '',
+//                                        $compare, $as_html);
+//      }
+//    }
     
     // Last updated
     $body .= create_body_table_row (get_mail_vocab("lastupdate"),
@@ -743,6 +780,7 @@ function create_body($data, $mail_previous, $compare, $series, $action, $as_html
                                       $compare, $as_html);
                                                                    
     }
+    $body.= "IMPORTANTE- NO debe responder este mail";
   }
   
   if ($as_html)
@@ -859,8 +897,16 @@ function create_addresses($data, $action)
       $cc = array_merge($cc, $to);
       $to = array();
     }
-    $booker = $data['create_by'];
+    //quiero que booker sea el psicologo solicitante de la reserva
+    //a ese le voy a mandar el mail
+    $booker_id = $data['psychologist_id'];
+    
+    $booker_name = get_psychologist_name($booker_id);
+    //echo $booker_name; die;
+    //$booker = $data['create_by'];
+    $booker = $booker_name;
     $booker_email = get_email_address($booker);
+    //echo $booker_email;die;
     if (!empty($booker_email))
     {
       $to[] = $booker_email;

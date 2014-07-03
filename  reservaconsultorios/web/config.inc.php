@@ -556,7 +556,7 @@ $smtp_settings['password'] = 'd1str1t07';       // Password (if using authentica
 // ---------------------
 
 // Set the email address of the From field. Default is 'admin_email@your.org'
-$mail_settings['from'] = 'admin_email@your.org';
+$mail_settings['from'] = 'psicologosdistrito7@gmail.com';
 
 // Set the recipient email. Default is 'admin_email@your.org'. You can define
 // more than one recipient like this "john@doe.com,scott@tiger.com"
@@ -580,7 +580,7 @@ $mail_settings['ics_filename'] = "booking";
 // by telling you (a) whether the mail functions are being called in the first place
 //(b) whether there are addresses to send email to and (c) the result of the mail
 // sending operation.
-$mail_settings['debug'] = FALSE;
+$mail_settings['debug'] = TRUE;
 // Set this to TRUE if you do not want any email sent, whatever the rest of the settings.
 // This is a global setting that will override anything else.   Useful when testing MRBS.
 $mail_settings['disabled'] = FALSE;
@@ -609,6 +609,7 @@ $mail_settings['disabled'] = FALSE;
  // $typel["H"] = "H";
  //$typel["I"] = get_vocab("internal");
  // $typel["J"] = "J";
+//$booking_types[] = "A";
 
 // Set the maximum number of bookings that can be made by any one user, in an interval,
 // which can be a day, week, month or year, or else in the future.  (A week is defined

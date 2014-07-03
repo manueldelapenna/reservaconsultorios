@@ -1255,11 +1255,13 @@ foreach ($edit_entry_field_order as $key)
     break;
 	
   case 'psychologist_id':
-    create_input_field_entry_psychologist_id();
+    if (authGetUserLevel(getUserName()) != 2){
+      create_field_entry_psychologist_id();
+    }
+    else {create_input_field_entry_psychologist_id();}
     echo "<br>";
     echo "<div id=\"busqueda\">";
     echo "</div>";
-    //create_field_entry_psychologist_id();
     break;
 	
   case 'pago_id':
