@@ -57,8 +57,9 @@ Algo más?
 
 (listo)*traducir el show/hide columns de salas y usuarios
 (listo)*traducir "back" del menú principal cuando se hace mas chico
+(listo)*acomodar columnas de listado de informes.
 *mejorar dialogos de confirmación
 *cambiar tiempo de duración de sesion desde config
-*acomodar columnas de listado de informes
+
 
 	
