@@ -36,6 +36,7 @@ Tincho:
 *(listo)Volver a deshabilitar el boton "Siguiente" en reservas_impagas y pagos_realizados
 o sacarlo directamente y que vaya a la otra pantalla al hacer click sobre el nombre
 *(listo)Si no hay pagos realizados por una persona, mostrar ese aviso y no la tabla vacía
+*Metele un boton para anular pagos.
 
 Algo más?
 
@@ -54,8 +55,8 @@ Algo más?
 (listo)*editar usuario no cambia nombre y apellido real
 
 
-*traducir el show/hide columns de salas y usuarios
-*traducir "back" del menú principal cuando se hace mas chico
+(listo)*traducir el show/hide columns de salas y usuarios
+(listo)*traducir "back" del menú principal cuando se hace mas chico
 *mejorar dialogos de confirmación
 *cambiar tiempo de duración de sesion desde config
 *acomodar columnas de listado de informes

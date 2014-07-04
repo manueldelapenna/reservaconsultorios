@@ -88,7 +88,7 @@ function print_theme_header($day, $month, $year, $area, $room)
     echo "[Warning: ".$locale_warning."]";
   }
 ?>
-<nav class="top-bar" data-topbar>
+<nav class="top-bar" data-topbar data-options="back_text: Volver">
   <!-- Title -->
   <ul class="title-area"> 
     <li class="name"><h1><a href="index.php">Psic&oacute;logos Distrito VII</a></h1></li>

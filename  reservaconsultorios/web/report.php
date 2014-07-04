@@ -474,7 +474,9 @@ function report_header()
     }  // switch
   }  // foreach
   
-  
+  $values[] = "Solicitada por";
+  $values[] = "Solicitada para";
+  $values[] = "Num. Recibo";
   // Find out what the non-breaking space is in this character set
   $charset = get_charset();
   $nbsp = mrbs_entity_decode('&nbsp;', ENT_NOQUOTES, $charset);
@@ -1192,15 +1194,8 @@ foreach ($custom_fields as $key => $value)
 }
 
 // Set the field order list
-$field_order_list = array('name', 'area_name', 'room_name', 'start_time', 'end_time',
-                          'description', 'type', 'create_by', 'confirmation_enabled',
-                          'approval_enabled');
-foreach ($custom_fields as $key => $value)
-{
-  $field_order_list[] = $key;
-}
-$field_order_list[] = 'last_updated';
-
+$field_order_list = array('area_name', 'room_name', 'start_time', 'end_time',
+                          'type','solicitada_por', 'solicitada_para', 'recibo');
 
 
 // PHASE 2:  SQL QUERY.  We do the SQL query now to see if there's anything there
@@ -1214,7 +1209,7 @@ if ($phase == 2)
   $sql = "SELECT E.*, "
        .  sql_syntax_timestamp_to_unix("E.timestamp") . " AS last_updated, "
        . "A.area_name, R.room_name, "
-       . "A.approval_enabled, A.confirmation_enabled, A.enable_periods";
+       . "A.approval_enabled, A.confirmation_enabled, A.enable_periods, concat(u.real_lastname, ', ', u.real_name) as solicitada_por, concat(us.real_lastname, ', ', us.real_name) as solicitada_para, LPAD(p.id, 8, 0) as recibo";
   if ($output_format == OUTPUT_ICAL)
   {
     // If we're producing an iCalendar then we'll also need the repeat
@@ -1228,6 +1223,9 @@ if ($phase == 2)
     // that won't have a match in the repeat table
     $sql .= " LEFT JOIN $tbl_repeat T ON E.repeat_id=T.id";
   }
+  $sql .= " LEFT JOIN mrbs_users u ON E.user_id = u.id";
+  $sql .= " LEFT JOIN mrbs_users us ON E.psychologist_id = us.id";
+  $sql .= " LEFT JOIN mrbs_pago p ON e.pago_id = p.id";
   $sql .= " WHERE E.room_id=R.id AND R.area_id=A.id"
         . " AND E.start_time < $report_end AND E.end_time > $report_start";
   if ($output_format == OUTPUT_ICAL)
