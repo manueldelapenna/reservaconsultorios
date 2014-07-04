@@ -401,4 +401,3 @@ $vocab["back"]          	 = "Volver";
 $vocab["show_hide_columns"]  = "Mostrar/ocultar columnas";
 $vocab["restore_original"]  = "Restaurar conf. original";
 ?>
-

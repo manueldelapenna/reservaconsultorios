@@ -51,13 +51,17 @@ function print_theme_header($day, $month, $year, $area, $room)
   <head>
   
   <meta charset="<?php echo get_charset(); ?>">
+  <meta http-equiv="x-ua-compatible" content="IE=10" >
   <title><?php echo get_vocab("mrbs") ?></title>
+  
   <link rel="stylesheet" href="foundation-5.2.3/css/foundation.css" />
-  <script src="foundation-5.2.3/js/vendor/modernizr.js"></script>
+  
+  
   <?php
   require_once "style.inc";
   require_once "js.inc";
   ?>
+  
   
   </head>
   
