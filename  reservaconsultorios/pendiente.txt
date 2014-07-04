@@ -61,5 +61,7 @@ Algo más?
 *mejorar dialogos de confirmación
 *cambiar tiempo de duración de sesion desde config
 
+*listado de usuarios y reportes no se ven bien en chrome
+*menu principal no despliega pestaña de administracion en iexplore
 
 	
