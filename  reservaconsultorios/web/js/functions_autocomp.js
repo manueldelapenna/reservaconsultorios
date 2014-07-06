@@ -107,13 +107,29 @@ function info(id,nombre)
 
 function calcular_desc()
 {
-    var actual = parseInt(document.getElementById("descuento").value);
-    if (isNaN(actual)){
-      alert ("Debe introducir un valor numérico");
-    }
+    var actual = document.getElementById("descuento").value;
+    if (actual == "")
+    {
+        actual = 0;
+        document.getElementById("save_button").disabled = true;
+        //document.getElementById("descuento").value = 0;
+    } 
     else{
-      var total = parseInt(document.getElementById("total").value);
-      total = total - actual;
+    document.getElementById("save_button").disabled = false;
+    if (isNaN(actual)){
+        alert ("Debe introducir un valor numérico");
+        actual = 0;
+        document.getElementById("descuento").value = 0;
+        document.getElementById("total").value = document.getElementById("subtotal").value;
+      }  
+    else{
+      var subtotal = parseInt(document.getElementById("subtotal").value);
+      var total = subtotal - actual;
+      if(total < 0)
+      {
+          total = 0;
+      }
       document.getElementById("total").value = total;
-    }  
+    } 
+    }
 }

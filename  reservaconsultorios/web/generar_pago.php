@@ -88,9 +88,9 @@ if ($pagos){
         
       }
       $subtotal = get_precio_reserva()*count($pagos);
-      echo "<label>Subtotal: $</label><input name='subtotal' readonly value=\"".$subtotal."\"<br>";
+      echo "<label>Subtotal: $</label><input id=\"subtotal\" name='subtotal' readonly value=\"".$subtotal."\"<br>";
       $descuento = 0;
-      echo "<label>Descuento: $</label><input id= \"descuento\" name='descuento' value=\"".$descuento."\" onChange=calcular_desc(); <br>";
+      echo "<label>Descuento: $</label><input id= \"descuento\" name='descuento' value=\"".$descuento."\" autocomplete=\"off\" onkeyup=calcular_desc(); <br>";
       $total = $subtotal - $descuento;
       echo "<label>Total a pagar: $</label><input name='total' id=\"total\" readonly value=\"".$total."\"<br>";
      echo "</div>"; 

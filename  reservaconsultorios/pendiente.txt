@@ -30,13 +30,13 @@ Manu:
 Tincho:
 *(listo)pagina de pagos realizados
 *(listo)generar recibo pdf
+*(listo)Si no hay pagos realizados por una persona, mostrar ese aviso y no la tabla vacía
 *(listo -falta estilo)alta y edicion de reserva con ajax en usuarios psicologos cuando crea el administrador
-*corregir vista de mails, se ve mal el tilde en el asunto y en el cuerpo falta el psicologo y el nombre completo del creador
-*(casi listo)corregir mails: el usuario que recibe es siempre el psicologo.
+*(listo)corregir mails: el usuario que recibe es siempre el psicologo.
 *(listo)Volver a deshabilitar el boton "Siguiente" en reservas_impagas y pagos_realizados
 o sacarlo directamente y que vaya a la otra pantalla al hacer click sobre el nombre
-*(listo)Si no hay pagos realizados por una persona, mostrar ese aviso y no la tabla vacía
-*Metele un boton para anular pagos.
+*corregir vista de mails, se ve mal el tilde en el asunto y en el cuerpo falta el psicologo y el nombre completo del creador
+*(listo)Metele un boton para anular pagos.
 
 Algo más?
 

@@ -29,7 +29,7 @@ echo "</div>\n";
 
 
 
-function generar_tabla_pagos($psicologo_id,&$hay_datos)
+function generar_tabla_pagos($psicologo,$psicologo_id,&$hay_datos)
 {
     $sql = "SELECT p.id, p.fecha, u.real_name, u.real_lastname, p.cobrador_id, p.monto_reservas, p.descuento, p.total
             FROM mrbs_pago p join (mrbs_entry e join mrbs_users u)
@@ -43,8 +43,8 @@ function generar_tabla_pagos($psicologo_id,&$hay_datos)
    //echo "<div id=\"user_list\" class=\"datatable_container\">/n";
    echo "<table class=\"admin_table display\" id=\"users_table\">";
    echo "<thead>";
-   echo "<tr><th>ID de pago</th>";
-   echo "<th>Fecha</th>";
+   echo "<tr><th>Nro. de pago</th>";
+   echo "<th>Fecha de pago</th>";
    echo "<th>Cobrador</th>";
    echo "<th>Monto de las reservas</th>";
    echo "<th>Descuento</th>";
@@ -59,14 +59,16 @@ function generar_tabla_pagos($psicologo_id,&$hay_datos)
      $ap =  $row['real_lastname'];
      $fecha = date_create($row['fecha']);
      $fecha_esp = date_format($fecha, 'd/m/Y');
-     echo "<tr name=\"".$row['id']."\"><td>".$row['id']."</td>";
+     $id = $row['id'];
+     echo "<tr name=\"".$row['id']."\"><td>0000".$row['id']."</td>";
      echo "<td>".$fecha_esp."</td>";
      //echo "<td>".$row['cobrador_id']."</td>";
      echo "<td>".$ap.", ".$nom."</td>";
      echo "<td>$".$row['monto_reservas']."</td>";
      echo "<td>$".$row['descuento']."</td>";
      echo "<td>$".$row['total']."</td>";
-     echo "<td><a href=\"imprimir_recibo.php?pago_id=".$row['id']."&cobrador_id=".$row['cobrador_id']."\">Imprimir</a></td></tr>";
+     echo "<td><a href=\"imprimir_recibo.php?pago_id=".$row['id']."&cobrador_id=".$row['cobrador_id']."\">Imprimir</a>"
+             . "<br><a href=\"eliminar_pago.php?pago_id=".$id."&psicologo=".$psicologo."&psicologo_id=".$psicologo_id."\" onclick=\"return confirm('Va a eliminar el pago 0000' +$id+ '. Esta segura/o?');\"> Anular pago</a></td></tr>";
 
    }
    echo "</tbody>";
@@ -80,16 +82,21 @@ function generar_tabla_pagos($psicologo_id,&$hay_datos)
 
 echo "<table class=\"dwm_main\" id=\"week_main\" data-resolution=\"$resolution\">";
 //echo $inner_html;
-$psicologo = $_POST['f_psychologist_id'];
+if (!$_GET){
+  $psicologo = $_POST['f_psychologist_id'];
+}
+else {$psicologo = $_GET['f_psychologist_id'];}
 echo "<h3>Pagos realizados de: $psicologo </h3>"; ?>
 <form class="form_general" id="main" action="generar_pago.php" method="post">
    
       
       <?php
-        
-      $psicologo_id = $_POST['psicologo'];
+      if (!$_GET){ 
+        $psicologo_id = $_POST['psicologo'];
+      }
+      else {$psicologo_id = $_GET['psicologo'];}
       $hay_datos = false;
-      generar_tabla_pagos($psicologo_id,$hay_datos);
+      generar_tabla_pagos($psicologo,$psicologo_id,$hay_datos);
       if ($hay_datos == false){
         echo "<label>No se registran pagos realizados por esta persona</label>";
       }
