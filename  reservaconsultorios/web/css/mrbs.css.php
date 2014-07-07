@@ -710,7 +710,7 @@ form#form_edit_users {width: auto; margin-top: 2.0em}
 form.edit_users_error {width: 10em; margin-top: 2.0em}
 div#user_list {padding: 0 0}
 
-#users_table td {text-align: right}
+
 #users_table td div.string {text-align: left}
 
 
@@ -901,3 +901,17 @@ div#check_tabs {background-image: none}
 #start_datepicker, #end_datepicker, #rep_end_datepicker{
 	max-width:90px;
 }
+
+.list-group{
+	width:275px!important;
+}
+
+#main .list-group{
+	margin-left:155px;
+}
+
+#main .list-group .list-group-item-heading{
+	text-align:left;
+	font-weight:normal;
+}
+

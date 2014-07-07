@@ -35,7 +35,6 @@ Tincho:
 *(listo)corregir mails: el usuario que recibe es siempre el psicologo.
 *(listo)Volver a deshabilitar el boton "Siguiente" en reservas_impagas y pagos_realizados
 o sacarlo directamente y que vaya a la otra pantalla al hacer click sobre el nombre
-*corregir vista de mails, se ve mal el tilde en el asunto y en el cuerpo falta el psicologo y el nombre completo del creador
 *(listo)Metele un boton para anular pagos.
 
 Algo más?
@@ -53,15 +52,15 @@ Algo más?
 	*Informes
 (listo)*simplificar footer, poner vista por dia, semana o mes desde el menú
 (listo)*editar usuario no cambia nombre y apellido real
-
-
 (listo)*traducir el show/hide columns de salas y usuarios
 (listo)*traducir "back" del menú principal cuando se hace mas chico
 (listo)*acomodar columnas de listado de informes.
-*mejorar dialogos de confirmación
+(listo)*menu principal no despliega pestaña de administracion en iexplore
+
+
 *cambiar tiempo de duración de sesion desde config
-
-*listado de usuarios y reportes no se ven bien en chrome
-*menu principal no despliega pestaña de administracion en iexplore
-
+*listado reportes no se ven bien en chrome y explorer
+*corregir vista de mails, se ve mal el tilde en el asunto y en el cuerpo falta el psicologo y el nombre completo del creador
+*al borrar una letra en la busqueda de AJAX poner como value en el input que está como hidden value=" " con el espacio (en el edit entry), en los otros, deshabilitar botón
+*volar de los mails "view_entry.php?id=105"
 	

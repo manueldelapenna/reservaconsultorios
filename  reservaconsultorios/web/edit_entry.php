@@ -545,10 +545,7 @@ function create_field_entry_user_id($disabled=FALSE)
    $name=$row['real_lastname'].', '.$row['real_name'];
    if (authGetUserId(getUserName()) == $id){
 		echo "<option selected value=$id>$name</option>";
-	}else{
-		echo "<option hidden='hidden' value=$id>$name</option>";
-	}
-   
+	}   
    }
    echo "</select>";
   
