@@ -81,7 +81,7 @@ if ($pagos){
       echo "<label>Profesional: <input readonly value=\"".$_POST['psicologo']."\"<br></label>";
       echo "<label>Cobrador/a: ".$ap.", ".$nom."<br></label>";
       echo "<label>Detalle de las reservas: <br></label>";
-	  echo "<input hidden='hidden' name='reservasIds' value='". serialize($pagos)."'/>";
+	  echo "<input type='hidden' name='reservasIds' value='". serialize($pagos)."'/>";
 	  foreach ($pagos as $pago){
         get_reserva($pago,$comienzo, $fin);
         echo "<label>Comienzo: ".$comienzo." - Fin: ".$fin." Precio: $".  get_precio_reserva()."<br></label>";
