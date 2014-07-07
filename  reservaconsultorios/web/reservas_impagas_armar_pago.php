@@ -31,9 +31,9 @@ echo "</div>\n";
 
 function generar_tabla_reservas($psicologo_id,&$hay_datos)
 {
-    $sql = "SELECT e.id, e.pago_id, u.real_lastname, u.real_name, e.psychologist_id, e.create_by, e.start_time, e.end_time
-            FROM  mrbs_entry e, mrbs_users u
-            where (e.psychologist_id = $psicologo_id) AND (e.psychologist_id = u.id)AND (e.pago_id is null)
+    $sql = "SELECT e.id, e.user_id, e.pago_id, u.real_lastname as apsolicita, u.real_name as nomsolicita ,us.real_lastname as apcreador, us.real_name as nomcreador, e.psychologist_id, e.create_by, e.start_time, e.end_time
+            FROM  mrbs_entry e, mrbs_users u, mrbs_users us
+            where (e.psychologist_id = $psicologo_id) AND (e.psychologist_id = u.id) AND (e.user_id = us.id) AND (e.pago_id is null)
 		
         ORDER BY e.timestamp";
     $res = sql_query($sql);
@@ -54,8 +54,8 @@ function generar_tabla_reservas($psicologo_id,&$hay_datos)
    for ($i = 0; ($row = sql_row_keyed($res, $i)); $i++)
    {
      //echo "<tr name=\"".$row['psychologist_id']."\"><td>".$row['psychologist_id']."</td>";
-     echo "<tr name=\"".$row['psychologist_id']."\"><td>".$row['real_lastname'].", ".$row['real_name']."</td>";
-     echo "<td>".$row['create_by']."</td>";
+     echo "<tr name=\"".$row['psychologist_id']."\"><td>".$row['apsolicita'].", ".$row['nomsolicita']."</td>";
+     echo "<td>".$row['apcreador'].", ".$row['nomcreador']."</td>";
      echo "<td>".time_date_string($row['start_time'])."</td>";
      echo "<td>".time_date_string($row['end_time'])."</td>";
      echo "<td><input type=\"checkbox\" class=\"checks\" id=\"pagar\" name=\"pagar[]\" value=\"".$row['id']."\"></td></tr>";
@@ -75,7 +75,7 @@ function generar_tabla_reservas($psicologo_id,&$hay_datos)
 echo "<table class=\"dwm_main\" id=\"week_main\" data-resolution=\"$resolution\">";
 //echo $inner_html;
 $psicologo = $_POST['f_psychologist_id'];
-echo "<h3>Pagos de: $psicologo </h3>"; ?>
+echo "<h3>Reservas impagas de: $psicologo </h3>"; ?>
 <form class="form_general" id="main" action="generar_pago.php" method="post">
    
       
