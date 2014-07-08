@@ -393,10 +393,12 @@ if (authGetUserLevel($user) == 2 || authGetUserId($user) == $row['psychologist_i
 	  {
 		// Edit and Edit Series
 		echo "<div>\n";
+		$hora = date ('H', $row['start_time']);
+				
 		if ($row['type'] != 'N'){
 			if (!$series)
 			{
-			  echo "<a href=\"edit_entry.php?id=$id&amp;returl=$link_returl\">". get_vocab("editentry") ."</a>";
+			  echo "<a href=\"edit_entry.php?id=$id&amp;hour=$hora&amp;day=$day&amp;month=$month&amp;year=$year&amp;returl=$link_returl\">". get_vocab("editentry") ."</a>";
 			} 
 			if (!empty($repeat_id)  && !$series && $repeats_allowed)
 			{
@@ -404,7 +406,7 @@ if (authGetUserLevel($user) == 2 || authGetUserId($user) == $row['psychologist_i
 			}  
 			if ((!empty($repeat_id) || $series) && $repeats_allowed)
 			{
-			  echo "<a href=\"edit_entry.php?id=$id&amp;edit_type=series&amp;day=$day&amp;month=$month&amp;year=$year&amp;returl=$link_returl\">".get_vocab("editseries")."</a>";
+			  echo "<a href=\"edit_entry.php?id=$id&amp;edit_type=series&amp;hour=$hora&amp;day=$day&amp;month=$month&amp;year=$year&amp;returl=$link_returl\">".get_vocab("editseries")."</a>";
 			}
 		}
 		echo "</div>\n";

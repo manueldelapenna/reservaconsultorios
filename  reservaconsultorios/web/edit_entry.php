@@ -58,9 +58,10 @@ if (!isset($_GET['hour']) && $_GET['day'] == date('d') && $_GET['year'] == date(
 		$_GET['minute'] = 0;
 	}
 }
-
+//var_dump(time()); var_dump(mktime($_GET['hour'],$_GET['minute'],0,$_GET['month'],$_GET['day'],$_GET['year'])); die;
 if (authGetUserLevel(getUserName()) != 2){
 	if (mktime($_GET['hour'],$_GET['minute'],0,$_GET['month'],$_GET['day'],$_GET['year']) < time()){
+	
 		showCantEditBooking($day, $month, $year, $area, $room);
 		exit;
 	}
@@ -290,7 +291,7 @@ function create_field_entry_start_date($disabled=FALSE)
 
   // Generate the live slot selector and all day checkbox
   genSlotSelector($areas[$area_id], 'start_seconds', 'start_seconds', $current_s, FALSE, $disabled, TRUE);
-  genAllDay($areas[$area_id], 'all_day', 'all_day', FALSE, $disabled);
+  //genAllDay($areas[$area_id], 'all_day', 'all_day', FALSE, $disabled);
   
   // Generate the templates for each area
   foreach ($areas as $a)
@@ -1213,7 +1214,6 @@ else
   <legend><?php echo get_vocab($token);?></legend>
 
 <?php
-
 foreach ($edit_entry_field_order as $key)
 {
   switch( $key )

@@ -198,10 +198,15 @@ if (!$ajax)
 					 LIMIT 1");
 	  
 	  $cantidadReservas = ($_POST['end_seconds'] - $_POST['start_seconds'])/60/60;
-  
-	  if (($total + cantidadReservas) >= $max_per_interval_global['week']){
+	  
+	  if (($total + $cantidadReservas) > $max_per_interval_global['week']){
 		cantidad_maxima_superada("Cantidad de reservas semanales superadas ($max_per_interval_global[week])");
 	  }
+  }
+  
+  
+  if (!$is_admin && date('D', mktime(0,0,$_POST['end_seconds'],$_POST['end_month'],$_POST['end_day'],$_POST['end_year'])) == "Sat" && $_POST['end_seconds'] > 46800 ){
+	showCantEditBookingSaturday($day, $month, $year, $area, $room);  
   }
   
   if ($_POST['f_psychologist_id'] == " "){
