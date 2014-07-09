@@ -12,7 +12,7 @@
 // This file is PHP code. Treat it as such.
 
 // Used in style.inc
-$vocab["mrbs"]               = "Sistema de Reservas de Salas y Aulas";
+$vocab["mrbs"]               = "Sistema de Reservas de Turnos DistritoVII";
 
 // Used in functions.inc
 $vocab["report"]             = "Informes";
@@ -394,6 +394,7 @@ $vocab["failed_connect_db"]  = "Error: No se pudo conectar a la Base de Datos";
 // Entry types
 $vocab["type.I"]             = "Solicitado por Secretaria/o";
 $vocab["type.E"]             = "Solicitado por Psicóloga/o";
+$vocab["type.A"]             = "Deshabilitado";   
 
 // General
 $vocab["fatal_db_error"]     = "Error: la base de datos no está disponible en este momento.";
