@@ -463,6 +463,15 @@ function report_header()
       case 'last_updated':
         $values[] = stype_wrap(get_vocab("lastupdate"), 'title-numeric');
         break;
+	  case 'solicitada_por':
+        $values[] = 'Turno registrado por';
+        break;
+	  case 'solicitada_para':
+        $values[] = 'Psicólogo';
+        break;
+	  case 'recibo':
+        $values[] = 'Num. Recibo';
+        break;
 			   
       default:
         // the custom fields
@@ -474,9 +483,6 @@ function report_header()
     }  // switch
   }  // foreach
   
-  $values[] = "Solicitada por";
-  $values[] = "Solicitada para";
-  $values[] = "Num. Recibo";
   // Find out what the non-breaking space is in this character set
   $charset = get_charset();
   $nbsp = mrbs_entity_decode('&nbsp;', ENT_NOQUOTES, $charset);
@@ -1194,8 +1200,7 @@ foreach ($custom_fields as $key => $value)
 }
 
 // Set the field order list
-$field_order_list = array('area_name', 'room_name', 'start_time', 'end_time',
-                          'type','solicitada_por', 'solicitada_para', 'recibo');
+$field_order_list = array('solicitada_por', 'solicitada_para','start_time', 'end_time', 'recibo');
 
 
 // PHASE 2:  SQL QUERY.  We do the SQL query now to see if there's anything there

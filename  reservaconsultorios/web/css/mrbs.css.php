@@ -915,3 +915,6 @@ div#check_tabs {background-image: none}
 	font-weight:normal;
 }
 
+DTFC_ScrollWrapper th{
+	width:100px!important;
+}
