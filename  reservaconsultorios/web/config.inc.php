@@ -545,18 +545,18 @@ $sendmail_settings['args'] = '';
  */
 
 // These settings are only used with the "smtp" backend
-$smtp_settings['host'] = 'ssl://smtp.gmail.com';  // SMTP server
-$smtp_settings['port'] = 465;           // SMTP port number
-$smtp_settings['auth'] = TRUE;        // Whether to use SMTP authentication
-$smtp_settings['username'] = 'psicologosdistrito7@gmail.com';       // Username (if using authentication)
-$smtp_settings['password'] = 'd1str1t07';       // Password (if using authentication)
+$smtp_settings['host'] = 'localhost';  // SMTP server
+$smtp_settings['port'] = 25;           // SMTP port number
+$smtp_settings['auth'] = FALSE;        // Whether to use SMTP authentication
+$smtp_settings['username'] = 'admin@psicologosdistrito7.org';       // Username (if using authentication)
+$smtp_settings['password'] = 'Distrito7';       // Password (if using authentication)
 
 
 // EMAIL - MISCELLANEOUS
 // ---------------------
 
 // Set the email address of the From field. Default is 'admin_email@your.org'
-$mail_settings['from'] = 'psicologosdistrito7@gmail.com';
+$mail_settings['from'] = 'admin@psicologosdistrito7.org';
 
 // Set the recipient email. Default is 'admin_email@your.org'. You can define
 // more than one recipient like this "john@doe.com,scott@tiger.com"
@@ -580,10 +580,11 @@ $mail_settings['ics_filename'] = "booking";
 // by telling you (a) whether the mail functions are being called in the first place
 //(b) whether there are addresses to send email to and (c) the result of the mail
 // sending operation.
-$mail_settings['debug'] = TRUE;
+$mail_settings['debug'] = FALSE;
 // Set this to TRUE if you do not want any email sent, whatever the rest of the settings.
 // This is a global setting that will override anything else.   Useful when testing MRBS.
-$mail_settings['disabled'] = FALSE;
+
+$mail_settings['disabled'] = TRUE;
 
 
  /*************

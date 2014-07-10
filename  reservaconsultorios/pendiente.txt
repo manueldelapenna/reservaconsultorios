@@ -59,7 +59,7 @@ Algo más?
 
 
 *cambiar tiempo de duración de sesion desde config
-*listado reportes no se ven bien en chrome y explorer
+(aceptablemente listo)*listado reportes no se ven bien en chrome y explorer
 *corregir vista de mails, se ve mal el tilde en el asunto y en el cuerpo falta el psicologo y el nombre completo del creador
 *al borrar una letra en la busqueda de AJAX poner como value en el input que está como hidden value=" " con el espacio (en el edit entry), en los otros, deshabilitar botón
 *volar de los mails "view_entry.php?id=105"
