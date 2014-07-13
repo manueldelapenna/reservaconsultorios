@@ -526,26 +526,26 @@ function create_body($data, $mail_previous, $compare, $series, $action, $as_html
 
   // Create a link to the entry, unless we're deleting it of course,
   // because then there won't be one.
-  if (($action != "delete") && ($action != "reject"))
-  {
-    $body .= ($as_html) ? "</p><p>" : "\n\n";
-    $body .= ($as_html) ? "<a target=\"_blank\" href=\"" : "";
-    // Set the link to view entry page
-    if (isset($url_base) && ($url_base !== ''))
-    {
-      $body .= "$url_base/view_entry.php?id=" . $data['id'];
-    }
-    else
-    {
-      ('' != $returl) ? $url = explode(basename($returl), $returl) : '';
-      $body .= $url[0] . "view_entry.php?id=" . $data['id'];
-    }
-    if ($series)
-    {
-      $body .= "&series=1";
-    }
-    $body .= ($as_html) ? "\">" . $data['name'] . "</a>" : "";
-  }
+//  if (($action != "delete") && ($action != "reject"))
+//  {
+//    $body .= ($as_html) ? "</p><p>" : "\n\n";
+//    $body .= ($as_html) ? "<a target=\"_blank\" href=\"" : "";
+//    // Set the link to view entry page
+//    if (isset($url_base) && ($url_base !== ''))
+//    {
+//      $body .= "$url_base/view_entry.php?id=" . $data['id'];
+//    }
+//    else
+//    {
+//      ('' != $returl) ? $url = explode(basename($returl), $returl) : '';
+//      $body .= $url[0] . "view_entry.php?id=" . $data['id'];
+//    }
+//    if ($series)
+//    {
+//      $body .= "&series=1";
+//    }
+//    $body .= ($as_html) ? "\">" . $data['name'] . "</a>" : "";
+//  }
   $body .= ($as_html) ? "</p>\n" : "\n\n";
   
   $body .= ($as_html) ? "<table>\n" : "\n";

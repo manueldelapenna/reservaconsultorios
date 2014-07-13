@@ -28,6 +28,7 @@ Manu:
 
 
 Tincho:
+*(listo)Metele un boton para anular pagos.
 *(listo)pagina de pagos realizados
 *(listo)generar recibo pdf
 *(listo)Si no hay pagos realizados por una persona, mostrar ese aviso y no la tabla vacía
@@ -35,7 +36,7 @@ Tincho:
 *(listo)corregir mails: el usuario que recibe es siempre el psicologo.
 *(listo)Volver a deshabilitar el boton "Siguiente" en reservas_impagas y pagos_realizados
 o sacarlo directamente y que vaya a la otra pantalla al hacer click sobre el nombre
-*(listo)Metele un boton para anular pagos.
+
 
 Algo más?
 
@@ -61,6 +62,6 @@ Algo más?
 *cambiar tiempo de duración de sesion desde config
 (aceptablemente listo)*listado reportes no se ven bien en chrome y explorer
 *corregir vista de mails, se ve mal el tilde en el asunto y en el cuerpo falta el psicologo y el nombre completo del creador
-*al borrar una letra en la busqueda de AJAX poner como value en el input que está como hidden value=" " con el espacio (en el edit entry), en los otros, deshabilitar botón
-*volar de los mails "view_entry.php?id=105"
+*(listo)al borrar una letra en la busqueda de AJAX poner como value en el input que está como hidden value=" " con el espacio (en el edit entry), en los otros, deshabilitar botón
+*(listo)volar de los mails "view_entry.php?id=105"
 	

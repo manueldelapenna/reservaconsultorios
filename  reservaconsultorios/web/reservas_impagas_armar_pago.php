@@ -60,7 +60,7 @@ function generar_tabla_reservas($psicologo_id,&$hay_datos)
      echo "<td>".time_date_string($row['end_time'])."</td>";
      echo "<td><input type=\"checkbox\" class=\"checks\" id=\"pagar\" name=\"pagar[]\" value=\"".$row['id']."\"></td></tr>";
      //envío por post el nombre del psicologo que tiene que pagar
-     echo "<input type=\"hidden\" id=\"psicologo\" name=\"psicologo\" value=\"".$row['real_lastname'].", ".$row['real_name']." \"> ";
+     echo "<input type=\"hidden\" id=\"psicologo\" name=\"psicologo\" value=\"".$row['apsolicita'].", ".$row['nomsolicita']." \"> ";
    }
    echo "</tbody>";
    echo "</table>";

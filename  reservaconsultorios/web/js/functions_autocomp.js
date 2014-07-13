@@ -8,16 +8,25 @@ $(document).ready(function()
     $.fn.delayPasteKeyUp = function(fn, ms)
     {
         var timer = 0;
-        $(this).on("keyup", function()
+        $(this).on("keyup", function(event)
         {
             clearTimeout(timer);
             timer = setTimeout(fn, ms);
+            //para detectar que tecla fue pulsada
+            tecla = (document.all) ? event.keyCode : event.which;
+            
         });
     };
  
     $("input[name=f_psychologist_id]").delayPasteKeyUp(function()
     {
-		if ($('#input-ajax').val().length > 0){
+       
+        if (tecla == 8)
+          {
+           $('#save_button').attr('disabled',true);
+           $("#psicologo").val(" ");
+          }
+        if ($('#input-ajax').val().length > 0){
 			$.ajax({
 				type: "POST",
 				url: "./autocompletado/app/instancias/autocomplete.php",
