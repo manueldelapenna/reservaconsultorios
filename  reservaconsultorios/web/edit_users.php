@@ -738,7 +738,7 @@ if (isset($Action) && ($Action == "Update"))
     {
       /* if the Id exists - then we are editing an existing user, rather th
        * creating a new one */
-  
+      $nuevo = false;
       $assign_array = array();
       $operation = "UPDATE $tbl_users SET ";
   
@@ -751,7 +751,7 @@ if (isset($Action) && ($Action == "Update"))
     else
     {
       /* The id field doesn't exist, so we're adding a new user */
-  
+      $nuevo = true;
       $fields_list = array();
       $values_list = array();
   
@@ -796,7 +796,14 @@ if (isset($Action) && ($Action == "Update"))
     /*Aca tambien enviaría un mail al usuario recien creado/editado*/
 	$my_id = sql_query1("SELECT id FROM $tbl_users WHERE name='".sql_escape($user)."' LIMIT 1");
         
-        notificarAusuario($usuario,$password0);
+        if ($nuevo){
+          notificarAusuario($usuario,$password0,$nuevo);
+        }
+        else{
+            if ($password0 != ""){
+                notificarAusuario($usuario,$password0,$nuevo);
+            }
+        }
 	if (authGetUserLevelById($my_id) == 2){
 		Header("Location: edit_users.php");
 	}else{

@@ -1039,7 +1039,7 @@ function notifyAdminOnBooking($data, $mail_previous, $new_entry, $series, $start
 }
 
 //Notificar a un usuario recien creado/editado de tal accion y proporcionarle su login
-function notificarAusuario($usuario,$pass){
+function notificarAusuario($usuario,$pass,$nuevo){
     global $mail_settings;    
     $from = $mail_settings['from'];
     $to = get_email_address($usuario);
@@ -1047,7 +1047,10 @@ function notificarAusuario($usuario,$pass){
     $addresses['from'] = $from;
     $addresses['to']   = $to;
     //$addresses['cc'] = get_address_list($cc);
-    $subject = "Ha sido dado/a de alta al Sistema de Reservas";
+    if ($nuevo){
+      $subject = "Ha sido dado/a de alta al Sistema de Reservas";
+    }
+    else {$subject = "Sus datos de Usuario han cambiado";}
     $text_body = array();
     //$text_body['content'] = "Estimado/a, Ha sido dado/a de alta en el sistema de reservas sus datos son: usuario: $usuario"." , password: $pass";
     $html_body = array();
