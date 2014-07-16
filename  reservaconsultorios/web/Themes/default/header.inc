@@ -174,7 +174,7 @@ function print_theme_header($day, $month, $year, $area, $room)
 		  </li>
 		  <li>
 		  <?php
-				echo "<a href=\"null_entry.php\">Anulación de turnos</a>\n";
+				echo "<a href=\"null_entry.php\">Bloqueo de consultorios</a>\n";
 		  ?>
 		  </li>
 		  <li>

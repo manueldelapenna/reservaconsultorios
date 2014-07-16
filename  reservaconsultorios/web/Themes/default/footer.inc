@@ -9,8 +9,9 @@ function print_theme_footer()
       $(document).foundation();
   </script>
   </div>
-    <div style="background-color:#000000; clear:both; height:70px;">
-	  <p style="color:#ccc; text-align:center; padding-top:20px">©2014 Colegio de Psicólogos Distrito VII. Todos los derechos reservados.</p>
+    <div style="background-color:#000000; clear:both; height:90px; min-width:480px;">
+	  <p style="color:#ccc; text-align:center; padding-top:10px">©2014 Colegio de Psicólogos Distrito VII. Todos los derechos reservados.</p>
+	  <a href="contacto.php"><p style="color:#ccc; text-align:center; margin-top:-20px">Diseño y programación: Ciafardini, Martin - De la Penna, Manuel</p></a>
     </div>
 	
   </body>
