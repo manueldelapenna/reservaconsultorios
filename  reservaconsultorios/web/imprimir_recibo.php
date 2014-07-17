@@ -49,8 +49,123 @@ $profesional = $fila['real_lastname'].", ".$fila['real_name'];
 //              
 //  }
      
+$company = utf8_decode("Colegio de Psicólogos Distrito VII");
+$address = "domicilio";
+$email = "psicologosdistrito7@hotmail.com";
+$telephone = "44444444";
+$number = "lalala";
+$item = 'aca va un detalle sobre todas las reservas, es decir el concepto del recibo laslaldalasf sdf sdfsd fsdf puto puto puto';
+$price = 'total';
+$vat = 'desc';
+$vat = str_replace(",",".",$vat);
+$p = explode(" ",$price);
+$v = explode(" ",$vat);
+$re = $p[0] + $v[0];
+function r($r)
+{
+$r = str_replace("$","",$r);
+$r = str_replace(" ","",$r);
+$r = $r." $";
+return $r;
+}
+$price = r($price);
+$vat = r($vat);
+
+class PDF extends FPDF
+{
+function Header()
+{
+if(!empty($_FILES["file"]))
+  {
+$uploaddir = "logo/";
+$nm = $_FILES["file"]["name"];
+$random = rand(1,99);
+move_uploaded_file($_FILES["file"]["tmp_name"], $uploaddir.$random.$nm);
+$this->Image($uploaddir.$random.$nm,10,10,20);
+unlink($uploaddir.$random.$nm);
+}
+$this->SetFont('Arial','B',12);
+$this->Ln(1);
+}
+function Footer()
+{
+$this->SetY(-15);
+$this->SetFont('Arial','I',8);
+$this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
+}
+function ChapterTitle($num, $label)
+{
+$this->SetFont('Arial','',12);
+$this->SetFillColor(200,220,255);
+$this->Cell(0,6,"$num $label",0,1,'L',true);
+$this->Ln(0);
+}
+function ChapterTitle2($num, $label)
+{
+$this->SetFont('Arial','',12);
+$this->SetFillColor(249,249,249);
+$this->Cell(0,6,"$num $label",0,1,'L',true);
+$this->Ln(0);
+}
+}
+
+$pdf = new PDF();
+$pdf->AliasNbPages();
+$pdf->AddPage();
+$pdf->SetFont('Times','',12);
+$pdf->SetTextColor(32);
+$pdf->Cell(0,5,$company,0,1,'R');
+$pdf->Cell(0,5,$address,0,1,'R');
+$pdf->Cell(0,5,$email,0,1,'R');
+$pdf->Cell(0,5,'Tel: '.$telephone,0,1,'R');
+$pdf->Cell(0,15,'',0,1,'R');
+$pdf->SetFillColor(200,220,255);
+$pdf->ChapterTitle(utf8_decode('Recibo Nº: '),$number . '            Original: Cliente');
+$pdf->ChapterTitle('Fecha: ',date('d-m-Y'));
+$pdf->Cell(0,20,'',0,1,'R');
+$pdf->SetFillColor(224,235,255);
+$pdf->SetDrawColor(192,192,192);
+$pdf->Cell(170,7,'Item',1,0,'L');
+$pdf->Cell(20,7,'Price',1,1,'C');
+$pdf->Cell(170,7,$item,1,0,'L',0);
+$pdf->Cell(20,7,$price,1,1,'C',0);
+$pdf->Cell(0,0,'',0,1,'R');
+$pdf->Cell(170,7,'Descuento',1,0,'R',0);
+$pdf->Cell(20,7,$vat,1,1,'C',0);
+$pdf->Cell(170,7,'Total',1,0,'R',0);
+$pdf->Cell(20,7,$re." $",1,0,'C',0);
+$pdf->Cell(0,20,'',0,1,'R');
+$pdf->Cell(170,7,'Firma y aclaracion de cobrador:..........................................................................',0,1,'R');
+
+//espacio entre recibos
+$pdf->Cell(0,30,'',0,1,'R');
 
 
+$pdf->Cell(0,5,$company,0,1,'R');
+$pdf->Cell(0,5,$address,0,1,'R');
+$pdf->Cell(0,5,$email,0,1,'R');
+$pdf->Cell(0,5,'Tel: '.$telephone,0,1,'R');
+$pdf->Cell(0,15,'',0,1,'R');
+$pdf->SetFillColor(200,220,255);
+$pdf->ChapterTitle(utf8_decode('Recibo Nº: '),$number . utf8_decode('            Duplicado: Colegio de Psicólogos'));
+$pdf->ChapterTitle('Fecha: ',date('d-m-Y'));
+$pdf->Cell(0,20,'',0,1,'R');
+$pdf->SetFillColor(224,235,255);
+$pdf->SetDrawColor(192,192,192);
+$pdf->Cell(170,7,'Item',1,0,'L');
+$pdf->Cell(20,7,'Price',1,1,'C');
+$pdf->Cell(170,7,$item,1,0,'L',0);
+$pdf->Cell(20,7,$price,1,1,'C',0);
+$pdf->Cell(0,0,'',0,1,'R');
+$pdf->Cell(170,7,'Descuento',1,0,'R',0);
+$pdf->Cell(20,7,$vat,1,1,'C',0);
+$pdf->Cell(170,7,'Total',1,0,'R',0);
+$pdf->Cell(20,7,$re." $",1,0,'C',0);
+$pdf->Cell(0,20,'',0,1,'R');
+$pdf->Cell(170,7,'Firma y aclaracion de cobrador:..........................................................................',0,1,'R');
+$pdf->Output('recibo0000'.$pago.'.pdf','D');
+
+/*
 $pdf=new FPDF();
 $pdf->AddPage();
 $pdf->SetFont('Arial','B',12);
@@ -77,6 +192,6 @@ $pdf->Ln(20);
 $pdf->Cell(0,6,'Firma: ',0,1);
 $pdf->Output('recibo0000'.$pago.'.pdf','D');
 
-
+*/
     
 ?>
