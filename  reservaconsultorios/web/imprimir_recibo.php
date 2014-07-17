@@ -65,7 +65,7 @@ function r($r)
 {
 $r = str_replace("$","",$r);
 $r = str_replace(" ","",$r);
-$r = $r." $";
+$r = "$ ".$r;
 return $r;
 }
 $price = r($price);
@@ -91,7 +91,7 @@ function Footer()
 {
 $this->SetY(-15);
 $this->SetFont('Arial','I',8);
-$this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
+
 }
 function ChapterTitle($num, $label)
 {
@@ -118,14 +118,15 @@ $pdf->Cell(0,5,$company,0,1,'R');
 $pdf->Cell(0,5,$address,0,1,'R');
 $pdf->Cell(0,5,$email,0,1,'R');
 $pdf->Cell(0,5,'Tel: '.$telephone,0,1,'R');
-$pdf->Cell(0,15,'',0,1,'R');
+$pdf->Cell(0,5,'',0,1,'R');
 $pdf->SetFillColor(200,220,255);
 $pdf->ChapterTitle(utf8_decode('Recibo Nº: '),$number . '            Original: Cliente');
+$pdf->ChapterTitle('Profesional:','nombre de cliente');
 $pdf->ChapterTitle('Fecha: ',date('d-m-Y'));
 $pdf->Cell(0,20,'',0,1,'R');
 $pdf->SetFillColor(224,235,255);
 $pdf->SetDrawColor(192,192,192);
-$pdf->Cell(170,7,'Item',1,0,'L');
+$pdf->Cell(170,7,utf8_decode('Recibí en concepto de'),1,0,'L');
 $pdf->Cell(20,7,'Price',1,1,'C');
 $pdf->Cell(170,7,$item,1,0,'L',0);
 $pdf->Cell(20,7,$price,1,1,'C',0);
@@ -133,26 +134,29 @@ $pdf->Cell(0,0,'',0,1,'R');
 $pdf->Cell(170,7,'Descuento',1,0,'R',0);
 $pdf->Cell(20,7,$vat,1,1,'C',0);
 $pdf->Cell(170,7,'Total',1,0,'R',0);
-$pdf->Cell(20,7,$re." $",1,0,'C',0);
+$pdf->Cell(20,7,"$ ".$re,1,0,'C',0);
 $pdf->Cell(0,20,'',0,1,'R');
-$pdf->Cell(170,7,'Firma y aclaracion de cobrador:..........................................................................',0,1,'R');
+$pdf->Cell(170,7,'Cobrador:' .'nombre cobrador',0,1,'L');
+$pdf->Cell(170,7,'Firma cobrador:..........................................................................',0,1,'L');
+
 
 //espacio entre recibos
-$pdf->Cell(0,30,'',0,1,'R');
+$pdf->Cell(0,25,'',0,1,'R');
 
 
 $pdf->Cell(0,5,$company,0,1,'R');
 $pdf->Cell(0,5,$address,0,1,'R');
 $pdf->Cell(0,5,$email,0,1,'R');
 $pdf->Cell(0,5,'Tel: '.$telephone,0,1,'R');
-$pdf->Cell(0,15,'',0,1,'R');
+$pdf->Cell(0,5,'',0,1,'R');
 $pdf->SetFillColor(200,220,255);
 $pdf->ChapterTitle(utf8_decode('Recibo Nº: '),$number . utf8_decode('            Duplicado: Colegio de Psicólogos'));
+$pdf->ChapterTitle('Profesional:','nombre de cliente');
 $pdf->ChapterTitle('Fecha: ',date('d-m-Y'));
 $pdf->Cell(0,20,'',0,1,'R');
 $pdf->SetFillColor(224,235,255);
 $pdf->SetDrawColor(192,192,192);
-$pdf->Cell(170,7,'Item',1,0,'L');
+$pdf->Cell(170,7,utf8_decode('Recibí en concepto de'),1,0,'L');
 $pdf->Cell(20,7,'Price',1,1,'C');
 $pdf->Cell(170,7,$item,1,0,'L',0);
 $pdf->Cell(20,7,$price,1,1,'C',0);
@@ -160,9 +164,10 @@ $pdf->Cell(0,0,'',0,1,'R');
 $pdf->Cell(170,7,'Descuento',1,0,'R',0);
 $pdf->Cell(20,7,$vat,1,1,'C',0);
 $pdf->Cell(170,7,'Total',1,0,'R',0);
-$pdf->Cell(20,7,$re." $",1,0,'C',0);
+$pdf->Cell(20,7,"$ ".$re,1,0,'C',0);
 $pdf->Cell(0,20,'',0,1,'R');
-$pdf->Cell(170,7,'Firma y aclaracion de cobrador:..........................................................................',0,1,'R');
+$pdf->Cell(170,7,'Cobrador:' .'nombre cobrador',0,1,'L');
+$pdf->Cell(170,7,'Firma cobrador:..........................................................................',0,1,'L');
 $pdf->Output('recibo0000'.$pago.'.pdf','D');
 
 /*
