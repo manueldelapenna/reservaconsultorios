@@ -47,7 +47,7 @@ function authValidateUser($user, $pass)
   $sql = "SELECT COUNT(*)
             FROM $tbl_users
            WHERE " . sql_syntax_casesensitive_equals('name', strtolower($user)) . "
-             AND password='$pass'
+             AND password='$pass' and deshabilitado = 0
            LIMIT 1";
 
   $result = sql_query1($sql);

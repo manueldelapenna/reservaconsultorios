@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.3.9
+-- version 3.2.4
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 02-07-2014 a las 13:46:33
--- Versión del servidor: 5.5.8
--- Versión de PHP: 5.3.5
+-- Tiempo de generación: 18-07-2014 a las 21:30:32
+-- Versión del servidor: 5.1.41
+-- Versión de PHP: 5.3.1
 
 SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
@@ -64,14 +64,14 @@ CREATE TABLE IF NOT EXISTS `mrbs_area` (
   `confirmation_enabled` tinyint(1) DEFAULT NULL,
   `confirmed_default` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
 -- Volcar la base de datos para la tabla `mrbs_area`
 --
 
 INSERT INTO `mrbs_area` (`id`, `disabled`, `area_name`, `timezone`, `area_admin_email`, `resolution`, `default_duration`, `default_duration_all_day`, `morningstarts`, `morningstarts_minutes`, `eveningends`, `eveningends_minutes`, `private_enabled`, `private_default`, `private_mandatory`, `private_override`, `min_book_ahead_enabled`, `min_book_ahead_secs`, `max_book_ahead_enabled`, `max_book_ahead_secs`, `max_per_day_enabled`, `max_per_day`, `max_per_week_enabled`, `max_per_week`, `max_per_month_enabled`, `max_per_month`, `max_per_year_enabled`, `max_per_year`, `max_per_future_enabled`, `max_per_future`, `custom_html`, `approval_enabled`, `reminders_enabled`, `enable_periods`, `confirmation_enabled`, `confirmed_default`) VALUES
-(6, 0, 'Consultorios', 'America/Argentina/Buenos_Aires', NULL, 3600, 3600, 0, 7, 0, 21, 0, 0, 0, 0, 'none', 0, 0, 0, 604800, 0, 1, 0, 5, 0, 10, 0, 50, 0, 100, NULL, 0, 1, 0, 0, 1);
+(11, 0, 'Consultorios', 'America/Argentina/Buenos_Aires', NULL, 3600, 3600, 0, 7, 0, 21, 0, 0, 0, 0, 'none', 0, 0, 0, 604800, 0, 1, 0, 5, 0, 10, 0, 50, 0, 100, NULL, 0, 1, 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -124,29 +124,90 @@ CREATE TABLE IF NOT EXISTS `mrbs_entry` (
   KEY `idxEndTime` (`end_time`),
   KEY `user_id` (`user_id`),
   KEY `psychologist_id` (`psychologist_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=176 ;
 
 --
 -- Volcar la base de datos para la tabla `mrbs_entry`
 --
 
 INSERT INTO `mrbs_entry` (`id`, `start_time`, `end_time`, `entry_type`, `repeat_id`, `room_id`, `timestamp`, `create_by`, `user_id`, `psychologist_id`, `pago_id`, `type`, `status`, `reminded`, `info_time`, `info_user`, `info_text`, `ical_uid`, `ical_sequence`, `ical_recur_id`) VALUES
-(6, 1403618400, 1403622000, 1, 3, 4, '2014-06-23 14:47:13', 'manuel', 4, 3, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53a868218148a-146f7dd4@localhost', 0, '20140624T140000Z'),
-(7, 1403704800, 1403708400, 1, 3, 4, '2014-06-23 14:47:13', 'manuel', 4, 3, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53a868218148a-146f7dd4@localhost', 0, '20140625T140000Z'),
-(8, 1403791200, 1403794800, 1, 3, 4, '2014-06-23 14:47:13', 'manuel', 4, 3, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53a868218148a-146f7dd4@localhost', 0, '20140626T140000Z'),
-(9, 1403877600, 1403881200, 1, 3, 4, '2014-06-23 14:47:13', 'manuel', 4, 3, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53a868218148a-146f7dd4@localhost', 0, '20140627T140000Z'),
-(10, 1403632800, 1403636400, 1, 4, 4, '2014-06-23 14:48:45', 'manuel', 4, 5, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53a8687dae843-b21f9f98@localhost', 0, '20140624T180000Z'),
-(11, 1403719200, 1403722800, 1, 4, 4, '2014-06-23 14:48:45', 'manuel', 4, 5, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53a8687dae843-b21f9f98@localhost', 0, '20140625T180000Z'),
-(12, 1403805600, 1403809200, 1, 4, 4, '2014-06-23 14:48:45', 'manuel', 4, 5, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53a8687dae843-b21f9f98@localhost', 0, '20140626T180000Z'),
-(13, 1403892000, 1403895600, 1, 4, 4, '2014-06-23 14:48:45', 'manuel', 4, 5, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53a8687dae843-b21f9f98@localhost', 0, '20140627T180000Z'),
-(14, 1403607600, 1403611200, 0, 0, 4, '2014-06-23 14:50:14', 'manuel', 4, 3, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53a868d631881-4a3fd911@localhost', 0, ''),
-(15, 1403823600, 1403827200, 0, 0, 4, '2014-06-23 14:51:45', 'manuel', 4, 5, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53a86931353e6-a01dfc71@localhost', 0, ''),
-(16, 1403784000, 1403787600, 0, 0, 4, '2014-06-23 14:53:21', 'manuel', 4, 3, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53a86991e9cb3-09060616@localhost', 0, ''),
-(18, 1404295200, 1404298800, 0, 0, 4, '2014-07-02 12:56:33', 'manuel', 4, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, 'MRBS-53b42bb1e7de0-6766aa27@localhost', 0, ''),
-(23, 1404489600, 1404493200, 0, 0, 4, '2014-07-02 13:00:09', 'manuel', 4, 5, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53b42c8992282-ca4b3353@localhost', 0, ''),
-(24, 1404475200, 1404478800, 0, 0, 4, '2014-07-02 13:00:30', 'manuel', 4, 3, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53b42c9e83f64-0ffd15f0@localhost', 0, ''),
-(27, 1404482400, 1404486000, 0, 0, 4, '2014-07-02 13:03:31', 'manuel', 4, 5, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53b42d53d03b2-265c2b6a@localhost', 0, ''),
-(28, 1404298800, 1404302400, 0, 0, 4, '2014-07-02 13:10:05', 'manuel', 4, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, 'MRBS-53b42edd7d0bb-a3eb043e@localhost', 0, '');
+(4, 1403528400, 1403532000, 0, 0, 10, '2014-06-25 20:11:03', 'pepe', 3, 3, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53a9c7d977fa3-a75a52f7@localhost', 0, ''),
+(5, 1403532000, 1403535600, 0, 0, 10, '2014-06-25 20:11:03', 'pepe', 3, 3, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53a9c7d977fa3-a75a52f7@localhost', 0, ''),
+(6, 1403535600, 1403539200, 0, 0, 10, '2014-06-25 20:11:03', 'pepe', 3, 3, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53a9c7d977fa3-a75a52f7@localhost', 0, ''),
+(7, 1403539200, 1403542800, 0, 0, 10, '2014-06-25 20:54:54', 'pepe', 3, 3, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53a9c7d977fa3-a75a52f7@localhost', 0, ''),
+(8, 1403542800, 1403546400, 0, 0, 10, '2014-06-25 20:54:54', 'pepe', 3, 3, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53a9c7d977fa3-a75a52f7@localhost', 0, ''),
+(9, 1403546400, 1403550000, 0, 0, 10, '2014-06-25 20:54:54', 'pepe', 3, 3, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53a9c7d977fa3-a75a52f7@localhost', 0, ''),
+(10, 1403550000, 1403553600, 0, 0, 10, '2014-06-25 20:11:03', 'pepe', 3, 3, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53a9c7d977fa3-a75a52f7@localhost', 0, ''),
+(11, 1403553600, 1403557200, 0, 0, 10, '2014-06-25 20:11:03', 'pepe', 3, 3, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53a9c7d977fa3-a75a52f7@localhost', 0, ''),
+(12, 1403557200, 1403560800, 0, 0, 10, '2014-06-25 20:11:03', 'pepe', 3, 3, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53a9c7d977fa3-a75a52f7@localhost', 0, ''),
+(13, 1403560800, 1403564400, 0, 0, 10, '2014-06-25 20:11:03', 'pepe', 3, 3, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53a9c7d977fa3-a75a52f7@localhost', 0, ''),
+(14, 1403564400, 1403568000, 0, 0, 10, '2014-06-25 20:11:03', 'pepe', 3, 3, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53a9c7d977fa3-a75a52f7@localhost', 0, ''),
+(15, 1403568000, 1403571600, 0, 0, 10, '2014-06-25 20:11:03', 'pepe', 3, 3, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53a9c7d977fa3-a75a52f7@localhost', 0, ''),
+(17, 1404216000, 1404219600, 0, 0, 10, '2014-06-25 20:11:03', 'pepe', 3, 3, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53a9e347169c4-48e95c45@localhost', 0, ''),
+(18, 1404219600, 1404223200, 0, 0, 10, '2014-06-25 20:11:03', 'pepe', 3, 3, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53a9e347169c4-48e95c45@localhost', 0, ''),
+(19, 1404223200, 1404226800, 0, 0, 10, '2014-06-25 20:11:03', 'pepe', 3, 3, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53a9e347169c4-48e95c45@localhost', 0, ''),
+(20, 1404226800, 1404230400, 0, 0, 10, '2014-06-25 20:11:03', 'pepe', 3, 3, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53a9e347169c4-48e95c45@localhost', 0, ''),
+(21, 1404230400, 1404234000, 0, 0, 10, '2014-06-25 20:11:03', 'pepe', 3, 3, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53a9e347169c4-48e95c45@localhost', 0, ''),
+(22, 1404234000, 1404237600, 0, 0, 10, '2014-06-25 20:11:03', 'pepe', 3, 3, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53a9e347169c4-48e95c45@localhost', 0, ''),
+(23, 1404237600, 1404241200, 0, 0, 10, '2014-06-25 20:11:03', 'pepe', 3, 3, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53a9e347169c4-48e95c45@localhost', 0, ''),
+(24, 1404241200, 1404244800, 0, 0, 10, '2014-06-25 20:11:03', 'pepe', 3, 3, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53a9e347169c4-48e95c45@localhost', 0, ''),
+(25, 1403604000, 1403607600, 0, 0, 10, '2014-06-25 20:54:54', 'manuel', 4, 3, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53a9e3a97a5f6-cf866614@localhost', 0, ''),
+(27, 1403611200, 1403614800, 0, 0, 10, '2014-06-25 20:11:03', 'manuel', 4, 3, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53a9e3a97a5f6-cf866614@localhost', 0, ''),
+(28, 1403614800, 1403618400, 0, 0, 10, '2014-06-25 20:11:03', 'manuel', 4, 3, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53a9e3a97a5f6-cf866614@localhost', 0, ''),
+(29, 1403618400, 1403622000, 0, 0, 10, '2014-06-25 20:11:03', 'manuel', 4, 3, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53a9e3a97a5f6-cf866614@localhost', 0, ''),
+(30, 1404302400, 1404306000, 0, 0, 10, '2014-06-25 20:11:03', 'pepe', 3, 3, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53a9ec18d5b2c-3cc69741@localhost', 0, ''),
+(31, 1404306000, 1404309600, 0, 0, 10, '2014-06-25 20:11:03', 'pepe', 3, 3, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53a9ec18d5b2c-3cc69741@localhost', 0, ''),
+(32, 1404309600, 1404313200, 0, 0, 10, '2014-06-25 20:11:03', 'pepe', 3, 3, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53a9ec18d5b2c-3cc69741@localhost', 0, ''),
+(33, 1404313200, 1404316800, 0, 0, 10, '2014-06-25 20:11:03', 'pepe', 3, 3, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53a9ec18d5b2c-3cc69741@localhost', 0, ''),
+(34, 1404316800, 1404320400, 0, 0, 10, '2014-06-25 20:11:03', 'pepe', 3, 3, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53a9ec18d5b2c-3cc69741@localhost', 0, ''),
+(35, 1404320400, 1404324000, 0, 0, 10, '2014-06-25 20:11:03', 'pepe', 3, 3, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53a9ec18d5b2c-3cc69741@localhost', 0, ''),
+(36, 1404324000, 1404327600, 0, 0, 10, '2014-06-25 20:11:03', 'pepe', 3, 3, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53a9ec18d5b2c-3cc69741@localhost', 0, ''),
+(37, 1404327600, 1404331200, 0, 0, 10, '2014-06-25 20:11:03', 'pepe', 3, 3, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53a9ec18d5b2c-3cc69741@localhost', 0, ''),
+(38, 1404331200, 1404334800, 0, 0, 10, '2014-06-25 20:11:03', 'pepe', 3, 3, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53a9ec18d5b2c-3cc69741@localhost', 0, ''),
+(39, 1404334800, 1404338400, 0, 0, 10, '2014-06-25 20:11:03', 'pepe', 3, 3, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53a9ec18d5b2c-3cc69741@localhost', 0, ''),
+(46, 1403643600, 1403647200, 1, 4, 10, '2014-07-10 17:06:24', 'manuel', 4, 5, 3, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53ab3d5b51933-918317b5@localhost', 1, '20140624T210000Z'),
+(47, 1403730000, 1403733600, 1, 4, 10, '2014-06-28 16:29:29', 'manuel', 4, 5, 1, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53ab3d5b51933-918317b5@localhost', 1, '20140625T210000Z'),
+(48, 1404853200, 1404856800, 1, 4, 10, '2014-06-28 16:29:29', 'manuel', 4, 5, 1, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53ab3d5b51933-918317b5@localhost', 1, '20140708T210000Z'),
+(49, 1404939600, 1404943200, 1, 4, 10, '2014-06-28 19:53:55', 'manuel', 4, 5, 2, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53ab3d5b51933-918317b5@localhost', 1, '20140709T210000Z'),
+(54, 1403870400, 1403874000, 0, 0, 10, '2014-07-10 17:06:24', 'pepa', 5, 5, 3, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53ac29a4e45fa-dca49d1a@localhost', 0, ''),
+(86, 1403701200, 1403704800, 1, 14, 10, '2014-06-26 12:58:13', 'pepa', 5, 5, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53ac3e2970c04-084a8a9a@localhost', 1, '20140625T130000Z'),
+(87, 1403787600, 1403791200, 1, 14, 10, '2014-06-26 12:58:13', 'pepa', 5, 5, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53ac3e2970c04-084a8a9a@localhost', 1, '20140626T130000Z'),
+(88, 1403715600, 1403719200, 1, 15, 10, '2014-06-26 12:58:54', 'pepa', 5, 5, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53ac3e0096890-17d63b16@localhost', 2, '20140625T170000Z'),
+(89, 1404478800, 1404482400, 0, 0, 10, '2014-07-02 18:30:17', 'manuel', 4, 5, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53b47a01ab345-c850c535@localhost', 0, ''),
+(90, 1404493200, 1404496800, 0, 0, 10, '2014-07-02 18:31:20', 'manuel', 4, 5, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53b47a403ff9f-a07c2f3b@localhost', 0, ''),
+(94, 1404385200, 1404388800, 0, 0, 10, '2014-07-02 18:35:05', 'manuel', 4, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, 'MRBS-53b47b2106a2f-624ec1c8@localhost', 0, ''),
+(95, 1404388800, 1404392400, 0, 0, 10, '2014-07-02 18:35:05', 'manuel', 4, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, 'MRBS-53b47b2106a2f-624ec1c8@localhost', 0, ''),
+(96, 1404392400, 1404396000, 0, 0, 10, '2014-07-02 18:35:05', 'manuel', 4, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, 'MRBS-53b47b2106a2f-624ec1c8@localhost', 0, ''),
+(97, 1404396000, 1404399600, 0, 0, 10, '2014-07-02 18:35:05', 'manuel', 4, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, 'MRBS-53b47b2106a2f-624ec1c8@localhost', 0, ''),
+(98, 1404399600, 1404403200, 0, 0, 10, '2014-07-02 18:35:05', 'manuel', 4, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, 'MRBS-53b47b2106a2f-624ec1c8@localhost', 0, ''),
+(99, 1404403200, 1404406800, 0, 0, 10, '2014-07-02 18:35:05', 'manuel', 4, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, 'MRBS-53b47b2106a2f-624ec1c8@localhost', 0, ''),
+(100, 1404406800, 1404410400, 0, 0, 10, '2014-07-02 18:35:05', 'manuel', 4, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, 'MRBS-53b47b2106a2f-624ec1c8@localhost', 0, ''),
+(101, 1404410400, 1404414000, 0, 0, 10, '2014-07-02 18:35:05', 'manuel', 4, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, 'MRBS-53b47b2106a2f-624ec1c8@localhost', 0, ''),
+(102, 1404414000, 1404417600, 0, 0, 10, '2014-07-02 18:35:05', 'manuel', 4, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, 'MRBS-53b47b2106a2f-624ec1c8@localhost', 0, ''),
+(103, 1404151200, 1404154800, 0, 0, 10, '2014-07-02 18:45:08', 'manuel', 4, 5, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53b47d7ca4460-ef72d539@localhost', 0, ''),
+(104, 1404507600, 1404511200, 0, 0, 10, '2014-07-02 20:12:35', 'manuel', 4, 5, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53b491fbde786-c0c783b5@localhost', 0, ''),
+(105, 1404824400, 1404828000, 0, 0, 10, '2014-07-07 19:25:32', 'manuel', 4, 5, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53bb1e74353f3-996a7fa0@localhost', 0, ''),
+(109, 1404842400, 1404846000, 0, 0, 10, '2014-07-08 12:20:00', 'pepe', 3, 3, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53bc0c38f1597-298f5874@localhost', 0, ''),
+(112, 1405076400, 1405080000, 0, 0, 10, '2014-07-08 12:31:22', 'pepa', 5, 5, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53bc0ee20e94b-bf2fb7d1@localhost', 0, ''),
+(118, 1405098000, 1405101600, 0, 0, 10, '2014-07-08 12:31:22', 'pepa', 5, 5, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53bc0ee20e94b-bf2fb7d1@localhost', 0, ''),
+(120, 1405105200, 1405108800, 0, 0, 10, '2014-07-08 12:31:22', 'pepa', 5, 5, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53bc0ee20e94b-bf2fb7d1@localhost', 0, ''),
+(122, 1405112400, 1405116000, 0, 0, 10, '2014-07-08 12:31:22', 'pepa', 5, 5, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53bc0ee20e94b-bf2fb7d1@localhost', 0, ''),
+(123, 1405116000, 1405119600, 0, 0, 10, '2014-07-08 12:31:22', 'pepa', 5, 5, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53bc0ee20e94b-bf2fb7d1@localhost', 0, ''),
+(124, 1405119600, 1405123200, 0, 0, 10, '2014-07-08 12:31:22', 'pepa', 5, 5, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53bc0ee20e94b-bf2fb7d1@localhost', 0, ''),
+(126, 1405087200, 1405090800, 0, 0, 10, '2014-07-08 12:35:08', 'pepa', 5, 5, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53bc0fc42eb65-a1d4c20b@localhost', 0, ''),
+(139, 1405159200, 1405162800, 0, 0, 10, '2014-07-08 14:48:16', 'pepa', 5, 5, NULL, 'E', 0, NULL, NULL, NULL, NULL, 'MRBS-53bc2ef81539b-6687cb56@localhost', 0, ''),
+(157, 1405170000, 1405173600, 0, 0, 10, '2014-07-08 15:19:41', 'manuel', 4, 3, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53bc3655ab1f6-da2bd66b@localhost', 0, ''),
+(158, 1405173600, 1405177200, 0, 0, 10, '2014-07-08 15:19:41', 'manuel', 4, 3, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53bc3655ab1f6-da2bd66b@localhost', 0, ''),
+(159, 1405177200, 1405180800, 0, 0, 10, '2014-07-08 15:19:41', 'manuel', 4, 3, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53bc3655ab1f6-da2bd66b@localhost', 0, ''),
+(166, 1405022400, 1405026000, 0, 0, 10, '2014-07-10 19:21:46', 'manuel', 4, 3, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53bf1212576f6-651468b3@localhost', 0, ''),
+(168, 1404993600, 1404997200, 0, 0, 10, '2014-07-10 20:15:50', 'manuel', 4, 5, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53bf1ebe49417-e9a8f256@localhost', 0, ''),
+(169, 1404925200, 1404928800, 0, 0, 10, '2014-07-10 20:17:25', 'manuel', 4, 5, NULL, 'I', 0, NULL, NULL, NULL, NULL, 'MRBS-53bf1f1d4b370-36ad8b5f@localhost', 0, ''),
+(170, 1404727200, 1404730800, 0, 0, 10, '2014-07-16 19:19:27', 'manuel', 4, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, 'MRBS-53c6fa87e3aa1-1c303b0e@localhost', 0, ''),
+(171, 1404730800, 1404734400, 0, 0, 10, '2014-07-16 19:19:28', 'manuel', 4, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, 'MRBS-53c6fa87e3aa1-1c303b0e@localhost', 0, ''),
+(172, 1404734400, 1404738000, 0, 0, 10, '2014-07-16 19:19:28', 'manuel', 4, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, 'MRBS-53c6fa87e3aa1-1c303b0e@localhost', 0, ''),
+(173, 1404738000, 1404741600, 0, 0, 10, '2014-07-16 19:19:28', 'manuel', 4, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, 'MRBS-53c6fa87e3aa1-1c303b0e@localhost', 0, ''),
+(174, 1404741600, 1404745200, 0, 0, 10, '2014-07-16 19:19:28', 'manuel', 4, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, 'MRBS-53c6fa87e3aa1-1c303b0e@localhost', 0, ''),
+(175, 1404745200, 1404748800, 0, 0, 10, '2014-07-16 19:19:28', 'manuel', 4, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, 'MRBS-53c6fa87e3aa1-1c303b0e@localhost', 0, '');
 
 -- --------------------------------------------------------
 
@@ -156,19 +217,23 @@ INSERT INTO `mrbs_entry` (`id`, `start_time`, `end_time`, `entry_type`, `repeat_
 
 CREATE TABLE IF NOT EXISTS `mrbs_pago` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `fecha` datetime NOT NULL,
+  `fecha` int(11) NOT NULL,
   `cobrador_id` int(11) NOT NULL,
   `monto_reservas` float NOT NULL,
   `descuento` float NOT NULL,
   `total` float NOT NULL,
   PRIMARY KEY (`id`),
   KEY `cobrador_id` (`cobrador_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Volcar la base de datos para la tabla `mrbs_pago`
 --
 
+INSERT INTO `mrbs_pago` (`id`, `fecha`, `cobrador_id`, `monto_reservas`, `descuento`, `total`) VALUES
+(1, 2014, 4, 30, 15, 15),
+(2, 2014, 4, 15, 0, 15),
+(3, 2014, 4, 30, 0, 30);
 
 -- --------------------------------------------------------
 
@@ -203,16 +268,16 @@ CREATE TABLE IF NOT EXISTS `mrbs_repeat` (
   PRIMARY KEY (`id`),
   KEY `psychologist_id` (`psychologist_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
 
 --
 -- Volcar la base de datos para la tabla `mrbs_repeat`
 --
 
 INSERT INTO `mrbs_repeat` (`id`, `start_time`, `end_time`, `rep_type`, `end_date`, `rep_opt`, `room_id`, `timestamp`, `create_by`, `user_id`, `psychologist_id`, `pago_id`, `type`, `rep_num_weeks`, `month_absolute`, `month_relative`, `status`, `reminded`, `info_time`, `info_user`, `info_text`, `ical_uid`, `ical_sequence`) VALUES
-(1, 1403704800, 1403708400, 1, 1403964000, '0', 4, '2014-06-23 13:21:02', 'manuel', 4, 3, NULL, 'I', 1, NULL, NULL, 0, NULL, NULL, NULL, NULL, 'MRBS-53a853ee2e15c-9b644ca9@localhost', 0),
-(3, 1403618400, 1403622000, 1, 1403877600, '0', 4, '2014-06-23 14:47:13', 'manuel', 4, 3, NULL, 'I', 1, NULL, NULL, 0, NULL, NULL, NULL, NULL, 'MRBS-53a868218148a-146f7dd4@localhost', 0),
-(4, 1403632800, 1403636400, 1, 1403892000, '0', 4, '2014-06-23 14:48:45', 'manuel', 4, 5, NULL, 'I', 1, NULL, NULL, 0, NULL, NULL, NULL, NULL, 'MRBS-53a8687dae843-b21f9f98@localhost', 0);
+(4, 1403643600, 1403647200, 2, 1405285200, '0011000', 10, '2014-06-25 18:22:05', 'manuel', 4, 5, NULL, 'I', 2, NULL, NULL, 0, NULL, NULL, NULL, NULL, 'MRBS-53ab3d5b51933-918317b5@localhost', 1),
+(14, 1403701200, 1403704800, 1, 1403787600, '0', 10, '2014-06-26 12:58:13', 'pepa', 5, 5, NULL, 'E', 1, NULL, NULL, 0, NULL, NULL, NULL, NULL, 'MRBS-53ac3e2970c04-084a8a9a@localhost', 1),
+(15, 1403715600, 1403719200, 1, 1403715600, '0', 10, '2014-06-26 12:58:54', 'pepa', 5, 5, NULL, 'E', 1, NULL, NULL, 0, NULL, NULL, NULL, NULL, 'MRBS-53ac3e0096890-17d63b16@localhost', 2);
 
 -- --------------------------------------------------------
 
@@ -232,14 +297,14 @@ CREATE TABLE IF NOT EXISTS `mrbs_room` (
   `custom_html` text,
   PRIMARY KEY (`id`),
   KEY `idxSortKey` (`sort_key`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- Volcar la base de datos para la tabla `mrbs_room`
 --
 
 INSERT INTO `mrbs_room` (`id`, `disabled`, `area_id`, `room_name`, `sort_key`, `description`, `capacity`, `room_admin_email`, `custom_html`) VALUES
-(4, 0, 6, 'Consultorio 1', 'Consultorio 1', '', 0, NULL, NULL);
+(10, 0, 11, 'Consultorio', 'Consultorio', '', 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -255,6 +320,7 @@ CREATE TABLE IF NOT EXISTS `mrbs_users` (
   `name` varchar(30) DEFAULT NULL,
   `password` varchar(40) DEFAULT NULL,
   `email` varchar(75) DEFAULT NULL,
+  `deshabilitado` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id` (`id`),
   KEY `id_2` (`id`)
@@ -264,11 +330,11 @@ CREATE TABLE IF NOT EXISTS `mrbs_users` (
 -- Volcar la base de datos para la tabla `mrbs_users`
 --
 
-INSERT INTO `mrbs_users` (`id`, `level`, `real_name`, `real_lastname`, `name`, `password`, `email`) VALUES
-(2, 2, 'Martin', 'Ciafardini', 'martin', '925d7518fc597af0e43f5606f9a51512', 'martinciafardini@gmail.com'),
-(3, 1, 'Pepe', 'Gonzalez', 'pepe', '926e27eecdbc7a18858b3798ba99bddd', 'pepe@pepe.com'),
-(4, 2, 'Manuel', 'De la Penna', 'manuel', '96917805fd060e3766a9a1b834639d35', 'manueldelapenna@gmail.com'),
-(5, 1, 'Pepa', 'Lopez', 'pepa', '281ffbf5eb2a3916b9c1eb8f28637836', 'pepa@pepa.com');
+INSERT INTO `mrbs_users` (`id`, `level`, `real_name`, `real_lastname`, `name`, `password`, `email`, `deshabilitado`) VALUES
+(2, 2, 'Martin', 'Ciafardini', 'martin', '925d7518fc597af0e43f5606f9a51512', 'martinciafardini@gmail.com', 0),
+(3, 1, 'Pepe', 'Gonzalez', 'pepe', '926e27eecdbc7a18858b3798ba99bddd', 'martinciafardini@gmail.com', 0),
+(4, 2, 'Manuel', 'De la Penna', 'manuel', '96917805fd060e3766a9a1b834639d35', 'manueldelapenna@gmail.com', 0),
+(5, 1, 'Pepa', 'Lopez', 'pepa', '281ffbf5eb2a3916b9c1eb8f28637836', 'manu_dela@hotmail.com', 0);
 
 -- --------------------------------------------------------
 
@@ -330,7 +396,7 @@ CREATE TABLE IF NOT EXISTS `mrbs_zoneinfo` (
 --
 
 INSERT INTO `mrbs_zoneinfo` (`id`, `timezone`, `outlook_compatible`, `vtimezone`, `last_updated`) VALUES
-(1, 'America/Argentina/Buenos_Aires', 1, 'BEGIN:VTIMEZONE\r\nTZID:America/Argentina/Buenos_Aires\r\nTZURL:http://tzurl.org/zoneinfo-outlook/America/Argentina/Buenos_Aires\r\nX-LIC-LOCATION:America/Argentina/Buenos_Aires\r\nBEGIN:STANDARD\r\nTZOFFSETFROM:-0300\r\nTZOFFSETTO:-0300\r\nTZNAME:ART\r\nDTSTART:19700101T000000\r\nEND:STANDARD\r\nEND:VTIMEZONE', 1401920034);
+(1, 'America/Argentina/Buenos_Aires', 1, 'BEGIN:VTIMEZONE\r\nTZID:America/Argentina/Buenos_Aires\r\nTZURL:http://tzurl.org/zoneinfo-outlook/America/Argentina/Buenos_Aires\r\nX-LIC-LOCATION:America/Argentina/Buenos_Aires\r\nBEGIN:STANDARD\r\nTZOFFSETFROM:-0300\r\nTZOFFSETTO:-0300\r\nTZNAME:ART\r\nDTSTART:19700101T000000\r\nEND:STANDARD\r\nEND:VTIMEZONE', 1404342770);
 
 --
 -- Filtros para las tablas descargadas (dump)
@@ -356,3 +422,7 @@ ALTER TABLE `mrbs_repeat`
   ADD CONSTRAINT `mrbs_repeat_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `mrbs_users` (`id`),
   ADD CONSTRAINT `mrbs_repeat_ibfk_4` FOREIGN KEY (`psychologist_id`) REFERENCES `mrbs_users` (`id`);
 SET FOREIGN_KEY_CHECKS=1;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -410,6 +410,14 @@ if (isset($Action) && ( ($Action == "Edit") or ($Action == "Add") ))
 					</div>";
                     break;
                   default:    
+					 if ($key == 'deshabilitado'){
+						$my_id = sql_query1("SELECT id FROM $tbl_users WHERE name='".sql_escape($user)."' LIMIT 1");
+						if ($level == 1 || $Id == $my_id){
+							break;
+						}
+						$params['label'] = "Deshabilitado";
+					 }
+				
                     // Output a checkbox if it's a boolean or integer <= 2 bytes (which we will
                     // assume are intended to be booleans)
                     if (($field['nature'] == 'boolean') || 
@@ -627,6 +635,7 @@ if (isset($Action) && ($Action == "Update"))
 
     // Now do some form validation
     $valid_data = TRUE;
+	
     foreach ($values as $fieldname => $value)
     {
       switch ($fieldname)
