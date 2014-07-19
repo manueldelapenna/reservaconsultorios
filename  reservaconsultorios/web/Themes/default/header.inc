@@ -198,7 +198,18 @@ function print_theme_header($day, $month, $year, $area, $room)
 	  }
 	  ?>
       <li class="divider"></li>
-
+	  <?php 
+		if ($is_admin)
+		{
+			$link_manual = 'manual_administrador.htm';
+		}
+		else
+		{
+			$link_manual = 'manual_usuario.htm';
+		}
+	  ?>
+	  <li><a href="<?php echo $link_manual?>" target="_blank">Ayuda</a></li>
+	  <li class="divider"></li>
       <!-- Button -->
       
 		<?php
