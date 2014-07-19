@@ -53,7 +53,7 @@ function print_theme_header($day, $month, $year, $area, $room)
   <meta charset="<?php echo get_charset(); ?>">
   <meta http-equiv="x-ua-compatible" content="IE=10" >
   <title><?php echo get_vocab("mrbs") ?></title>
-  
+  <link rel="shortcut icon" href="images/favicon.ico">
   <link rel="stylesheet" href="foundation-5.2.3/css/foundation.css" />
   
   
