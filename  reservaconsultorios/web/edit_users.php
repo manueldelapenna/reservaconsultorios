@@ -319,6 +319,7 @@ if (isset($Action) && ( ($Action == "Edit") or ($Action == "Add") ))
         <fieldset class="admin">
         <legend><?php echo (($Action == "Edit") ? get_vocab("edit_user") : get_vocab("add_new_user"));?></legend>
         <div id="edit_users_input_container">
+			<div id="edit_users_text_input_container">
           <?php
           // Find out how many admins are left in the table - it's disastrous if the last one is deleted,
           // or admin rights are removed!
@@ -467,17 +468,21 @@ if (isset($Action) && ( ($Action == "Edit") or ($Action == "Add") ))
             }
                      
           } // end foreach
-      
+		  
           print "<div><p>" . get_vocab("password_twice") . "...</p></div>\n";
 
           for ($i=0; $i<2; $i++)
           {
             print "<div>\n";
-            print "<label for=\"password$i\">" . get_vocab("users.password") . ":</label>\n";
-            print "<input type=\"password\" id=\"password$i\" name=\"password$i\" value=\"\">\n";
+			if ($i == 0){
+				print "<label for=\"password$i\">" . get_vocab("users.password") . ":</label>\n";
+			}else{
+				print "<label for=\"password$i\">Repetir Contraseña:</label>\n";
+			}
+            print "<input type=\"password\" id=\"password$i\" name=\"password$i\" value=\"\"  autocomplete=\"off\" >\n";
             print "</div>\n";
           }
-          
+          echo "</div>";
           // Now do any password error messages
           if (!empty($pwd_not_match))
           {

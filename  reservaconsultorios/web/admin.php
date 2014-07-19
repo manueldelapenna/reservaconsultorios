@@ -178,7 +178,7 @@ if ($is_admin)
       <input type="hidden" name="type" value="area">
 
       <div>
-        <label for="area_name"><?php echo get_vocab("name") ?>:</label>
+        <label for="area_name"><?php echo get_vocab("name") ?> Agrupación:</label>
         <input type="text" id="area_name" name="name" maxlength="<?php echo $maxlength['area.area_name'] ?>">
       </div>
           

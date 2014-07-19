@@ -685,6 +685,14 @@ form#form_edit_users {width: auto; margin-top: 2.0em}
 #form_edit_users div#edit_users_input_container {padding-bottom: 4.0em}    /* padding-bottom leaves room for the submit buttons. */
                                                                            /* Apply it to the div because applying it to the     */
                                                                            /* fieldset does not work in all browsers (eg Safari) */
+#edit_users_text_input_container{
+	margin-bottom:10px;
+}
+
+#edit_users_text_input_container input{
+	width:15em !important;
+}
+
 #form_edit_users label{
     display: block; float: left;
     min-height: <?php echo $edit_users_label_height ?>em; 
@@ -693,7 +701,7 @@ form#form_edit_users {width: auto; margin-top: 2.0em}
 }
 #form_edit_users input {
     display: block; float: left;
-    width: <?php echo $edit_users_input_width ?>em; 
+    width: 10em; 
     margin-left: <?php echo $edit_users_gap ?>em; 
 }
 #form_edit_users select, #form_edit_users textarea {
