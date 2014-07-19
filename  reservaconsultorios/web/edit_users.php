@@ -385,7 +385,8 @@ if (isset($Action) && ( ($Action == "Edit") or ($Action == "Add") ))
                     break;
                   case 'name':
                     // you cannot change a username (even your own) unless you have user editing rights
-                    $params['disabled'] = ($level < $min_user_editing_level);
+					$my_id = sql_query1("SELECT id FROM $tbl_users WHERE name='".sql_escape($user)."' LIMIT 1");
+                    $params['disabled'] = ($level < $min_user_editing_level || $my_id == $Id);
                     $params['mandatory'] = TRUE;
 					$params['type'] = 'text';
                     generate_input($params);
