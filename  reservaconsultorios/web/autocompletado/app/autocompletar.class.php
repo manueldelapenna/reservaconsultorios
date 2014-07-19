@@ -17,7 +17,7 @@ class Autocompletar
 	public function findData($search)
 	{
         
-	$query = $this->dbh->prepare("SELECT concat(real_lastname, ', ', real_name) as nombre, id FROM mrbs_users WHERE (real_lastname LIKE _utf8 :search COLLATE utf8_general_ci)  AND level < 2");
+	$query = $this->dbh->prepare("SELECT concat(real_lastname, ', ', real_name,' - ',name) as nombre, id FROM mrbs_users WHERE (real_lastname LIKE _utf8 :search COLLATE utf8_general_ci)  AND level < 2");
         $query->execute(array(':search' => '%'.$search.'%'));
         $this->dbh = null;
         $cant = $query->rowCount();
