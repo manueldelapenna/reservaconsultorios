@@ -194,10 +194,7 @@ function print_theme_header($day, $month, $year, $area, $room)
 		  </li>
         </ul>
       </li>
-	  <?php
-	  }
-	  ?>
-      <li class="divider"></li>
+	  <li class="divider"></li>
 	  <?php 
 		if ($is_admin)
 		{
@@ -210,6 +207,10 @@ function print_theme_header($day, $month, $year, $area, $room)
 	  ?>
 	  <li><a href="<?php echo $link_manual?>" target="_blank">Ayuda</a></li>
 	  <li class="divider"></li>
+	  <?php
+	  }
+	  ?>
+      
       <!-- Button -->
       
 		<?php
