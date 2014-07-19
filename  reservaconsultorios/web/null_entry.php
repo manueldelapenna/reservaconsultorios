@@ -1171,7 +1171,7 @@ else
 
 <form class="form_general" id="main" action="edit_entry_handler.php" method="post">
   <fieldset>
-  <legend><?php echo get_vocab($token);?></legend>
+  <legend>Bloquear reservas</legend>
 
 <?php
 
