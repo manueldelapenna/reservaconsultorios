@@ -924,6 +924,10 @@ if ($initial_user_creation != 1)   // don't print the user table if there are no
 		$fieldname = "Apellido";
 	  }
 	  
+	  if ($fieldname == "deshabilitado"){
+		$fieldname = "Deshabilitado";
+	  }
+	  
       if (!in_array($fieldname, $ignore_columns))
       {
         $heading = get_loc_field_name($tbl_users, $fieldname);
