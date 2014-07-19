@@ -855,7 +855,7 @@ if (isset($Action) && ($Action == "Delete"))
     print "<form class=\"edit_users_error\" method=\"post\" action=\"" . htmlspecialchars(basename($PHP_SELF)) . "\">\n";
     print "  <fieldset>\n";
     print "  <legend></legend>\n";
-    print "    <p class=\"error\">Error deleting entry $Id from the $tbl_users table.</p>\n";
+    print "    <p class=\"error\">Error al borrar el usuario, es posible que el usuario tenga reservas y/o pagos registrados. Puede deshabilitar el usuario si lo desea.</p>\n";
     print "    <p class=\"error\">" . sql_error() . "</p>\n";
     //print "    <input type=\"submit\" value=\" " . get_vocab("ok") . " \">\n";
     print "  </fieldset>\n";

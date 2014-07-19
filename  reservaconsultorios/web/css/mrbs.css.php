@@ -715,7 +715,7 @@ form#form_edit_users {width: auto; margin-top: 2.0em}
 #form_edit_users input.submit {right: 2.0em}                                   /* and put the OK on the right     */
 #form_delete_users input.submit {left: 1.85em}                                  /* and put the Delete on the left */
 #form_edit_users input.checkbox {width: auto; margin-left: <?php echo $edit_users_gap ?>em}
-form.edit_users_error {width: 10em; margin-top: 2.0em}
+form.edit_users_error {margin-top: 2.0em}
 div#user_list {padding: 0 0}
 
 
