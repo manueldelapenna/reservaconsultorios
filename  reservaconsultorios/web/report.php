@@ -1230,7 +1230,7 @@ if ($phase == 2)
   }
   $sql .= " LEFT JOIN mrbs_users u ON E.user_id = u.id";
   $sql .= " LEFT JOIN mrbs_users us ON E.psychologist_id = us.id";
-  $sql .= " LEFT JOIN mrbs_pago p ON e.pago_id = p.id";
+  $sql .= " LEFT JOIN mrbs_pago p ON E.pago_id = p.id";
   $sql .= " WHERE E.room_id=R.id AND R.area_id=A.id"
         . " AND E.start_time < $report_end AND E.end_time > $report_start";
   if ($output_format == OUTPUT_ICAL)
