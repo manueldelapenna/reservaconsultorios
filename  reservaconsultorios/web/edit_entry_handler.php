@@ -19,7 +19,7 @@ function invalid_booking($message)
   echo "<p>$message</p>\n";
   echo "<a href=javascript:window.history.back()>Volver a reserva</a>\n";
   // Print footer and exit
-  output_trailer();
+  //output_trailer();
   print_footer(TRUE);
 }
 
@@ -38,7 +38,7 @@ function cantidad_maxima_superada($message)
   echo "<a href=javascript:window.location.href='index.php'>Volver</a>\n";
   
   // Print footer and exit
-  output_trailer();
+  //output_trailer();
   print_footer(TRUE);
   
 }
@@ -196,6 +196,9 @@ if (!$ajax)
 						   end_time <= $ultimo_dia
 					 group by psychologist_id 
 					 LIMIT 1");
+		if ($total == -1){
+			$total = 0;
+		}
 	  
 	  $cantidadReservas = ($_POST['end_seconds'] - $_POST['start_seconds'])/60/60;
 	  
