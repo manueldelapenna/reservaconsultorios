@@ -479,7 +479,10 @@ if (isset($Action) && ( ($Action == "Edit") or ($Action == "Add") ))
 			}else{
 				print "<label for=\"password$i\">Repetir Contraseña:</label>\n";
 			}
-            print "<input type=\"password\" id=\"password$i\" name=\"password$i\" value=\"\"  autocomplete=\"off\" required>\n";
+            if ($Action == "Edit"){            
+              print "<input type=\"password\" id=\"password$i\" name=\"password$i\" value=\"\"  autocomplete=\"off\">\n";
+            }
+            else {print "<input type=\"password\" id=\"password$i\" name=\"password$i\" value=\"\"  autocomplete=\"off\" required>\n";}
             print "</div>\n";
           }
           echo "</div>";
