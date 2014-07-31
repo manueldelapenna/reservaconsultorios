@@ -35,7 +35,7 @@ function generar_tabla_reservas($psicologo_id,&$hay_datos)
             FROM  mrbs_entry e, mrbs_users u, mrbs_users us
             where (e.psychologist_id = $psicologo_id) AND (e.psychologist_id = u.id) AND (e.user_id = us.id) AND (e.pago_id is null)
 		
-        ORDER BY e.timestamp";
+        ORDER BY e.start_time";
     $res = sql_query($sql);
     $row = sql_row_keyed($res,0);
     if ($row){
